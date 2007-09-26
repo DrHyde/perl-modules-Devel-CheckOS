@@ -1,0 +1,7 @@
+CHANGES
+lib/Devel/CheckOS.pm
+Makefile.PL
+README
+MANIFEST
+lib/Devel/CheckOS/Unix.pm
+lib/Devel/CheckOS/Linux.pm
