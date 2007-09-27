@@ -1,4 +1,4 @@
-# $Id: CheckOS.pm,v 1.2 2007/09/27 16:02:18 drhyde Exp $
+# $Id: CheckOS.pm,v 1.3 2007/09/27 16:41:24 drhyde Exp $
 
 package Devel::CheckOS;
 
@@ -124,6 +124,35 @@ not.
 =cut
 
 sub die_unsupported { die("OS unsupported\n"); }
+
+=head1 PLATFORMS SUPPORTED
+
+The following operating systems are supported:
+
+    AIX            HPUX           NetBSD    Solaris
+    Amiga          Interix        Netware   SunOS
+    BSDOS          Irix           OS2       SysVr4
+    BeOS           Linux          OS390     SysVr5
+    Cygwin         MPEiX          OS400     Unicos
+    DGUX           MSDOS          OSF       VMESA
+    Darwin         MacOSX         OpenBSD   VMS
+    DragonflyBSD   MacOSclassic   POSIXBC   VOS
+    Dynix          MachTen        RISCOS
+    FreeBSD        NeXT           SCO
+
+Note that capitalisation is important.  These are the names of the
+underlying Devel::AssertOS::* modules (see L<Devel::AssertOS> for
+details) which do the actual platform detection, so they have to
+be 'legal' filenames, which unfortunately precludes funny characters,
+so platforms like OS/2 are mis-spelt deliberately.  Sorry.
+
+The following OS 'families' are supported:
+
+    Apple
+    DEC
+    MicrosoftWindows
+    Sun
+    Unix
 
 =head1 BUGS and FEEDBACK
 

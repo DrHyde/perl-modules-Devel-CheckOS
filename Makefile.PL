@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.1 2007/09/26 23:13:56 drhyde Exp $
+# $Id: Makefile.PL,v 1.2 2007/09/27 16:41:24 drhyde Exp $
 
 use ExtUtils::MakeMaker;
 
@@ -7,6 +7,6 @@ WriteMakefile(
     # FIXME have this look at all the modules, or summat
     VERSION_FROM => 'lib/Devel/CheckOS.pm'
     PREREQ_PM    => {
-        # no pre-reqs!
+        # 'Exporter' => 0 # core
     }
 );
