@@ -1,4 +1,4 @@
-# $Id: CheckOS.pm,v 1.3 2007/09/27 16:41:24 drhyde Exp $
+# $Id: CheckOS.pm,v 1.4 2007/09/27 16:55:46 drhyde Exp $
 
 package Devel::CheckOS;
 
@@ -180,6 +180,9 @@ David Cantrell E<lt>F<david@cantrell.org.uk>E<gt>
 Thanks to David Golden for the name and ideas about the interface, and
 for the cpan-testers-discuss mailing list for prompting me to write it
 in the first place.
+
+Thanks to Ken Williams, from whose L<Module::Build> I lifted some of the
+information about what should be in the Unix family.
 
 =head1 COPYRIGHT and LICENCE
 
