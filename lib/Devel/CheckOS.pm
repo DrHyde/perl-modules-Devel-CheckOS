@@ -1,15 +1,23 @@
-# $Id: CheckOS.pm,v 1.1 2007/09/26 23:13:56 drhyde Exp $
+# $Id: CheckOS.pm,v 1.2 2007/09/27 16:02:18 drhyde Exp $
 
 package Devel::CheckOS;
 
 use strict;
 
-use vars qw($VERSION);
+use vars qw($VERSION @ISA @EXPORT_OK %EXPORT_TAGS);
 
 $VERSION = '1.0';
 
 # localising prevents the warningness leaking out of this module
 local $^W = 1;    # use warnings is a 5.6-ism
+
+@ISA = qw(Exporter);
+@EXPORT_OK = qw(os_is os_isnt die_if_os_is die_if_os_isnt die_unsupported);
+%EXPORT_TAGS = (
+    all      => \@EXPORT_OK,
+    booleans => [qw(os_is os_isnt die_unsupported)],
+    fatal    => [qw(die_if_os_is die_if_os_isnt)]
+);
 
 =head1 NAME
 
@@ -34,6 +42,7 @@ by listing their names after C<use Devel::CheckOS>.  You can also export
 groups of functions thus:
 
     use Devel::CheckOS qw(:booleans); # export the boolean functions
+                                      # and 'die_unsupported'
     
     use Devel::CheckOS qw(:fatal);    # export those that die on no match
 
@@ -70,6 +79,16 @@ sub os_is {
 If the current platform matches any of the parameters it returns false,
 otherwise it returns true.
 
+=cut
+
+sub os_isnt {
+    my @targets = @_;
+    foreach my $target (@targets) {
+        return 0 if(os_is($target));
+    }
+    return 1;
+}
+
 =head2 Fatal functions
 
 =head3 die_if_os_isnt
@@ -78,9 +97,33 @@ As C<os_is()>, except that it dies instead of returning false.  The die()
 message matches what the CPAN-testers look for to determine if a module
 doesn't support a particular platform.
 
+=cut
+
+sub die_if_os_isnt {
+    os_is(@_) ? 1 : die_unsupported();
+}
+
 =head3 die_if_os_is
 
 As C<os_isnt()>, except that it dies instead of returning false.
+
+=cut
+
+sub die_if_os_is {
+    os_isnt(@_) ? 1 : die_unsupported();
+}
+
+=head2 And a utility function for dieing ...
+
+=head3 die_unsupported
+
+This function simply dies with the message "OS unsupported", which is what
+the CPAN testers look for to figure out whether a platform is supported or
+not.
+
+=cut
+
+sub die_unsupported { die("OS unsupported\n"); }
 
 =head1 BUGS and FEEDBACK
 

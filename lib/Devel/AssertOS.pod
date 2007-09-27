@@ -1,0 +1,99 @@
+=head1 NAME
+
+Devel::AssertOS::* - modules that check what platform they're running on
+
+=head1 DESCRIPTION
+
+Devel::AssertOS::* modules are used by Devel::CheckOS to figure out what
+OS it is running on.  A set of modules are provided which should correctly
+detect all platforms that perl *currently* runs on, as well as detecting
+OS 'families' like 'Unix' and 'Windows'.
+
+You can also use Devel::AssertOS::* modules on their own to quickly check
+whether you're running on the right platform.
+
+If you try to C<use> a Devel::AssertOS module on the wrong platform, it
+will C<die> by calling C<Devel::CheckOS::die_unsupported()>.  This
+conveniently spits out the text that CPAN-testers look for to see if
+your code failed simply because they're doing something as silly as
+testing your Solaris-only code on HPUX.
+
+=head1 SYNOPSIS
+
+    use Devel::AssertOS::Windows;
+
+    print "If we get this far we're running on Windows\n";
+
+=head1 HOW TO WRITE YOUR OWN MODULES
+
+If you want to add support for new platforms, you need to write a module
+called Devel::AssertOS::PlatformName which looks like:
+
+    package Devel::AssertOS::Linux;
+    use Devel::CheckOS qw(die_unsupported);
+    $VERSION = '1.0';
+    sub os_is { $^O eq 'linux' ? 1 : 0; }
+    die_unsupported() unless(os_is());
+    1;
+
+And that's it.  The subroutine B<must> be called C<os_is> and loading the
+module B<must> die in precisely that manner if your code is running on
+the wrong platform.
+
+If you want to support a 'family' of OSes, then change the subroutine to
+match any of several values of C<$^O> like this:
+
+    package Devel::AssertOS::FreeSoftware;
+    ...
+    sub os_is {
+        $^O =~ /^
+            linux     |
+            freebsd   |
+            netbsd    |
+            openbsd   |
+            dragonfly
+        $/x ? 1 : 0;
+    }
+
+Or you could make it a wrapper around several C<eval()>ed 'use' statements
+to try all of Devel::AssertOS::Linux, Devel::AssertOS::FreeBSD etc in turn.
+See the sourcecode for Devel::AssertOS::Unix for an example.
+
+=head1 BUGS and FEEDBACK
+
+I welcome feedback about my code, including constructive criticism.
+Bug reports should be made using L<http://rt.cpan.org/> or by email.
+
+If you are feeling particularly generous you can encourage me in my
+open source endeavours by buying me something from my wishlist:
+  L<http://www.cantrell.org.uk/david/wishlist/>
+
+=head1 SEE ALSO
+
+L<Devel::CheckOS>
+
+$^O in L<perlvar>
+
+L<perlport>
+
+=head1 AUTHOR
+
+David Cantrell E<lt>F<david@cantrell.org.uk>E<gt>
+
+Thanks to David Golden for the name and ideas about the interface, and
+for the cpan-testers-discuss mailing list for prompting me to write it
+in the first place.
+
+=head1 COPYRIGHT and LICENCE
+
+Copyright 2007 David Cantrell
+
+This documentation and the modules it describes are free-as-in-speech,
+and may be used, distributed, and modified under the same conditions as
+perl itself.
+
+=head1 CONSPIRACY
+
+This documentation is also free-as-in-mason.
+
+=cut
