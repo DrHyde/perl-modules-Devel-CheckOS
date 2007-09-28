@@ -1,4 +1,4 @@
-# $Id: AssertOS.pm,v 1.1 2007/09/28 16:21:05 drhyde Exp $
+# $Id: AssertOS.pm,v 1.2 2007/09/28 16:30:11 drhyde Exp $
 
 package Devel::AssertOS;
 
@@ -57,7 +57,7 @@ L<perlport>
 
 L<Devel::CheckOS>
 
-Devel::AssertOS::*
+L<Devel::AssertOS::Extending>
 
 =head1 AUTHOR
 

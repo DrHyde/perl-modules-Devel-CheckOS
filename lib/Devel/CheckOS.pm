@@ -1,4 +1,4 @@
-# $Id: CheckOS.pm,v 1.5 2007/09/28 14:35:08 drhyde Exp $
+# $Id: CheckOS.pm,v 1.6 2007/09/28 16:30:11 drhyde Exp $
 
 package Devel::CheckOS;
 
@@ -152,8 +152,8 @@ To see the list of platforms supported "out of the box", run this:
     perl -MDevel::CheckOS -e 'print join(", ", Devel::CheckOS::list_platforms())'
 
 Note that capitalisation is important.  These are the names of the
-underlying Devel::AssertOS::* modules (see L<Devel::AssertOS> for
-details) which do the actual platform detection, so they have to
+underlying Devel::AssertOS::* modules
+which do the actual platform detection, so they have to
 be 'legal' filenames and module names, which unfortunately precludes
 funny characters, so platforms like OS/2 are mis-spelt deliberately.
 Sorry.
@@ -169,6 +169,9 @@ The following OS 'families' are supported:
     MicrosoftWindows (this matches either MSWin32 or Cygwin)
     Sun
     Unix
+
+If you want to add your own OSes or families, see L<Devel::AssertOS::Extending>
+and please feel free to upload the results to the CPAN.
 
 =head1 BUGS and FEEDBACK
 
@@ -188,6 +191,10 @@ open source endeavours by buying me something from my wishlist:
 $^O in L<perlvar>
 
 L<perlport>
+
+L<Devel::AssertOS>
+
+L<Devel::AssertOS::Extending>
 
 =head1 AUTHOR
 

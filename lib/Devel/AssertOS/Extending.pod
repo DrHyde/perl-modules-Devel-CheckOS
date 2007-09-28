@@ -1,6 +1,7 @@
 =head1 NAME
 
-Devel::AssertOS::* - modules that check what platform they're running on
+Devel::AssertOS::Extending - how to write Devel::AssertOS::* modules that
+check what platform they're running on
 
 =head1 DESCRIPTION
 
