@@ -1,4 +1,4 @@
-# $Id: CheckOS.pm,v 1.4 2007/09/27 16:55:46 drhyde Exp $
+# $Id: CheckOS.pm,v 1.5 2007/09/28 14:35:08 drhyde Exp $
 
 package Devel::CheckOS;
 
@@ -12,7 +12,7 @@ $VERSION = '1.0';
 local $^W = 1;    # use warnings is a 5.6-ism
 
 @ISA = qw(Exporter);
-@EXPORT_OK = qw(os_is os_isnt die_if_os_is die_if_os_isnt die_unsupported);
+@EXPORT_OK = qw(os_is os_isnt die_if_os_is die_if_os_isnt die_unsupported list_platforms);
 %EXPORT_TAGS = (
     all      => \@EXPORT_OK,
     booleans => [qw(os_is os_isnt die_unsupported)],
@@ -113,7 +113,7 @@ sub die_if_os_is {
     os_isnt(@_) ? 1 : die_unsupported();
 }
 
-=head2 And a utility function for dieing ...
+=head2 And some utility functions ...
 
 =head3 die_unsupported
 
@@ -125,32 +125,48 @@ not.
 
 sub die_unsupported { die("OS unsupported\n"); }
 
+=head3 list_platforms
+
+Return a list of all the platforms for which the corresponding
+Devel::AssertOS::* module is available.  This includes both OSes and OS
+families, and both those bundled with this module and any third-party
+add-ons you have installed.
+
+=cut
+
+sub list_platforms {
+    eval "use File::Find::Rule"; # only load this if needed
+    die($@) if($@);
+    # FIXME: $_/Devel/AssertOS not portable
+    return sort { $a cmp $b } map {
+        s/^.*\///g;
+        s/\.pm$//gi;
+        $_;
+    } File::Find::Rule->file()->name('*.pm')->in(map { "$_/Devel/AssertOS" } @INC);
+}
+
 =head1 PLATFORMS SUPPORTED
 
-The following operating systems are supported:
+To see the list of platforms supported "out of the box", run this:
 
-    AIX            HPUX           NetBSD    Solaris
-    Amiga          Interix        Netware   SunOS
-    BSDOS          Irix           OS2       SysVr4
-    BeOS           Linux          OS390     SysVr5
-    Cygwin         MPEiX          OS400     Unicos
-    DGUX           MSDOS          OSF       VMESA
-    Darwin         MacOSX         OpenBSD   VMS
-    DragonflyBSD   MacOSclassic   POSIXBC   VOS
-    Dynix          MachTen        RISCOS
-    FreeBSD        NeXT           SCO
+    perl -MDevel::CheckOS -e 'print join(", ", Devel::CheckOS::list_platforms())'
 
 Note that capitalisation is important.  These are the names of the
 underlying Devel::AssertOS::* modules (see L<Devel::AssertOS> for
 details) which do the actual platform detection, so they have to
-be 'legal' filenames, which unfortunately precludes funny characters,
-so platforms like OS/2 are mis-spelt deliberately.  Sorry.
+be 'legal' filenames and module names, which unfortunately precludes
+funny characters, so platforms like OS/2 are mis-spelt deliberately.
+Sorry.
+
+Also be aware that not all of them have been properly tested.  I don't
+have access to most of them and have had to work from information
+gleaned from L<perlport> and a few other places.
 
 The following OS 'families' are supported:
 
-    Apple
+    Apple (Mac OS, both classic and OS X)
     DEC
-    MicrosoftWindows
+    MicrosoftWindows (this matches either MSWin32 or Cygwin)
     Sun
     Unix
 

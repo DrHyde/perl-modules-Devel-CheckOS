@@ -1,4 +1,4 @@
-# $Id: Unix.pm,v 1.3 2007/09/27 16:41:25 drhyde Exp $
+# $Id: Unix.pm,v 1.4 2007/09/28 14:35:08 drhyde Exp $
 
 package Devel::AssertOS::Unix;
 
@@ -9,7 +9,7 @@ $VERSION = '1.0';
 # list of OSes lifted from Module::Build 0.2808
 #
 sub os_is {
-    $^O =~ /^
+    $^O =~ /^(
         aix       |
         bsdos     |
         dgux      |
@@ -32,7 +32,7 @@ sub os_is {
         solaris   |
         sunos     |
         interix
-    $/x ? 1 : 0;
+    )$/x ? 1 : 0;
 }
 
 die_unsupported() unless(os_is());
