@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.6 2007/09/30 14:39:28 drhyde Exp $
+# $Id: Makefile.PL,v 1.7 2007/09/30 15:03:14 drhyde Exp $
 
 use ExtUtils::MakeMaker;
 
@@ -30,12 +30,17 @@ foreach (map { s/\.pm$//; $_ } grep { /\.pm$/ } readdir(LIBS)) {
     }
 }
 closedir(LIBS);
-if(@notOSes) {
-    open(FAIL, ">t/XX-autodetect-$^O-as-".join('-', @notOSes).".t");
+
+if(@notOSes) { # user told us we got it wrong
+    open(FAIL, ">t/XX-autodetected-$^O-as-".join('-', @notOSes).".t");
     print FAIL 'print "1..1\\n";print "not ok 1\\n"';
     close(FAIL);
-} else {
-
+} elsif(!@OSes) { # didn't detect anything!
+    open(FAIL, ">t/XX-autodetected-$^O-as-nothing.t");
+    print FAIL 'print "1..1\\n";print "not ok 1\\n"';
+    close(FAIL);
+} elsif(@OSes) {
+    # OS-specific tests?
 }
 
 # print "OSes: ".join(', ', @OSes)."\n";
