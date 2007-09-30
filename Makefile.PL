@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.4 2007/09/30 13:43:14 drhyde Exp $
+# $Id: Makefile.PL,v 1.5 2007/09/30 14:17:59 drhyde Exp $
 
 use ExtUtils::MakeMaker;
 
@@ -19,13 +19,14 @@ foreach (map { s/\.pm$//; $_ } grep { /\.pm$/ } readdir(LIBS)) {
 }
 closedir(LIBS);
 
-die "OSes: ".join(', ', @OSes)."\n";
+# print "OSes: ".join(', ', @OSes)."\n";
 
 WriteMakefile(
     NAME         => 'Devel::CheckOS',
     # FIXME have this look at all the modules, or summat
     VERSION_FROM => 'lib/Devel/CheckOS.pm',
     PREREQ_PM    => {
+        'Test::More'       => 0.7,  # way too high, but it works
         'File::Find::Rule' => 0.28,
         # 'Exporter' => 0 # core
     }

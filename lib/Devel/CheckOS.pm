@@ -1,4 +1,4 @@
-# $Id: CheckOS.pm,v 1.6 2007/09/28 16:30:11 drhyde Exp $
+# $Id: CheckOS.pm,v 1.7 2007/09/30 14:17:59 drhyde Exp $
 
 package Devel::CheckOS;
 
@@ -142,7 +142,11 @@ sub list_platforms {
         s/^.*\///g;
         s/\.pm$//gi;
         $_;
-    } File::Find::Rule->file()->name('*.pm')->in(map { "$_/Devel/AssertOS" } @INC);
+    } File::Find::Rule->file()->name('*.pm')->in(
+        grep { -d }
+        map { "$_/Devel/AssertOS" }
+        @INC
+    );
 }
 
 =head1 PLATFORMS SUPPORTED
