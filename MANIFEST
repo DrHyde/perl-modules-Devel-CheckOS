@@ -1,4 +1,3 @@
-.DS_Store
 CHANGES
 lib/Devel/AssertOS/AIX.pm
 lib/Devel/AssertOS/Amiga.pm
@@ -54,6 +53,11 @@ t/00_checkos.t
 t/01-import-all.t
 t/02-import-bool.t
 t/03-import-fatal.t
+t/10-assertos-single-valid-OS.t
+t/11-assertos-blah-valid.t
+t/12-assertos-single-invalid-OS.t
+t/13-assertos-blah-invalid.t
+t/14-assertos-multi.t
 t/lib/Devel/AssertOS/AnOperatingSystem.pm
 t/lib/Devel/AssertOS/NotAnOperatingSystem.pm
 TODO
