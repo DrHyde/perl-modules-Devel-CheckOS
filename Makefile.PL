@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.9 2007/10/01 16:36:36 drhyde Exp $
+# $Id: Makefile.PL,v 1.10 2007/10/01 16:46:06 drhyde Exp $
 
 use ExtUtils::MakeMaker;
 use Cwd;
@@ -7,6 +7,14 @@ use strict;
 $^W = 1;
 
 use lib 'lib';
+
+# this and all the annoying chdir()s are because I have no idea how to
+# construct paths on VMS and RISCOS.  Doing several individual chdir()s
+# should work, also I opendir() directory names and not '.' or 'foo/bar'.
+# Yuck.
+#
+# If only I could assume File::Spec was installed at this point, but I
+# can't.  Double-yuck.
 
 my $cwd = getcwd();
 
