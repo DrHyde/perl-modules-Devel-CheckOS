@@ -1,4 +1,4 @@
-# $Id: CheckOS.pm,v 1.8 2007/09/30 22:31:18 drhyde Exp $
+# $Id: CheckOS.pm,v 1.9 2007/10/01 16:36:38 drhyde Exp $
 
 package Devel::CheckOS;
 
@@ -6,7 +6,7 @@ use strict;
 
 use vars qw($VERSION @ISA @EXPORT_OK %EXPORT_TAGS);
 
-$VERSION = '1.0';
+$VERSION = '1.1';
 
 # localising prevents the warningness leaking out of this module
 local $^W = 1;    # use warnings is a 5.6-ism
@@ -135,16 +135,19 @@ add-ons you have installed.
 =cut
 
 sub list_platforms {
-    eval "use File::Find::Rule"; # only load this if needed
+    eval " # only load these if needed
+        use File::Find::Rule;
+        use File::Spec::Functions qw(catdir);
+    ";
+    
     die($@) if($@);
-    # FIXME: $_/Devel/AssertOS not portable
     return sort { $a cmp $b } map {
         s/^.*\///g;
         s/\.pm$//gi;
         $_;
     } File::Find::Rule->file()->name('*.pm')->in(
         grep { -d }
-        map { "$_/Devel/AssertOS" }
+        map { catdir($_, qw(Devel AssertOS)) }
         @INC
     );
 }

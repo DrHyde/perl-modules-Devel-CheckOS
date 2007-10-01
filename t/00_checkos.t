@@ -5,7 +5,8 @@ use Test::More tests => 9;
 
 BEGIN { use_ok('Devel::CheckOS'); }
 
-use lib 't/lib';
+use File::Spec::Functions qw(catdir);
+use lib catdir(qw(t lib));
 
 ok(Devel::CheckOS::os_is('AnOperatingSystem'),
    "a single valid OS detected");
