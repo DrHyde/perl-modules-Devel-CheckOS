@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.12 2007/10/01 21:25:42 drhyde Exp $
+# $Id: Makefile.PL,v 1.13 2007/10/01 21:29:08 drhyde Exp $
 
 use 5.005;
 use ExtUtils::MakeMaker;
@@ -16,7 +16,7 @@ close(T);
 
 my @OSes = ();
 my @notOSes = ();
-opendir(LIBS, File::Spec->catdir(qw(lib Devel AssertOS)) ||
+opendir(LIBS, File::Spec->catdir(qw(lib Devel AssertOS))) ||
     die("Can't read lib/Devel/AssertOS. Your distribution is broken\n");
 foreach (map { s/\.pm$//; $_ } grep { /\.pm$/ } readdir(LIBS)) {
     eval "use Devel::AssertOS::$_";
@@ -62,5 +62,5 @@ WriteMakefile(
         'File::Spec::Functions' => '1.3',
         # 'Exporter' => 0 # core
     },
-    clean         => { files => join(' ', @extrafiles) }
+    clean         => { FILES => join(' ', @extrafiles) }
 );
