@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.14 2007/10/01 21:33:22 drhyde Exp $
+# $Id: Makefile.PL,v 1.15 2007/10/01 21:45:47 drhyde Exp $
 
 use 5.005;
 use ExtUtils::MakeMaker;
@@ -46,7 +46,12 @@ if(@notOSes) { # user told us we got it wrong
     print FAIL 'print "1..1\\n";print "not ok 1\\n"';
     close(FAIL);
 } elsif(@OSes) {
-    # OS-specific tests?
+    foreach my $os (@OSes) {
+        push @extrafiles, File::Spec->catfile('t', "XX-autodetected-$^O-as-$os.t");
+        open(PASS, '>'.$extrafiles[-1]);
+        print PASS 'print "1..1\\n";print "ok 1\\n"';
+        close(PASS);
+    }
 }
 
 # print "OSes: ".join(', ', @OSes)."\n";

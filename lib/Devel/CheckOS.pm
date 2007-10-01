@@ -1,4 +1,4 @@
-# $Id: CheckOS.pm,v 1.10 2007/10/01 21:37:26 drhyde Exp $
+# $Id: CheckOS.pm,v 1.11 2007/10/01 21:45:47 drhyde Exp $
 
 package Devel::CheckOS;
 
@@ -218,6 +218,8 @@ in the first place.
 
 Thanks to Ken Williams, from whose L<Module::Build> I lifted some of the
 information about what should be in the Unix family.
+
+Thanks to Billy Abbott for finding some bugs for me on VMS.
 
 =head1 COPYRIGHT and LICENCE
 
