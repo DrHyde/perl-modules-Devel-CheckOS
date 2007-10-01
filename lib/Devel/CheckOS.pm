@@ -1,4 +1,4 @@
-# $Id: CheckOS.pm,v 1.9 2007/10/01 16:36:38 drhyde Exp $
+# $Id: CheckOS.pm,v 1.10 2007/10/01 21:37:26 drhyde Exp $
 
 package Devel::CheckOS;
 
@@ -131,6 +131,11 @@ Return a list of all the platforms for which the corresponding
 Devel::AssertOS::* module is available.  This includes both OSes and OS
 families, and both those bundled with this module and any third-party
 add-ons you have installed.
+
+Unfortunately, on some platforms this list may have file case
+broken.  eg, some platforms might return 'freebsd' instead of 'FreeBSD'.
+This is because they have case-insensitive filesystems so things
+should Just Work anyway.
 
 =cut
 
