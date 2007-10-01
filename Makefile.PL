@@ -1,6 +1,9 @@
-# $Id: Makefile.PL,v 1.11 2007/10/01 21:13:27 drhyde Exp $
+# $Id: Makefile.PL,v 1.12 2007/10/01 21:25:42 drhyde Exp $
 
+use 5.005;
 use ExtUtils::MakeMaker;
+
+use File::Spec;
 
 use strict;
 $^W = 1;
@@ -8,12 +11,12 @@ $^W = 1;
 use lib 'lib';
 
 opendir(T, 't');
-unlink "t/$_" foreach(grep { /^XX/ } readdir(T));
+unlink File::Spec->catfile('t', $_) foreach(grep { /^XX/ } readdir(T));
 close(T);
 
 my @OSes = ();
 my @notOSes = ();
-opendir(LIBS, 'lib/Devel/AssertOS/') ||
+opendir(LIBS, File::Spec->catdir(qw(lib Devel AssertOS)) ||
     die("Can't read lib/Devel/AssertOS. Your distribution is broken\n");
 foreach (map { s/\.pm$//; $_ } grep { /\.pm$/ } readdir(LIBS)) {
     eval "use Devel::AssertOS::$_";
@@ -31,12 +34,15 @@ foreach (map { s/\.pm$//; $_ } grep { /\.pm$/ } readdir(LIBS)) {
 }
 closedir(LIBS);
 
+my @extrafiles = ();
 if(@notOSes) { # user told us we got it wrong
-    open(FAIL, ">t/XX-autodetected-$^O-as-".join('-', @notOSes).".t");
+    push @extrafiles, File::Spec->catfile('t', "XX-autodetected-$^O-as-".join('-', @notOSes).".t");
+    open(FAIL, '>'.$extrafiles[-1]);
     print FAIL 'print "1..1\\n";print "not ok 1\\n"';
     close(FAIL);
 } elsif(!@OSes) { # didn't detect anything!
-    open(FAIL, ">t/XX-autodetected-$^O-as-nothing.t");
+    push @extrafiles, File::Spec->catfile('t', "XX-autodetected-$^O-as-nothing.t");
+    open(FAIL, '>'.$extrafiles[-1]);
     print FAIL 'print "1..1\\n";print "not ok 1\\n"';
     close(FAIL);
 } elsif(@OSes) {
@@ -55,5 +61,6 @@ WriteMakefile(
         'File::Find::Rule' => 0.28,
         'File::Spec::Functions' => '1.3',
         # 'Exporter' => 0 # core
-    }
+    },
+    clean         => { files => join(' ', @extrafiles) }
 );
