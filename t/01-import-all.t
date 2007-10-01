@@ -19,5 +19,5 @@ ok($@ =~ /OS unsupported/i, "die_if_os_is imported");
 eval { die_unsupported() };
 ok($@ =~ /OS unsupported/i, "die_unsupported imported");
 
-ok((grep { /^AnOperatingSystem$/ } list_platforms()),
+ok((grep { /^AnOperatingSystem$/i } list_platforms()),
    "list_platforms imported");

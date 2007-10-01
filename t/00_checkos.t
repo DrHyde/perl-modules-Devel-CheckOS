@@ -26,6 +26,6 @@ ok($@ =~ /OS unsupported/i, "a single invalid OS detected using die_if_os_isnt")
 eval { Devel::CheckOS::die_unsupported() };
 ok($@ =~ /OS unsupported/i, "die_unsupported works");
 
-ok((grep { /^AnOperatingSystem$/ } Devel::CheckOS::list_platforms()) &&
-   (grep { /^NotAnOperatingSystem$/ } Devel::CheckOS::list_platforms()),
+ok((grep { /^AnOperatingSystem$/i } Devel::CheckOS::list_platforms()) &&
+   (grep { /^NotAnOperatingSystem$/i } Devel::CheckOS::list_platforms()),
    "list_platforms works");
