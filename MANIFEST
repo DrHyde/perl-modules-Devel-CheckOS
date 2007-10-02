@@ -5,7 +5,7 @@ lib/Devel/AssertOS/Apple.pm
 lib/Devel/AssertOS/BeOS.pm
 lib/Devel/AssertOS/BSDOS.pm
 lib/Devel/AssertOS/Cygwin.pm
-lib/Devel/AssertOS/Darwin.pm
+lib/Devel/AssertOS/Darwin.pm~
 lib/Devel/AssertOS/DEC.pm
 lib/Devel/AssertOS/DGUX.pm
 lib/Devel/AssertOS/DragonflyBSD.pm
