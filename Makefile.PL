@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.16 2007/10/02 07:53:05 drhyde Exp $
+# $Id: Makefile.PL,v 1.17 2007/10/02 15:17:06 drhyde Exp $
 
 use 5.005;
 use ExtUtils::MakeMaker;
@@ -49,7 +49,12 @@ if(@notOSes) { # user told us we got it wrong
     foreach my $os (@OSes) {
         push @extrafiles, File::Spec->catfile('t', "XX-autodetected-$^O-as-$os.t");
         open(PASS, '>'.$extrafiles[-1]);
-        print PASS 'print "1..1\\n";print "ok 1\\n"';
+        print PASS qq{
+            use File::Spec;
+            use lib File::Spec->catdir(qw(t lib));
+            use Devel::AssertOS::$os;
+            print "1..1\\n";print "ok 1\\n";
+        };
         close(PASS);
     }
 }
@@ -58,7 +63,7 @@ if(@notOSes) { # user told us we got it wrong
 
 WriteMakefile(
     NAME         => 'Devel::CheckOS',
-    VERSION      => 0.92,
+    VERSION      => 0.93,
     # FIXME have this look at all the modules, or summat
     # VERSION_FROM => 'lib/Devel/CheckOS.pm',
     PREREQ_PM    => {
