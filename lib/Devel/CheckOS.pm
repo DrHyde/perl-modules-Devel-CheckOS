@@ -1,4 +1,4 @@
-# $Id: CheckOS.pm,v 1.11 2007/10/01 21:45:47 drhyde Exp $
+# $Id: CheckOS.pm,v 1.12 2007/10/02 07:53:06 drhyde Exp $
 
 package Devel::CheckOS;
 
@@ -142,7 +142,7 @@ should Just Work anyway.
 sub list_platforms {
     eval " # only load these if needed
         use File::Find::Rule;
-        use File::Spec::Functions qw(catdir);
+        use File::Spec;
     ";
     
     die($@) if($@);
@@ -152,7 +152,7 @@ sub list_platforms {
         $_;
     } File::Find::Rule->file()->name('*.pm')->in(
         grep { -d }
-        map { catdir($_, qw(Devel AssertOS)) }
+        map { File::Spec->catdir($_, qw(Devel AssertOS)) }
         @INC
     );
 }
