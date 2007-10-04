@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.18 2007/10/02 15:44:14 drhyde Exp $
+# $Id: Makefile.PL,v 1.19 2007/10/04 20:15:01 drhyde Exp $
 
 use 5.005;
 use ExtUtils::MakeMaker;
@@ -61,7 +61,7 @@ if(@notOSes) { # user told us we got it wrong
 
 WriteMakefile(
     NAME         => 'Devel::CheckOS',
-    VERSION      => '1.0',
+    VERSION      => '1.1',
     # FIXME have this look at all the modules, or summat
     # VERSION_FROM => 'lib/Devel/CheckOS.pm',
     PREREQ_PM    => {
