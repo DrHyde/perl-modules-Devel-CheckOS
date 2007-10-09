@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.20 2007/10/09 13:32:33 drhyde Exp $
+# $Id: Makefile.PL,v 1.21 2007/10/09 21:48:37 drhyde Exp $
 
 use 5.005;
 use ExtUtils::MakeMaker;
@@ -69,5 +69,9 @@ WriteMakefile(
         'File::Find::Rule' => 0.28,
         # 'Exporter' => 0 # core
     },
+    EXE_FILES    => [qw(
+        bin/use-devel-assertos
+    )],
+
     clean         => { FILES => join(' ', @extrafiles) }
 );

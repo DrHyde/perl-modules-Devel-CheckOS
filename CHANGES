@@ -1,5 +1,7 @@
+1.2     XXXX-XX-XX      Made prompts in Makefile.PL clearer;
+                        Added use-devel-assertos script
 1.1     2007-10-04      Oops, forgot to 'use Exporter'!
-1.0     2007-10-02      Remove File::Spec::Functions
+1.0     2007-10-02      Remove File::Spec::Functions;
                         Test that we can load the OSes we detected.
                           This is totally paranoid cos we already
                           did it in Makefile.PL to detect them, but
