@@ -1,6 +1,6 @@
-# $Id: Makefile.PL,v 1.21 2007/10/09 21:48:37 drhyde Exp $
+# $Id: Makefile.PL,v 1.22 2007/10/14 16:03:44 drhyde Exp $
 
-use 5.005;
+require 5.005;
 use ExtUtils::MakeMaker;
 
 use File::Spec;
