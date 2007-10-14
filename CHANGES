@@ -1,4 +1,4 @@
-1.2     XXXX-XX-XX      Made prompts in Makefile.PL clearer;
+1.2     2007-10-14      Made prompts in Makefile.PL clearer;
                         Added use-devel-assertos script;
                         Makefile.PL now requires 5.005 instead of use
 1.1     2007-10-04      Oops, forgot to 'use Exporter'!

@@ -61,3 +61,4 @@ t/14-assertos-multi.t
 t/lib/Devel/AssertOS/AnOperatingSystem.pm
 t/lib/Devel/AssertOS/NotAnOperatingSystem.pm
 TODO
+bin/use-devel-assertos
