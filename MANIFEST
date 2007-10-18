@@ -16,9 +16,11 @@ lib/Devel/AssertOS/HPUX.pm
 lib/Devel/AssertOS/Interix.pm
 lib/Devel/AssertOS/Irix.pm
 lib/Devel/AssertOS/Linux.pm
+lib/Devel/AssertOS/Linux/v2_6.pm
 lib/Devel/AssertOS/MachTen.pm
 lib/Devel/AssertOS/MacOSclassic.pm
 lib/Devel/AssertOS/MacOSX.pm
+lib/Devel/AssertOS/MacOSX/v10_4.pm
 lib/Devel/AssertOS/MicrosoftWindows.pm
 lib/Devel/AssertOS/MPEiX.pm
 lib/Devel/AssertOS/MSDOS.pm
@@ -62,3 +64,6 @@ t/lib/Devel/AssertOS/AnOperatingSystem.pm
 t/lib/Devel/AssertOS/NotAnOperatingSystem.pm
 TODO
 bin/use-devel-assertos
+t/20-multilevel-names.t
+t/lib/Devel/AssertOS/AnOperatingSystem/v1.pm
+t/lib/Devel/AssertOS/AnOperatingSystem/v2.pm

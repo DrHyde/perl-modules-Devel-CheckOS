@@ -1,3 +1,4 @@
+1.3     2007-10-XX      Support multi-level OSnames
 1.2     2007-10-14      Made prompts in Makefile.PL clearer;
                         Added use-devel-assertos script;
                         Makefile.PL now requires 5.005 instead of use

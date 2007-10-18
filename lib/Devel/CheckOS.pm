@@ -1,4 +1,4 @@
-# $Id: CheckOS.pm,v 1.14 2007/10/14 16:13:57 drhyde Exp $
+# $Id: CheckOS.pm,v 1.15 2007/10/18 13:29:05 drhyde Exp $
 
 package Devel::CheckOS;
 
@@ -32,8 +32,10 @@ like Linux, Solaris, AIX etc.
 
 =head1 SYNOPSIS
 
-    use Devel::CheckOS;
+    use Devel::CheckOS qw(os_is);
     print "Hey, I know this, it's a Unix system\n" if(os_is('Unix'));
+
+    print "You've got Linux 2.6\n" if(os_is('Linux::v2_6'));
 
 =head1 FUNCTIONS
 
@@ -65,7 +67,7 @@ sub os_is {
     my @targets = @_;
     foreach my $target (@targets) {
         die("Devel::CheckOS: $target isn't a legal OS name\n")
-            unless($target =~ /^\w+$/);
+            unless($target =~ /^\w+(::\w+)*$/);
         eval "use Devel::AssertOS::$target";
         if(!$@) {
             no strict 'refs';

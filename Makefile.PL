@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.22 2007/10/14 16:03:44 drhyde Exp $
+# $Id: Makefile.PL,v 1.23 2007/10/18 13:29:05 drhyde Exp $
 
 require 5.005;
 use ExtUtils::MakeMaker;
@@ -16,27 +16,39 @@ close(T);
 
 my @OSes = ();
 my @notOSes = ();
-opendir(LIBS, File::Spec->catdir(qw(lib Devel AssertOS))) ||
-    die("Can't read lib/Devel/AssertOS. Your distribution is broken\n");
-foreach (map { s/\.pm$//; $_ } grep { /\.pm$/ } readdir(LIBS)) {
-    eval "use Devel::AssertOS::$_";
-    next if($@);
-    my $answer = prompt(
-        "I think you're using $_, is this right (multiple matches are OK)? [Y/n]",
-        "Y"
-    );
-    if($answer =~ /^y/i) {
-        push @OSes, $_;
-    } else {
-        print "Eek!\n";
-        push @notOSes, $_;
+
+findOSes(File::Spec->catdir(qw(lib Devel AssertOS)));
+
+sub findOSes {
+    my $dir = shift;
+    opendir(LIBS, $dir) ||
+    die("Can't read $dir. Your distribution is broken\n");
+    my @dirents = File::Spec->no_upwards(readdir(LIBS));
+    closedir(LIBS);
+    foreach (grep { -d File::Spec->catdir($dir, $_) } @dirents) {
+        findOSes(File::Spec->catdir($dir, $_));
+    }
+    foreach (map { s/\.pm$//; $_ } grep { /\.pm$/ } @dirents) {
+        my $modname = join('::', File::Spec->splitdir($dir), $_);
+        (my $prompt_modname = $modname) =~ s/.*AssertOS:://;
+        eval "use $modname";
+        next if($@);
+        my $answer = prompt(
+            "I think you're using $prompt_modname, is this right (multiple matches are OK)? [Y/n]",
+            "Y"
+        );
+        if($answer =~ /^y/i) {
+            push @OSes, $prompt_modname;
+        } else {
+            print "Eek!\n";
+            push @notOSes, $prompt_modname;
+        }
     }
 }
-closedir(LIBS);
 
 my @extrafiles = ();
 if(@notOSes) { # user told us we got it wrong
-    push @extrafiles, File::Spec->catfile('t', "XX-autodetected-$^O-as-".join('-', @notOSes).".t");
+    push @extrafiles, File::Spec->catfile('t', "XX-autodetected-$^O-as-".join('--', map { s/::/-/g; $_ } @notOSes).".t");
     open(FAIL, '>'.$extrafiles[-1]);
     print FAIL 'print "1..1\\n";print "not ok 1\\n"';
     close(FAIL);
@@ -47,7 +59,8 @@ if(@notOSes) { # user told us we got it wrong
     close(FAIL);
 } elsif(@OSes) {
     foreach my $os (@OSes) {
-        push @extrafiles, File::Spec->catfile('t', "XX-autodetected-$^O-as-$os.t");
+        (my $filename_os = $os) =~ s/::/-/g;
+        push @extrafiles, File::Spec->catfile('t', "XX-autodetected-$^O-as-$filename_os.t");
         open(PASS, '>'.$extrafiles[-1]);
         print PASS qq{
             use Devel::AssertOS::$os;
