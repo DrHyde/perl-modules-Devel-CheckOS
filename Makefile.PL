@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.23 2007/10/18 13:29:05 drhyde Exp $
+# $Id: Makefile.PL,v 1.24 2007/10/19 16:57:11 drhyde Exp $
 
 require 5.005;
 use ExtUtils::MakeMaker;
@@ -6,7 +6,7 @@ use ExtUtils::MakeMaker;
 use File::Spec;
 
 use strict;
-$^W = 1;
+local $^W = 1;
 
 use lib 'lib';
 
@@ -31,7 +31,11 @@ sub findOSes {
     foreach (map { s/\.pm$//; $_ } grep { /\.pm$/ } @dirents) {
         my $modname = join('::', File::Spec->splitdir($dir), $_);
         (my $prompt_modname = $modname) =~ s/.*AssertOS:://;
-        eval "use $modname";
+        {
+            # suppress 'Subroutine os_is redefined'
+            local $^W = 0;
+            eval "use $modname";
+        }
         next if($@);
         my $answer = prompt(
             "I think you're using $prompt_modname, is this right (multiple matches are OK)? [Y/n]",
@@ -74,7 +78,7 @@ if(@notOSes) { # user told us we got it wrong
 
 WriteMakefile(
     NAME         => 'Devel::CheckOS',
-    VERSION      => '1.2',
+    VERSION      => '1.3',
     # FIXME have this look at all the modules, or summat
     # VERSION_FROM => 'lib/Devel/CheckOS.pm',
     PREREQ_PM    => {
