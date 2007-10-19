@@ -1,14 +1,14 @@
-# $Id: AssertOS.pm,v 1.3 2007/10/14 16:13:57 drhyde Exp $
+# $Id: AssertOS.pm,v 1.4 2007/10/19 16:59:04 drhyde Exp $
 
 package Devel::AssertOS;
 
-use Devel::CheckOS qw(die_if_os_isnt);
+use Devel::CheckOS;
 
 use strict;
 
 use vars qw($VERSION);
 
-$VERSION = '1.0';
+$VERSION = '1.1';
 
 # localising prevents the warningness leaking out of this module
 local $^W = 1;    # use warnings is a 5.6-ism
@@ -33,7 +33,7 @@ or Cygwin.
 sub import {
     shift;
     die("Devel::AssertOS needs at least one parameter\n") unless(@_);
-    die_if_os_isnt(@_);
+    Devel::CheckOS::die_if_os_isnt(@_);
 }
 
 =head1 BUGS and FEEDBACK
