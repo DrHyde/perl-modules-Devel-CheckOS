@@ -12,24 +12,27 @@ push @files, 'Makefile.PL' unless(@files);
 
 my @oses = @ARGV;
 
-mkdir 'inc';
-mkdir 'inc/Devel';
-mkdir 'inc/Devel/AssertOS';
-
-foreach my $os (@oses) { eval "use Devel::AssertOS $os" }
-my %modules = map { $_ => $INC{$_} } grep { /Devel/i && /(Check|Assert)OS/i } keys %INC;
-
-if(keys %modules != 2 + @oses) {
-    die("Couldn't find all the modules you asked for\n");
+foreach my $os (@oses) {
+    eval "use Devel::AssertOS qw($os)";
+    die("Couldn't find a module for $os\n") if($@ && $@ !~ /OS unsupported/);
 }
 
-copy($INC{File::Spec->catfile(qw(Devel AssertOS.pm))},
-     File::Spec->catfile(qw(inc Devel AssertOS.pm)));
-copy($INC{File::Spec->catfile(qw(Devel CheckOS.pm))},
-     File::Spec->catfile(qw(inc Devel CheckOS.pm)));
-foreach my $os (@oses) {
-    copy($INC{File::Spec->catfile(qw(Devel AssertOS), "$os.pm")},
-        File::Spec->catfile(qw(inc Devel AssertOS), "$os.pm"));
+my %modules = map { $_ => $INC{$_} } grep { /Devel/i && /(Check|Assert)OS/i } keys %INC;
+
+mkdir 'inc';
+mkdir 'inc/Devel';
+mkdir 'inc/AssertOS';
+foreach my $module (keys %modules) {
+    my $dir = join('::', split(/\W+/, $module));
+    $dir =~ s/::pm//;
+    my @dircomponents = ('inc', (split(/::/, $dir)));
+    pop @dircomponents;
+    my $file = join('::', split(/\W+/, $module));
+    $file =~ s/::pm/.pm/;
+    $file =~ s/.*:://;
+    mkdir File::Spec->catdir(@dircomponents);
+    copy($modules{$module},
+         File::Spec->catfile(@dircomponents, $file));
 }
 
 foreach my $file (@files) {
@@ -39,8 +42,8 @@ foreach my $file (@files) {
     open(FILE, ">$file") || die("Can't write $file\n");
     print FILE 'use lib inc; use Devel::AssertOS qw('.
         join(' ', @oses).
-        ');';
-    print FILE "\n\n$contents";
+        ");\n\n";
+    print FILE $contents;
     close(FILE);
 }
 
