@@ -1,4 +1,4 @@
-# $Id: CheckOS.pm,v 1.15 2007/10/18 13:29:05 drhyde Exp $
+# $Id: CheckOS.pm,v 1.16 2007/10/19 16:45:51 drhyde Exp $
 
 package Devel::CheckOS;
 
@@ -150,8 +150,8 @@ sub list_platforms {
     
     die($@) if($@);
     return sort { $a cmp $b } map {
-        s/^.*\///g;
-        s/\.pm$//gi;
+        s/(^.*Devel\/AssertOS\/|\.pm$)//g;
+        s/\//::/;
         $_;
     } File::Find::Rule->file()->name('*.pm')->in(
         grep { -d }
