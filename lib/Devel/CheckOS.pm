@@ -1,4 +1,4 @@
-# $Id: CheckOS.pm,v 1.17 2007/10/19 16:57:11 drhyde Exp $
+# $Id: CheckOS.pm,v 1.18 2007/11/07 21:26:40 drhyde Exp $
 
 package Devel::CheckOS;
 
@@ -7,7 +7,7 @@ use Exporter;
 
 use vars qw($VERSION @ISA @EXPORT_OK %EXPORT_TAGS);
 
-$VERSION = '1.3';
+$VERSION = '1.4';
 
 # localising prevents the warningness leaking out of this module
 local $^W = 1;    # use warnings is a 5.6-ism

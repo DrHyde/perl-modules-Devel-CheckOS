@@ -33,6 +33,9 @@ foreach my $module (keys %modules) {
     mkdir File::Spec->catdir(@dircomponents);
     copy($modules{$module},
          File::Spec->catfile(@dircomponents, $file));
+    open(MANIFEST, '>>MANIFEST') || warn("Can't update MANIFEST\n");
+    print MANIFEST "\n".join('/', @dircomponents, $file);
+    close(MANIFEST);
 }
 
 foreach my $file (@files) {
