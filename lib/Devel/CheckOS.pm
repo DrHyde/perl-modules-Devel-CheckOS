@@ -1,4 +1,4 @@
-# $Id: CheckOS.pm,v 1.19 2007/11/07 21:36:54 drhyde Exp $
+# $Id: CheckOS.pm,v 1.20 2007/11/20 21:04:38 drhyde Exp $
 
 package Devel::CheckOS;
 
@@ -7,7 +7,7 @@ use Exporter;
 
 use vars qw($VERSION @ISA @EXPORT_OK %EXPORT_TAGS);
 
-$VERSION = '1.41';
+$VERSION = '1.42';
 
 # localising prevents the warningness leaking out of this module
 local $^W = 1;    # use warnings is a 5.6-ism
@@ -142,6 +142,8 @@ should Just Work anyway.
 
 =cut
 
+my ($re_Devel, $re_AssertOS);
+
 sub list_platforms {
     eval " # only load these if needed
         use File::Find::Rule;
@@ -149,10 +151,22 @@ sub list_platforms {
     ";
     
     die($@) if($@);
+    if (!$re_Devel) {
+        my $case_flag = File::Spec->case_tolerant ? '(?i)' : '';
+        $re_Devel    = qr/$case_flag ^Devel$/x;
+        $re_AssertOS = qr/$case_flag ^AssertOS$/x;
+    }
     return sort { $a cmp $b } map {
-        s/(^.*Devel\/AssertOS\/|\.pm$)//g;
-        s/\//::/;
-        $_;
+        my (undef, $dir_part, $file_part) = File::Spec->splitpath($_);
+        $file_part =~ s/\.pm$//;
+        my (@dirs) = grep {+length} File::Spec->splitdir($dir_part);
+        foreach my $i (reverse 1..$#dirs) {
+            next unless $dirs[$i] =~ $re_AssertOS
+                && $dirs[$i - 1] =~ $re_Devel;
+            splice @dirs, 0, $i + 1;
+            last;
+        }
+        join '::', @dirs, $file_part
     } File::Find::Rule->file()->name('*.pm')->in(
         grep { -d }
         map { File::Spec->catdir($_, qw(Devel AssertOS)) }

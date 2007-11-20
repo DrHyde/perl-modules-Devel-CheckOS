@@ -67,3 +67,4 @@ bin/use-devel-assertos
 t/20-multilevel-names.t
 t/lib/Devel/AssertOS/AnOperatingSystem/v1.pm
 t/lib/Devel/AssertOS/AnOperatingSystem/v2.pm
+lib/Devel/AssertOS/OSFeatures/POSIXShellRedirection.pm

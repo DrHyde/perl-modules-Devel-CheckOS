@@ -1,3 +1,7 @@
+1.42    2007-11-20      Applied Seth Blumberg's patch to make
+                          list_platforms work on not-Unix;
+                        Documented that ...::OSFeatures::* is reserved;
+                        Added D::A::OSFeatures::POSIXShellRedirection
 1.41    2007-11-07      Aaargh, fixed broken Makefile.PL
 1.4     2007-11-07      Fix use-devel-assertos to update MANIFEST
 1.3     2007-11-07      Support multi-level OSnames
