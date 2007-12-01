@@ -64,7 +64,7 @@ appropriately.  If neither exists, it will create a Makefile.PL.
 
 =head1 SYNOPSIS
 
-    ./use-devel-assertos NetBSD OpenBSD FreeBSD
+    use-devel-assertos NetBSD OpenBSD FreeBSD
 
 =head1 USAGE
 
