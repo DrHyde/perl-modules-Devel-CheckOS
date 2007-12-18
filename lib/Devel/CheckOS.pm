@@ -1,4 +1,4 @@
-# $Id: CheckOS.pm,v 1.20 2007/11/20 21:04:38 drhyde Exp $
+# $Id: CheckOS.pm,v 1.21 2007/12/18 13:45:26 drhyde Exp $
 
 package Devel::CheckOS;
 
@@ -224,6 +224,8 @@ L<perlport>
 L<Devel::AssertOS>
 
 L<Devel::AssertOS::Extending>
+
+L<Probe::Perl>
 
 The use-devel-assertos script
 

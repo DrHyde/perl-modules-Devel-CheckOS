@@ -89,8 +89,6 @@ L<Devel::AssertOS>
 
 L<Devel::CheckOS>
 
-L<Devel::AssertLib>
-
 =head1 AUTHOR
 
 David Cantrell E<lt>F<david@cantrell.org.uk>E<gt>
