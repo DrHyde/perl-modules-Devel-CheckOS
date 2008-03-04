@@ -22,6 +22,9 @@ my %modules = map { $_ => $INC{$_} } grep { /Devel/i && /(Check|Assert)OS/i } ke
 mkdir 'inc';
 mkdir 'inc/Devel';
 mkdir 'inc/AssertOS';
+print "Extra directories created under inc/\n";
+
+open(MANIFEST, '>>MANIFEST') || die("Can't update MANIFEST\n");
 foreach my $module (keys %modules) {
     my $dir = join('::', split(/\W+/, $module));
     $dir =~ s/::pm//;
@@ -33,10 +36,11 @@ foreach my $module (keys %modules) {
     mkdir File::Spec->catdir(@dircomponents);
     copy($modules{$module},
          File::Spec->catfile(@dircomponents, $file));
-    open(MANIFEST, '>>MANIFEST') || warn("Can't update MANIFEST\n");
-    print MANIFEST "\n".join('/', @dircomponents, $file);
-    close(MANIFEST);
+    print MANIFEST join('/', @dircomponents, $file)."\n";
 }
+close(MANIFEST);
+print "Added necessary modules\n";
+print "Updated MANIFEST\n";
 
 foreach my $file (@files) {
     open(FILE, $file) || next;
@@ -48,6 +52,7 @@ foreach my $file (@files) {
         ");\n\n";
     print FILE $contents;
     close(FILE);
+    print "Modified $file\n";
 }
 
 =head1 NAME

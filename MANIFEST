@@ -1,4 +1,3 @@
-CHANGES
 lib/Devel/AssertOS/AIX.pm
 lib/Devel/AssertOS/Amiga.pm
 lib/Devel/AssertOS/Apple.pm
@@ -48,9 +47,8 @@ lib/Devel/AssertOS/VMS.pm
 lib/Devel/AssertOS/VOS.pm
 lib/Devel/AssertOS.pm
 lib/Devel/CheckOS.pm
+lib/Devel/AssertOS/OSFeatures/POSIXShellRedirection.pm
 Makefile.PL
-MANIFEST
-README
 t/00_checkos.t
 t/01-import-all.t
 t/02-import-bool.t
@@ -60,11 +58,13 @@ t/11-assertos-blah-valid.t
 t/12-assertos-single-invalid-OS.t
 t/13-assertos-blah-invalid.t
 t/14-assertos-multi.t
+t/20-multilevel-names.t
 t/lib/Devel/AssertOS/AnOperatingSystem.pm
 t/lib/Devel/AssertOS/NotAnOperatingSystem.pm
-TODO
-bin/use-devel-assertos
-t/20-multilevel-names.t
 t/lib/Devel/AssertOS/AnOperatingSystem/v1.pm
 t/lib/Devel/AssertOS/AnOperatingSystem/v2.pm
-lib/Devel/AssertOS/OSFeatures/POSIXShellRedirection.pm
+bin/use-devel-assertos
+TODO
+MANIFEST
+README
+CHANGES

@@ -1,3 +1,4 @@
+1.4201  XXXX-XX-XX      use-devel-assertos now prints some status updates
 1.42    2007-11-20      Applied Seth Blumberg's patch to make
                           list_platforms work on not-Unix;
                         Documented that ...::OSFeatures::* is reserved;
