@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.27 2008/03/04 17:55:43 drhyde Exp $
+# $Id: Makefile.PL,v 1.28 2008/03/12 20:14:56 drhyde Exp $
 
 require 5.005;
 use ExtUtils::MakeMaker;
@@ -79,7 +79,7 @@ if(@notOSes) { # user told us we got it wrong
 WriteMakefile(
     NAME         => 'Devel::CheckOS',
     # FIXME have this look at all the modules, or summat
-    VERSION => 1.4201,
+    VERSION_FROM => 'lib/Devel/CheckOS.pm',
     PREREQ_PM    => {
         'Test::More'       => 0.62,  # too high? but it works
         'File::Find::Rule' => 0.28,

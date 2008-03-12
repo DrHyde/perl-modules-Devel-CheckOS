@@ -4,7 +4,7 @@ use strict;
 
 $/ = undef;
 
-use File::Copy;
+# use File::Copy;
 use File::Spec;
 
 my @files = grep { -f $_ } qw(Makefile.PL Build.PL);
@@ -34,8 +34,19 @@ foreach my $module (keys %modules) {
     $file =~ s/::pm/.pm/;
     $file =~ s/.*:://;
     mkdir File::Spec->catdir(@dircomponents);
-    copy($modules{$module},
-         File::Spec->catfile(@dircomponents, $file));
+    
+    # copy($modules{$module},
+    #      File::Spec->catfile(@dircomponents, $file));
+
+    open(PM, $modules{$module}) ||
+        die("Can't read $modules{$module}: $!");
+    (my $pm = <PM>) =~ s/package Devel::/package #\nDevel::/;
+    close(PM);
+    open(PM, '>'.File::Spec->catfile(@dircomponents, $file)) ||
+        die("Can't write ".File::Spec->catfile(@dircomponents, $file).": $!");
+    print PM $pm;
+    close(PM);
+
     print MANIFEST join('/', @dircomponents, $file)."\n";
 }
 close(MANIFEST);
