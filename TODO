@@ -1,1 +1,7 @@
 Detect different types of MS Windows
+
+use-devel-assertos should not add itself twice (update, if run a second time)
+
+only list each OS once (and only copy the most recent version)
+
+add 'list available platforms' option to script
