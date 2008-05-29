@@ -68,3 +68,4 @@ TODO
 MANIFEST
 README
 CHANGES
+t/otherlib/Devel/AssertOS/AnOperatingSystem.pm

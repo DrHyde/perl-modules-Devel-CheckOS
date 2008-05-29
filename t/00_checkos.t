@@ -29,3 +29,13 @@ ok($@ =~ /OS unsupported/i, "die_unsupported works");
 ok((grep { /^AnOperatingSystem$/i } Devel::CheckOS::list_platforms()) &&
    (grep { /^NotAnOperatingSystem$/i } Devel::CheckOS::list_platforms()),
    "list_platforms works");
+
+eval "use lib File::Spec->catdir(qw(t otherlib))";
+sleep(2);
+utime time(), time(), File::Spec->catfile(qw(t otherlib Devel AssertOS AnOperatingSystem.pm));
+
+ok(1 == (grep { /^AnOperatingSystem$/i } Devel::CheckOS::list_platforms()),
+   "A platform is listed only once");
+ok(Devel::CheckOS::list_platforms->{AnOperatingSystem} eq
+   File::Spec->catfile(qw(t otherlib Devel AssertOS AnOperatingSystem.pm)),
+   "scalar list_platforms gives the most recent module for an OS");

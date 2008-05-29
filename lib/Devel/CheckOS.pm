@@ -1,4 +1,4 @@
-# $Id: CheckOS.pm,v 1.22 2008/03/12 20:14:56 drhyde Exp $
+# $Id: CheckOS.pm,v 1.23 2008/05/29 21:55:46 drhyde Exp $
 
 package Devel::CheckOS;
 
@@ -130,10 +130,19 @@ sub die_unsupported { die("OS unsupported\n"); }
 
 =head3 list_platforms
 
-Return a list of all the platforms for which the corresponding
+When called in list context,
+return a list of all the platforms for which the corresponding
 Devel::AssertOS::* module is available.  This includes both OSes and OS
 families, and both those bundled with this module and any third-party
 add-ons you have installed.
+
+In scalar context, returns a hashref keyed by platform with the filename
+of the most recent version of the supporting module that is available to you.
+This is to make sure that the use-devel-assertos script Does The Right Thing
+in the case where you have installed the module in one version of perl, then
+upgraded perl, and installed it again in the new version.  Sometimes the old
+version of perl and all its modules will still be hanging around and perl
+"helpfully" includes the old perl's search path in its own.
 
 Unfortunately, on some platforms this list may have file case
 broken.  eg, some platforms might return 'freebsd' instead of 'FreeBSD'.
@@ -156,7 +165,11 @@ sub list_platforms {
         $re_Devel    = qr/$case_flag ^Devel$/x;
         $re_AssertOS = qr/$case_flag ^AssertOS$/x;
     }
-    return sort { $a cmp $b } map {
+
+    # sort by mtime, so oldest last
+    my @modules = sort {
+        (stat($a->{file}))[9] <=> (stat($b->{file}))[9]
+    } map {
         my (undef, $dir_part, $file_part) = File::Spec->splitpath($_);
         $file_part =~ s/\.pm$//;
         my (@dirs) = grep {+length} File::Spec->splitdir($dir_part);
@@ -166,12 +179,25 @@ sub list_platforms {
             splice @dirs, 0, $i + 1;
             last;
         }
-        join '::', @dirs, $file_part
+        {
+	    module => join('::', @dirs, $file_part),
+	    file   => $_
+	}
     } File::Find::Rule->file()->name('*.pm')->in(
         grep { -d }
         map { File::Spec->catdir($_, qw(Devel AssertOS)) }
         @INC
     );
+
+    my %modules = map {
+        $_->{module} => $_->{file}
+    } @modules;
+
+    if(wantarray()) {
+        return sort keys %modules;
+    } else {
+        return \%modules;
+    }
 }
 
 =head1 PLATFORMS SUPPORTED
