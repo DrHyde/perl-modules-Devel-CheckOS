@@ -1,7 +1,7 @@
 use strict;
 $^W = 1;
 
-use Test::More tests => 9;
+use Test::More tests => 11;
 
 BEGIN { use_ok('Devel::CheckOS'); }
 

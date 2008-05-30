@@ -7,6 +7,7 @@ $/ = undef;
 
 # use File::Copy;
 use File::Spec;
+use Data::Compare;
 
 my @files = grep { -f $_ } qw(Makefile.PL Build.PL);
 push @files, 'Makefile.PL' unless(@files);
@@ -20,16 +21,17 @@ if($oses[0] eq '-l') {
     exit(0);
 }
 
-# just Devel::CheckOS and Devel::AssertOS
-my %modules = map { $_ => $INC{$_} } grep { split('/', $_) == 2 && /Devel/i && /(Check|Assert)OS/i } keys %INC;
-my $supportedmodules = scalar(Devel::CheckOS::list_platforms());
+# NB can't just use scalar list_platforms cos that won't tell us that,
+# eg, Linux::v2_6 also uses Linux
 foreach my $os (@oses) {
-    if(exists($supportedmodules->{$os})) {
-        $modules{"Devel::AssertOS::$os"} = $supportedmodules->{$os}
-    } else {
-        die("Can't find module for $os\n");
+    my $oldinc = { map { $_ => $INC{$_} } keys %INC }; # clone
+    eval "use Devel::AssertOS qw($os)";
+    if(Compare(\%INC, $oldinc)) {
+        print STDERR "Couldn't find a module for $os\n";
+        exit(1);
     }
 }
+my %modules = map { $_ => $INC{$_} } grep { /Devel/i && /(Check|Assert)OS/i } keys %INC;
 
 mkdir 'inc';
 mkdir 'inc/Devel';
