@@ -1,4 +1,4 @@
-# $Id: CheckOS.pm,v 1.23 2008/05/29 21:55:46 drhyde Exp $
+# $Id: CheckOS.pm,v 1.24 2008/05/30 14:35:23 drhyde Exp $
 
 package Devel::CheckOS;
 
@@ -267,6 +267,10 @@ Thanks to Ken Williams, from whose L<Module::Build> I lifted some of the
 information about what should be in the Unix family.
 
 Thanks to Billy Abbott for finding some bugs for me on VMS.
+
+=head1 CVS
+
+L<http://drhyde.cvs.sourceforge.net/drhyde/perlmodules/Devel-CheckOS/>
 
 =head1 COPYRIGHT and LICENCE
 
