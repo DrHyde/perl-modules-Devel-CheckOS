@@ -1,4 +1,4 @@
-# $Id: CheckOS.pm,v 1.24 2008/05/30 14:35:23 drhyde Exp $
+# $Id: CheckOS.pm,v 1.25 2008/06/02 12:49:50 drhyde Exp $
 
 package Devel::CheckOS;
 
@@ -36,6 +36,13 @@ like Linux, Solaris, AIX etc.
     print "Hey, I know this, it's a Unix system\n" if(os_is('Unix'));
 
     print "You've got Linux 2.6\n" if(os_is('Linux::v2_6'));
+
+=head1 USING IT IN Makefile.PL or Build.PL
+
+If you want to use this from Makefile.PL or Build.PL, do
+not simply copy the module into your distribution as this may cause
+problems when PAUSE and search.cpan.org index the distro.  Instead, use
+the use-devel-checkos script.
 
 =head1 FUNCTIONS
 
