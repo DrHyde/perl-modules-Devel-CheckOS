@@ -5,14 +5,13 @@ use strict;
 
 $/ = undef;
 
-# use File::Copy;
 use File::Spec;
 use Data::Compare;
 
 my @files = grep { -f $_ } qw(Makefile.PL Build.PL);
 push @files, 'Makefile.PL' unless(@files);
 
-my @oses = @ARGV;
+my @oses = @ARGV || die("You must specify at least one OS\n");
 
 eval "use Devel::AssertOS"; # to load AssertOS and CheckOS
 
