@@ -1,4 +1,4 @@
-# $Id: Unix.pm,v 1.5 2007/10/19 16:45:52 drhyde Exp $
+# $Id: Unix.pm,v 1.6 2008/09/26 14:28:43 drhyde Exp $
 
 package Devel::AssertOS::Unix;
 
@@ -21,6 +21,7 @@ sub os_is {
         irix      |
         darwin    |
         machten   |
+	mirbsd    |
         openbsd   |
         netbsd    |
         dec_osf   |

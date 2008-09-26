@@ -1,8 +1,8 @@
-# $Id: 50-script.t,v 1.1 2008/06/16 15:01:29 drhyde Exp $
+# $Id: 50-script.t,v 1.2 2008/09/26 14:28:43 drhyde Exp $
 use strict;
 $^W = 1;
 
-use Test::More tests => 42;
+use Test::More skip_all => 'script tests not written yet';
 use File::Temp;
 use Cwd;
 use Data::Dumper;

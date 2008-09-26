@@ -71,3 +71,4 @@ CHANGES
 t/otherlib/Devel/AssertOS/AnOperatingSystem.pm
 t/50-script.t
 t/pod.t
+lib/Devel/AssertOS/MirOSBSD.pm
