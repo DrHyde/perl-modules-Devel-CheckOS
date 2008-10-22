@@ -72,3 +72,7 @@ t/otherlib/Devel/AssertOS/AnOperatingSystem.pm
 t/50-script.t
 t/pod.t
 lib/Devel/AssertOS/MirOSBSD.pm
+lib/Devel/AssertOS/Realtime.pm
+lib/Devel/AssertOS/QNX.pm
+lib/Devel/AssertOS/QNX/Neutrino.pm
+lib/Devel/AssertOS/QNX/v4.pm

@@ -1,4 +1,4 @@
-# $Id: CheckOS.pm,v 1.27 2008/09/26 14:28:43 drhyde Exp $
+# $Id: CheckOS.pm,v 1.28 2008/10/22 19:10:52 drhyde Exp $
 
 package Devel::CheckOS;
 
@@ -7,7 +7,7 @@ use Exporter;
 
 use vars qw($VERSION @ISA @EXPORT_OK %EXPORT_TAGS);
 
-$VERSION = '1.44';
+$VERSION = '1.45';
 
 # localising prevents the warningness leaking out of this module
 local $^W = 1;    # use warnings is a 5.6-ism
@@ -222,15 +222,8 @@ Sorry.
 
 Also be aware that not all of them have been properly tested.  I don't
 have access to most of them and have had to work from information
-gleaned from L<perlport> and a few other places.
-
-The following OS 'families' are supported 'out of the box':
-
-    Apple (Mac OS, both classic and OS X)
-    DEC
-    MicrosoftWindows (this matches either MSWin32 or Cygwin)
-    Sun
-    Unix
+gleaned from L<perlport> and a few other places.  For a complete list of
+OS families, see L<Devel::CheckOS::Families>.
 
 If you want to add your own OSes or families, see L<Devel::AssertOS::Extending>
 and please feel free to upload the results to the CPAN.
@@ -274,6 +267,8 @@ Thanks to Ken Williams, from whose L<Module::Build> I lifted some of the
 information about what should be in the Unix family.
 
 Thanks to Billy Abbott for finding some bugs for me on VMS.
+
+Thanks to Matt Kraai for information about QNX.
 
 =head1 CVS
 

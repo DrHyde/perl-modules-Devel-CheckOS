@@ -1,0 +1,73 @@
+# $Id: Families.pod,v 1.1 2008/10/22 19:10:52 drhyde Exp $
+
+=head1 NAME
+
+Devel::CheckOS::Families - what OS "families" are supported "out of the
+box" by Devel::CheckOS and Devel::AssertOS?
+
+=head1 WHAT IS AN OS FAMILY
+
+Computing platforms fall into several categories.  For example, there is
+the category of Unix-a-likes.  Each of these categories is a "family".
+A platform can fall into several families.
+
+=head1 THE Unix FAMILY
+
+Broadly speaking, these are platforms where:
+
+=over
+
+=item Devices are represented as pseudo-files in the filesystem
+
+=item Symlinks and hardlinks are supported in at least some filesystems
+
+=item "Unix-style" permissions are supported
+
+That is, there are seperate read/write/execute permissions for file owner,
+group and anyone.  This implies the presence of multiple user accounts
+and user groups.  Permissions may not be supported on all filesystems.
+
+=item The filesystem has a single root
+
+=item The C API for the operating system is largely POSIX-compatible
+
+=back
+
+=head1 THE MicrosoftWindows FAMILY
+
+This includes any version of Windows and also includes things like
+Cygwin which run on top of it.
+
+=head1 THE DEC, Sun, and Apple FAMILIES
+
+These include any OS written by, respectively, DEC, Sun, and Apple.
+They exist because, while, eg, Mac OS Classic and Mac OS X are very
+different platforms, they do support some unique features - such as
+AppleScript.
+
+=head1 THE QNX FAMILY
+
+This includes all the different versions of QNX - supported so far are
+QNX v4 (supported as QNX::v4) and QNX v6 (as QNX::Neutrino).
+
+=head1 THE Realtime FAMILY
+
+This is for all real-time OSes.  So far, it only includes QNX.
+
+=head1 AUTHOR
+
+David Cantrell E<lt>F<david@cantrell.org.uk>E<gt>
+
+=head1 COPYRIGHT and LICENCE
+
+Copyright 2008 David Cantrell
+
+This documentation and the modules it describes are free-as-in-speech,
+and may be used, distributed, and modified under the same conditions as
+perl itself.
+
+=head1 CONSPIRACY
+
+This documentation is also free-as-in-mason.
+
+=cut

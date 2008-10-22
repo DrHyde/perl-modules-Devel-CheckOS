@@ -1,3 +1,8 @@
+1.45    2008-10-XX      add QNX, QNX::v4, QNX::Neutrino
+                          (thanks to Matt Kraai)
+                        add Realtime family
+                        doco about families
+
 1.44	2008-09-26	add D::A::MirOSBSD ($^O eq 'mirbsd')
 
 1.43    2008-03-12      use-devel-assertos now prints some status updates;
