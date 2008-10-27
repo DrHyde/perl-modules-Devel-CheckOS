@@ -76,3 +76,4 @@ lib/Devel/AssertOS/Realtime.pm
 lib/Devel/AssertOS/QNX.pm
 lib/Devel/AssertOS/QNX/Neutrino.pm
 lib/Devel/AssertOS/QNX/v4.pm
+lib/Devel/CheckOS/Families.pod

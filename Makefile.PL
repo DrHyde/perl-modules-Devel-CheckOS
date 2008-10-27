@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.29 2008/06/16 15:01:29 drhyde Exp $
+# $Id: Makefile.PL,v 1.30 2008/10/27 16:48:49 drhyde Exp $
 
 require 5.005;
 use ExtUtils::MakeMaker;
@@ -89,6 +89,9 @@ WriteMakefile(
     EXE_FILES    => [qw(
         bin/use-devel-assertos
     )],
+    META_MERGE => {
+        license => 'other'
+    },
 
     clean         => { FILES => join(' ', @extrafiles) }
 );

@@ -1,4 +1,4 @@
-# $Id: CheckOS.pm,v 1.28 2008/10/22 19:10:52 drhyde Exp $
+# $Id: CheckOS.pm,v 1.29 2008/10/27 16:48:52 drhyde Exp $
 
 package Devel::CheckOS;
 
@@ -7,7 +7,7 @@ use Exporter;
 
 use vars qw($VERSION @ISA @EXPORT_OK %EXPORT_TAGS);
 
-$VERSION = '1.45';
+$VERSION = '1.46';
 
 # localising prevents the warningness leaking out of this module
 local $^W = 1;    # use warnings is a 5.6-ism
@@ -188,7 +188,7 @@ sub list_platforms {
         }
         {
 	    module => join('::', @dirs, $file_part),
-	    file   => $_
+	    file   => File::Spec->canonpath($_)
 	}
     } File::Find::Rule->file()->name('*.pm')->in(
         grep { -d }
@@ -269,6 +269,9 @@ information about what should be in the Unix family.
 Thanks to Billy Abbott for finding some bugs for me on VMS.
 
 Thanks to Matt Kraai for information about QNX.
+
+Thanks to Kenichi Ishigaki and Gabor Szabo for reporting a bug on Windows,
+and to the former for providing a patch.
 
 =head1 CVS
 
