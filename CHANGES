@@ -1,3 +1,5 @@
+1.46    2008-10-27      fix bug on Windows
+
 1.45    2008-10-22      add QNX, QNX::v4, QNX::Neutrino
                           (thanks to Matt Kraai)
                         add Realtime family
