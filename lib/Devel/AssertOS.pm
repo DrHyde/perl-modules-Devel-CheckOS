@@ -1,4 +1,4 @@
-# $Id: AssertOS.pm,v 1.4 2007/10/19 16:59:04 drhyde Exp $
+# $Id: AssertOS.pm,v 1.5 2008/10/27 20:31:21 drhyde Exp $
 
 package Devel::AssertOS;
 
@@ -71,8 +71,7 @@ Thanks to David Golden for suggesting that I add this utility module.
 
 Copyright 2007 David Cantrell
 
-This module is free-as-in-speech software, and may be used, distributed,
-and modified under the same conditions as perl itself.
+This software is free-as-in-speech software, and may be used, distributed, and modified under the terms of either the GNU General Public Licence version 2 or the Artistic Licence. It's up to you which one you use. The full text of the licences can be found in the files GPL2.txt and ARTISTIC.txt, respectively.
 
 =head1 CONSPIRACY
 

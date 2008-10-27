@@ -1,4 +1,4 @@
-# $Id: CheckOS.pm,v 1.29 2008/10/27 16:48:52 drhyde Exp $
+# $Id: CheckOS.pm,v 1.30 2008/10/27 20:31:21 drhyde Exp $
 
 package Devel::CheckOS;
 
@@ -187,9 +187,9 @@ sub list_platforms {
             last;
         }
         {
-	    module => join('::', @dirs, $file_part),
-	    file   => File::Spec->canonpath($_)
-	}
+            module => join('::', @dirs, $file_part),
+            file   => File::Spec->canonpath($_)
+        }
     } File::Find::Rule->file()->name('*.pm')->in(
         grep { -d }
         map { File::Spec->catdir($_, qw(Devel AssertOS)) }
@@ -281,8 +281,7 @@ L<http://drhyde.cvs.sourceforge.net/drhyde/perlmodules/Devel-CheckOS/>
 
 Copyright 2007 David Cantrell
 
-This module is free-as-in-speech software, and may be used, distributed,
-and modified under the same conditions as perl itself.
+This software is free-as-in-speech software, and may be used, distributed, and modified under the terms of either the GNU General Public Licence version 2 or the Artistic Licence. It's up to you which one you use. The full text of the licences can be found in the files GPL2.txt and ARTISTIC.txt, respectively.
 
 =head1 CONSPIRACY
 

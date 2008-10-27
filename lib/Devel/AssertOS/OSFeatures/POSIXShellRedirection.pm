@@ -1,4 +1,4 @@
-# $Id: POSIXShellRedirection.pm,v 1.1 2007/11/20 21:04:38 drhyde Exp $
+# $Id: POSIXShellRedirection.pm,v 1.2 2008/10/27 20:31:21 drhyde Exp $
 
 package Devel::AssertOS::OSFeatures::POSIXShellRedirection;
 
@@ -16,9 +16,15 @@ redirection.
 
 See L<Devel::CheckOS> and L<Devel::AssertOS>
 
+=head1 COPYRIGHT and LICENCE
+
+Copyright 2007 - 2008 David Cantrell
+
+This software is free-as-in-speech software, and may be used, distributed, and modified under the terms of either the GNU General Public Licence version 2 or the Artistic Licence. It's up to you which one you use. The full text of the licences can be found in the files GPL2.txt and ARTISTIC.txt, respectively.
+
 =cut
 
-$VERSION = '1.0';
+$VERSION = '1.1';
 
 sub os_is { 1; }
 
