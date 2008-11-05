@@ -1,4 +1,4 @@
-# $Id: v2_6.pm,v 1.3 2008/10/27 20:31:21 drhyde Exp $
+# $Id: v2_6.pm,v 1.4 2008/11/05 22:52:35 drhyde Exp $
 
 package Devel::AssertOS::Linux::v2_6;
 
@@ -6,11 +6,13 @@ use Devel::CheckOS;
 
 use Devel::AssertOS::Linux;
 
-$VERSION = '1.1';
+$VERSION = '1.2';
 
 sub os_is {
     `uname -r` =~ /^2\.6\./ ? 1 : 0;
 }
+
+sub expn { "The operating system has a Linux 2.6.x series kernel" }
 
 Devel::CheckOS::die_unsupported() unless(os_is());
 

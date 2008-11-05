@@ -2,6 +2,7 @@ lib/Devel/AssertOS/AIX.pm
 lib/Devel/AssertOS/Amiga.pm
 lib/Devel/AssertOS/Apple.pm
 lib/Devel/AssertOS/BeOS.pm
+lib/Devel/AssertOS/Haiku.pm
 lib/Devel/AssertOS/BSDOS.pm
 lib/Devel/AssertOS/Cygwin.pm
 lib/Devel/AssertOS/Darwin.pm~

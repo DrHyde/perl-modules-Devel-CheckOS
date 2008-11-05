@@ -1,15 +1,17 @@
-# $Id: Sun.pm,v 1.4 2008/10/27 20:31:21 drhyde Exp $
+# $Id: Sun.pm,v 1.5 2008/11/05 22:52:34 drhyde Exp $
 
 package Devel::AssertOS::Sun;
 
 use Devel::CheckOS;
 
-$VERSION = '1.1';
+$VERSION = '1.2';
 
 sub os_is {
     Devel::CheckOS::os_is('SunOS') ||
     Devel::CheckOS::os_is('Solaris')
 }
+
+sub expn { "The operating system is from Sun Microsystems" }
 
 Devel::CheckOS::die_unsupported() unless(os_is());
 

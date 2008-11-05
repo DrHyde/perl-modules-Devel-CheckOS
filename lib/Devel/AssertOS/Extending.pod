@@ -49,10 +49,15 @@ match any of several values of C<$^O> like this:
             dragonfly
         )$/x ? 1 : 0;
     }
+    ...
 
 Or you could make it a wrapper around several C<eval()>ed 'use' statements
 to try all of Devel::AssertOS::Linux, Devel::AssertOS::FreeBSD etc in turn.
 See the sourcecode for Devel::AssertOS::Unix for an example.
+
+You may also add a subroutine called C<expn> which should return a small
+snipper of explanatory text.  Again, see Devel::AssertOS::Unix for an
+example.  This is particularly useful for 'family' modules.
 
 =head1 VERSIONS OF AN OS
 

@@ -1,15 +1,17 @@
-# $Id: MicrosoftWindows.pm,v 1.5 2008/10/27 20:31:21 drhyde Exp $
+# $Id: MicrosoftWindows.pm,v 1.6 2008/11/05 22:52:34 drhyde Exp $
 
 package Devel::AssertOS::MicrosoftWindows;
 
 use Devel::CheckOS;
 
-$VERSION = '1.1';
+$VERSION = '1.2';
 
 sub os_is {
     Devel::CheckOS::os_is('Cygwin') ||
     Devel::CheckOS::os_is('MSWin32')
 }
+
+sub expn { "The operating system is some version of Microsoft Windows" }
 
 Devel::CheckOS::die_unsupported() unless(os_is());
 

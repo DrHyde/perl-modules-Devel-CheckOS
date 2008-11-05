@@ -1,10 +1,10 @@
-# $Id: Unix.pm,v 1.8 2008/10/27 20:31:21 drhyde Exp $
+# $Id: Unix.pm,v 1.9 2008/11/05 22:52:35 drhyde Exp $
 
 package Devel::AssertOS::Unix;
 
 use Devel::CheckOS;
 
-$VERSION = '1.1';
+$VERSION = '1.2';
 
 # list of OSes lifted from Module::Build 0.2808
 #
@@ -32,6 +32,16 @@ sub os_is {
     Devel::CheckOS::os_is('SysVr4') ||
     Devel::CheckOS::os_is('SysVr5') ||
     Devel::CheckOS::os_is('Unicos')
+}
+
+sub expn {
+join("\n", 
+"The OS supports multiple concurrent users, devices are represented as",
+"pseudo-files in /dev, there is a single root to the filesystem, users",
+"are protected from interference from other users, and the API is POSIXy.",
+"It should be reasonably easy to port a simple text-mode C program",
+"between Unixes."
+)
 }
 
 Devel::CheckOS::die_unsupported() unless(os_is());

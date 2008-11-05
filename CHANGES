@@ -1,3 +1,11 @@
+1.49_01 2008-11-05      add Haiku (thanks to Ingo Weinhold)
+                        BeOS has a POSIXish shell
+                        Makefile.PL can now explain what some of the more
+                          OSes and OS families are (thanks to Michael
+                          Schwern for suggesting it)
+                        The "only honest man to ever enter parliament"
+                          release
+
 1.46    2008-10-27      fix bug on Windows
 
 1.45    2008-10-22      add QNX, QNX::v4, QNX::Neutrino

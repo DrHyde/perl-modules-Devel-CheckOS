@@ -1,4 +1,4 @@
-# $Id: OS390.pm,v 1.3 2008/10/27 20:31:21 drhyde Exp $
+# $Id: OS390.pm,v 1.4 2008/11/05 22:52:34 drhyde Exp $
 
 package Devel::AssertOS::OS390;
 
@@ -7,6 +7,8 @@ use Devel::CheckOS;
 $VERSION = '1.1';
 
 sub os_is { $^O eq 'os390' ? 1 : 0; }
+
+sub expn { "OS390 is also known as z/OS" }
 
 Devel::CheckOS::die_unsupported() unless(os_is());
 

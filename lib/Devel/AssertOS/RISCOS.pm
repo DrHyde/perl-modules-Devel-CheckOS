@@ -1,4 +1,4 @@
-# $Id: RISCOS.pm,v 1.3 2008/10/27 20:31:21 drhyde Exp $
+# $Id: RISCOS.pm,v 1.4 2008/11/05 22:52:34 drhyde Exp $
 
 package Devel::AssertOS::RISCOS;
 
@@ -7,6 +7,8 @@ use Devel::CheckOS;
 $VERSION = '1.1';
 
 sub os_is { $^O eq 'riscos' ? 1 : 0; }
+
+sub expn { "This is the Acorn operating system, not the MIPS RISC/os system" }
 
 Devel::CheckOS::die_unsupported() unless(os_is());
 

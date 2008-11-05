@@ -1,4 +1,4 @@
-# $Id: Makefile.PL,v 1.31 2008/10/27 20:31:20 drhyde Exp $
+# $Id: Makefile.PL,v 1.32 2008/11/05 22:52:31 drhyde Exp $
 
 require 5.005;
 use ExtUtils::MakeMaker;
@@ -17,6 +17,11 @@ close(T);
 my @OSes = ();
 my @notOSes = ();
 
+print "I will now ask you some questions to make sure I've detected your\n";
+print "system correctly.  Most platforms will be detected several times.\n";
+print "This is deliberate.  To see an explanation of some of the more\n";
+print "obscure options, hit the question mark key.\n\n";
+
 findOSes(File::Spec->catdir(qw(lib Devel AssertOS)));
 
 sub findOSes {
@@ -30,6 +35,7 @@ sub findOSes {
     }
     foreach (map { s/\.pm$//; $_ } grep { /\.pm$/ } @dirents) {
         my $modname = join('::', File::Spec->splitdir($dir), $_);
+        (my $classname = $modname) =~ s/^lib:://;
         (my $prompt_modname = $modname) =~ s/.*AssertOS:://;
         {
             # suppress 'Subroutine os_is redefined'
@@ -37,12 +43,20 @@ sub findOSes {
             eval "use $modname";
         }
         next if($@);
-        my $answer = prompt(
-            "I think you're using $prompt_modname, is this right (multiple matches are OK)? [Y/n]",
+        my $hasexpn = $classname->can('expn') ? '/?' : '';
+   ASK: my $answer = prompt(
+            "Are you using $prompt_modname? [Y/n$hasexpn]",
             "Y"
         );
         if($answer =~ /^y/i) {
             push @OSes, $prompt_modname;
+        } elsif($answer =~ /^\?/) {
+            if($hasexpn) {
+                print "\n".$classname->expn()."\n\n";
+            } else {
+                print "\nYou need help for that!?!?\n\n";
+            }
+            goto ASK;
         } else {
             print "Eek!\n";
             push @notOSes, $prompt_modname;

@@ -1,12 +1,26 @@
-# $Id: BeOS.pm,v 1.3 2008/10/27 20:31:21 drhyde Exp $
+# $Id: BeOS.pm,v 1.4 2008/11/05 22:52:34 drhyde Exp $
 
 package Devel::AssertOS::BeOS;
 
 use Devel::CheckOS;
 
-$VERSION = '1.1';
+$VERSION = '1.2';
 
-sub os_is { $^O eq 'beos' ? 1 : 0; }
+sub os_is {
+    return 1 if(
+        $^O eq 'beos' ||
+        Devel::CheckOS::os_is('Haiku')
+    );
+    return 0;
+}
+
+sub expn {
+join("\n",
+"This matches both Be Inc's original BeOS, as well as Haiku, an open-",
+"source BeOS-compatible project.  This is because Haiku is intended",
+"to be able to run BeOS software, while also having its own extra features."
+)
+}
 
 Devel::CheckOS::die_unsupported() unless(os_is());
 

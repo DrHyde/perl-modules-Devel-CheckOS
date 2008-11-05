@@ -1,12 +1,14 @@
-# $Id: v4.pm,v 1.2 2008/10/27 20:31:21 drhyde Exp $
+# $Id: v4.pm,v 1.3 2008/11/05 22:52:35 drhyde Exp $
 
 package Devel::AssertOS::QNX::v4;
 
 use Devel::CheckOS;
 
-$VERSION = '1.0';
+$VERSION = '1.1';
 
 sub os_is { $^O eq 'qnx' ? 1 : 0; }
+
+sub expn { "The operating system is version 4 of QNX" }
 
 Devel::CheckOS::die_unsupported() unless(os_is());
 

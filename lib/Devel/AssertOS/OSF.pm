@@ -1,4 +1,4 @@
-# $Id: OSF.pm,v 1.3 2008/10/27 20:31:21 drhyde Exp $
+# $Id: OSF.pm,v 1.4 2008/11/05 22:52:34 drhyde Exp $
 
 package Devel::AssertOS::OSF;
 
@@ -7,6 +7,8 @@ use Devel::CheckOS;
 $VERSION = '1.1';
 
 sub os_is { $^O eq 'dec_osf' ? 1 : 0; }
+
+sub expn { "OSF is also known as OSF/1, Digital Unix, and Tru64 Unix" }
 
 Devel::CheckOS::die_unsupported() unless(os_is());
 
