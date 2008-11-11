@@ -1,3 +1,7 @@
+1.50    2008-11-11      No bugs found in 1.49_01, bumping to 1.50
+                        The "shrill demented choirs of wailing shells"
+                          release
+
 1.49_01 2008-11-05      add Haiku (thanks to Ingo Weinhold)
                         BeOS has a POSIXish shell
                         Makefile.PL can now explain what some of the
