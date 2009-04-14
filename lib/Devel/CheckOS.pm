@@ -13,7 +13,7 @@ $VERSION = '1.51';
 local $^W = 1;    # use warnings is a 5.6-ism
 
 @ISA = qw(Exporter);
-@EXPORT_OK = qw(os_is os_isnt die_if_os_is die_if_os_isnt die_unsupported list_platforms);
+@EXPORT_OK = qw(os_is os_isnt die_if_os_is die_if_os_isnt die_unsupported list_platforms list_family_members);
 %EXPORT_TAGS = (
     all      => \@EXPORT_OK,
     booleans => [qw(os_is os_isnt die_unsupported)],
