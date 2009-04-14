@@ -4,12 +4,11 @@ package Devel::AssertOS::DEC;
 
 use Devel::CheckOS;
 
-$VERSION = '1.3';
+$VERSION = '1.4';
 
-sub os_is {
-    Devel::CheckOS::os_is('OSF') ||
-    Devel::CheckOS::os_is('VMS')
-}
+sub matches { return qw(OSF VMS); }
+sub os_is { Devel::CheckOS::os_is(matches()); }
+Devel::CheckOS::die_unsupported() unless(os_is());
 
 sub expn {
 join("\n",
@@ -17,8 +16,6 @@ join("\n",
 "originally written by DEC before they were taken over by Compaq/HP"
 )
 }
-
-Devel::CheckOS::die_unsupported() unless(os_is());
 
 =head1 COPYRIGHT and LICENCE
 

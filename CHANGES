@@ -1,3 +1,6 @@
+1.51    2009-04-14      OS "families" can tell you what their members are;
+                        Update Extending.pod to explain that
+
 1.50    2008-11-11      No bugs found in 1.49_01, bumping to 1.50
                         The "shrill demented choirs of wailing shells"
                           release

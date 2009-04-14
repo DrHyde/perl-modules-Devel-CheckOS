@@ -4,8 +4,11 @@ package Devel::AssertOS::BeOS;
 
 use Devel::CheckOS;
 
-$VERSION = '1.2';
+$VERSION = '1.3';
 
+# weird special case, not quite like other OS modules, as this is both
+# an OS *and* a family - maybe this should be fixed at some point
+sub matches { return qw(Haiku) }
 sub os_is {
     return 1 if(
         $^O eq 'beos' ||

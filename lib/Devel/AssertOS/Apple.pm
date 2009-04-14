@@ -6,14 +6,11 @@ use Devel::CheckOS;
 
 $VERSION = '1.2';
 
-sub os_is {
-    Devel::CheckOS::os_is('MacOSX') ||
-    Devel::CheckOS::os_is('MacOSclassic')
-}
+sub matches { return qw(MacOSX MacOSclassis); }
+sub os_is { Devel::CheckOS::os_is(matches()); }
+Devel::CheckOS::die_unsupported() unless(os_is());
 
 sub expn { "The operating system is from Apple" }
-
-Devel::CheckOS::die_unsupported() unless(os_is());
 
 =head1 COPYRIGHT and LICENCE
 

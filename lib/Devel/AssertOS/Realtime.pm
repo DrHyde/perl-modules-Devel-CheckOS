@@ -4,17 +4,13 @@ package Devel::AssertOS::Realtime;
 
 use Devel::CheckOS;
 
-$VERSION = '1.1';
+$VERSION = '1.2';
 
-sub os_is {
-    Devel::CheckOS::os_is('QNX')
-    # || Devel::CheckOS::os_is('some other RTOS')
-    ;
-}
+sub matches { return qw(QNX); }
+sub os_is { Devel::CheckOS::os_is(matches()); }
+Devel::CheckOS::die_unsupported() unless(os_is());
 
 sub expn { "This is a realtime operating system" }
-
-Devel::CheckOS::die_unsupported() unless(os_is());
 
 =head1 COPYRIGHT and LICENCE
 

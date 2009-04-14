@@ -4,13 +4,10 @@ package Devel::AssertOS::QNX;
 
 use Devel::CheckOS;
 
-$VERSION = '1.0';
+$VERSION = '1.1';
 
-sub os_is {
-    Devel::CheckOS::os_is('QNX::v4') ||
-    Devel::CheckOS::os_is('QNX::Neutrino')
-}
-
+sub matches { return qw(QNX::v4 QNX::Neutrino); }
+sub os_is { Devel::CheckOS::os_is(matches()); }
 Devel::CheckOS::die_unsupported() unless(os_is());
 
 =head1 COPYRIGHT and LICENCE

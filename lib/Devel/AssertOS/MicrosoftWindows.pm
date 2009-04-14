@@ -4,16 +4,13 @@ package Devel::AssertOS::MicrosoftWindows;
 
 use Devel::CheckOS;
 
-$VERSION = '1.2';
+$VERSION = '1.3';
 
-sub os_is {
-    Devel::CheckOS::os_is('Cygwin') ||
-    Devel::CheckOS::os_is('MSWin32')
-}
+sub matches { return qw(Cygwin MSWin32); }
+sub os_is { Devel::CheckOS::os_is(matches()); }
+Devel::CheckOS::die_unsupported() unless(os_is());
 
 sub expn { "The operating system is some version of Microsoft Windows" }
-
-Devel::CheckOS::die_unsupported() unless(os_is());
 
 =head1 COPYRIGHT and LICENCE
 

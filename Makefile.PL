@@ -17,6 +17,12 @@ close(T);
 my @OSes = ();
 my @notOSes = ();
 
+# one of these is not like the other
+# this is really a sanity check that loading bogus modules doesn't Fuck Shit Up
+use Devel::CheckOS;
+Devel::CheckOS::list_family_members('Unix');
+Devel::CheckOS::list_family_members('MicrosoftWindows');
+
 print "I will now ask you some questions to make sure I've detected your\n";
 print "system correctly.  Most platforms will be detected several times.\n";
 print "This is deliberate.  To see an explanation of some of the more\n";

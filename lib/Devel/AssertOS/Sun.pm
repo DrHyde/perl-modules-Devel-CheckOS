@@ -4,16 +4,13 @@ package Devel::AssertOS::Sun;
 
 use Devel::CheckOS;
 
-$VERSION = '1.2';
+$VERSION = '1.3';
 
-sub os_is {
-    Devel::CheckOS::os_is('SunOS') ||
-    Devel::CheckOS::os_is('Solaris')
-}
+sub matches { return qw(SunOS Solaris); }
+sub os_is { Devel::CheckOS::os_is(matches()); }
+Devel::CheckOS::die_unsupported() unless(os_is());
 
 sub expn { "The operating system is from Sun Microsystems" }
-
-Devel::CheckOS::die_unsupported() unless(os_is());
 
 =head1 COPYRIGHT and LICENCE
 
