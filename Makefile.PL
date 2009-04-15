@@ -104,7 +104,6 @@ WriteMakefile(
         'Test::More'       => 0.62,  # too high? but it works
         'File::Find::Rule' => 0.28,
 	'File::Temp'       => 0.18,
-	'Capture::Tiny'    => 0.05,
         # 'Exporter' => 0 # core
     },
     EXE_FILES    => [qw(
