@@ -49,7 +49,7 @@ foreach my $os (@oses) {
         exit(1);
     }
 }
-my %modules = map { $_ => $INC{$_} } grep { /Devel/i && /(Check|Assert)OS/i } keys %INC;
+my @modulefiles = keys %{{map { $_ => $INC{$_} } grep { /Devel/i && /(Check|Assert)OS/i } keys %INC}};
 
 mkdir 'inc';
 mkdir 'inc/Devel';
@@ -58,28 +58,30 @@ print "Extra directories created under inc/\n" if($verbose);
 
 open(MANIFEST, '>>MANIFEST') || die("Can't update MANIFEST\n");
 use Data::Dumper;
-print Dumper(\%INC, \%modules);
-foreach my $module (keys %modules) {
-    my $dir = join('::', split(/\W+/, $module));
-    $dir =~ s/::pm//;
-    my @dircomponents = ('inc', (split(/::/, $dir)));
-    pop @dircomponents;
-    my $file = join('::', split(/\W+/, $module));
-    $file =~ s/::pm/.pm/;
-    $file =~ s/.*:://;
+foreach my $modulefile (@modulefiles) {
+    my $fullfilename = '';
+    SEARCHINC: foreach (@INC) {
+        if(-e File::Spec->catfile($_, $modulefile)) {
+            $fullfilename = File::Spec->catfile($_, $modulefile);
+            last SEARCHINC;
+        }
+    }
+    die("Can't find a file for $modulefile\n") unless(-e $fullfilename);
+
+    (my $module = join('::', split(/\W+/, $modulefile))) =~ s/::pm/.pm/;
+    my @dircomponents = ('inc', (split(/::/, $module)));
+    my $file = pop @dircomponents;
+
     mkdir File::Spec->catdir(@dircomponents);
     
-    # copy($modules{$module},
-    #      File::Spec->catfile(@dircomponents, $file));
-
-    open(PM, $modules{$module}) ||
-        die("Can't read $modules{$module}: $!");
+    open(PM, $fullfilename) ||
+        die("Can't read $fullfilename: $!");
     (my $pm = <PM>) =~ s/package Devel::/package #\nDevel::/;
     close(PM);
     open(PM, '>'.File::Spec->catfile(@dircomponents, $file)) ||
         die("Can't write ".File::Spec->catfile(@dircomponents, $file).": $!");
     print PM $pm;
-    print "Copied $modules{$module} to\n       ".File::Spec->catfile(@dircomponents, $file)."\n" if($verbose);
+    print "Copied $fullfilename to\n       ".File::Spec->catfile(@dircomponents, $file)."\n" if($verbose);
     close(PM);
 
     print MANIFEST join('/', @dircomponents, $file)."\n";

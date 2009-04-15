@@ -9,17 +9,12 @@ use Cwd;
 
 my $cwd = getcwd();
 
-# SKIP: {
-#     skip "Script doesn't work on Windows.  Dunno why.", 23
-#         if(Devel::CheckOS::os_is('MicrosoftWindows'));
-
-    emptydir();
-    MakefilePLexists();
-    BuildPLexists();
-    BuildPLandMakefilePLexist();
-    checkCopyCorrectModules();
-    checkDashl();
-# };
+emptydir();
+MakefilePLexists();
+BuildPLexists();
+BuildPLandMakefilePLexist();
+checkCopyCorrectModules();
+checkDashl();
 
 sub checkDashl {
     my $projectdir = File::Temp->newdir();
