@@ -1,5 +1,6 @@
 1.52    2009-04-15      Scalar context bug fixed in script, thanks to
                           Mike Kelly
+                        Tests and misc fixes for script
 
 1.51    2009-04-14      OS "families" can tell you what their members are;
                         Update Extending.pod to explain that
