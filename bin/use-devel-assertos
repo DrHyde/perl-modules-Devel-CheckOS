@@ -11,7 +11,7 @@ use Data::Compare;
 my @files = grep { -f $_ } qw(Makefile.PL Build.PL);
 push @files, 'Makefile.PL' unless(@files);
 
-my @oses = @ARGV || die("You must specify at least one OS\n");
+(my @oses = @ARGV) || die("You must specify at least one OS\n");
 
 eval "use Devel::AssertOS"; # to load AssertOS and CheckOS
 
@@ -34,7 +34,7 @@ my %modules = map { $_ => $INC{$_} } grep { /Devel/i && /(Check|Assert)OS/i } ke
 
 mkdir 'inc';
 mkdir 'inc/Devel';
-mkdir 'inc/AssertOS';
+mkdir 'inc/Devel/AssertOS';
 print "Extra directories created under inc/\n";
 
 open(MANIFEST, '>>MANIFEST') || die("Can't update MANIFEST\n");
