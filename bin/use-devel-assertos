@@ -57,6 +57,8 @@ mkdir 'inc/Devel/AssertOS';
 print "Extra directories created under inc/\n" if($verbose);
 
 open(MANIFEST, '>>MANIFEST') || die("Can't update MANIFEST\n");
+use Data::Dumper;
+print Dumper(\%INC, \%modules);
 foreach my $module (keys %modules) {
     my $dir = join('::', split(/\W+/, $module));
     $dir =~ s/::pm//;
