@@ -1,3 +1,6 @@
+1.54    2009-04-16      And more irritating little changes, this time
+                          to make tests pass on 5.6.2
+
 1.53    2009-04-15      Grargh!  5.10.0 doesn't fully populate %INC
                           if a module dies when we use() it. HATE.
                           So need another way to find the files in the
