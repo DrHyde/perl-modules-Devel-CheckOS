@@ -22,9 +22,11 @@ sub checkDashl {
     my $cmd = join(' ', map { qq{"$_"} } (
         $^X, (map { "-I$_" } @INC), $cwd.'/bin/use-devel-assertos', '-l'
     ));
+    $cmd = `$cmd`;
+    chomp($cmd);
     is_deeply(
-        [sort (Devel::CheckOS::list_platforms())],
-        [sort split(/, /, do { chomp($cmd = `$cmd`);$cmd })],
+        [sort { $a cmp $b } (Devel::CheckOS::list_platforms())],
+        [sort { $a cmp $b } split(/, /, $cmd)],
 	'-l spews the right stuff'
     );
     chdir($cwd);
