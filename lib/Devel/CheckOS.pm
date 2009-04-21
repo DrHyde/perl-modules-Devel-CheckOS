@@ -26,9 +26,16 @@ Devel::CheckOS - check what OS we're running on
 
 =head1 DESCRIPTION
 
+A learned sage once wrote on IRC:
+
+   $^O is stupid and ugly, it wears its pants as a hat
+
 Devel::CheckOS provides a more friendly interface to $^O, and also lets
 you check for various OS "families" such as "Unix", which includes things
 like Linux, Solaris, AIX etc.
+
+It spares perl the embarrassment of wearing its pants on its head by
+covering them with a splendid Fedora.
 
 =head1 SYNOPSIS
 
@@ -306,6 +313,10 @@ L<http://drhyde.cvs.sourceforge.net/drhyde/perlmodules/Devel-CheckOS/>
 Copyright 2007 David Cantrell
 
 This software is free-as-in-speech software, and may be used, distributed, and modified under the terms of either the GNU General Public Licence version 2 or the Artistic Licence. It's up to you which one you use. The full text of the licences can be found in the files GPL2.txt and ARTISTIC.txt, respectively.
+
+=head1 HATS
+
+I recommend buying a Fedora from L<http://hatsdirect.com/>.
 
 =head1 CONSPIRACY
 
