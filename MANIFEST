@@ -81,3 +81,4 @@ ARTISTIC.txt
 GPL2.txt
 lib/Devel/CheckOS/Families.pod
 t/15-list_family_members.t
+lib/Devel/AssertOS/MidnightBSD.pm

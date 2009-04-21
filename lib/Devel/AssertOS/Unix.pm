@@ -4,7 +4,7 @@ package Devel::AssertOS::Unix;
 
 use Devel::CheckOS;
 
-$VERSION = '1.3';
+$VERSION = '1.4';
 
 # list of OSes lifted from Module::Build 0.2808
 #
@@ -12,7 +12,7 @@ sub matches {
     return qw(
         AIX BSDOS DGUX DragonflyBSD Dynix FreeBSD HPUX Interix Irix
         Linux MachTen MacOSX MirOSBSD NetBSD OpenBSD OSF QNX SCO Solaris
-        SunOS SysVr4 SysVr5 Unicos
+        SunOS SysVr4 SysVr5 Unicos MidnightBSD
     );
 }
 sub os_is { Devel::CheckOS::os_is(matches()); }

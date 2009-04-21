@@ -1,3 +1,7 @@
+1.6     2009-04-21      Only ask to confirm what this platform is in
+                          Makefile.PL if AUTOMATED_TESTING is set;
+                        Add MidnightBSD
+
 1.55    2009-04-16      This time with the damned changes - really
                           shouldn't be doing releases at 1 am :-)
 
