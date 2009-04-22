@@ -4,11 +4,10 @@ package Devel::AssertOS::MacOSX::v10_4;
 
 use Devel::CheckOS;
 
-use Devel::AssertOS::MacOSX;
-
-$VERSION = '1.2';
+$VERSION = '1.3';
 
 sub os_is {
+    Devel::CheckOS::os_is('MacOSX') &&
     `sw_vers -productVersion` =~ /^10\.4\./ ? 1 : 0;
 }
 

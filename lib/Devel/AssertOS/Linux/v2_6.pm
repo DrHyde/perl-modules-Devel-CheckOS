@@ -4,11 +4,10 @@ package Devel::AssertOS::Linux::v2_6;
 
 use Devel::CheckOS;
 
-use Devel::AssertOS::Linux;
-
-$VERSION = '1.2';
+$VERSION = '1.3';
 
 sub os_is {
+    Devel::CheckOS::os_is('Linux') &&
     `uname -r` =~ /^2\.6\./ ? 1 : 0;
 }
 

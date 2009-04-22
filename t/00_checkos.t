@@ -1,17 +1,24 @@
 use strict;
 $^W = 1;
 
-use Test::More tests => 11;
+use Test::More tests => 14;
 
 BEGIN { use_ok('Devel::CheckOS'); }
 
 use File::Spec;
 use lib File::Spec->catdir(qw(t lib));
 
+eval 'Devel::CheckOS::os_is("[broken]")';
+ok($@ =~ /isn't a legal OS name/, "os_is whines about illegal names");
+
 ok(Devel::CheckOS::os_is('AnOperatingSystem'),
-   "a single valid OS detected");
+   "a single valid OS detected by os_is");
+ok(!Devel::CheckOS::os_is('NotAnOperatingSystem'),
+   "a single invalid OS detected by os_is");
 ok(Devel::CheckOS::os_isnt('NotAnOperatingSystem'),
-   "a single invalid OS detected");
+   "a single invalid OS detectedby os_isnt");
+ok(!Devel::CheckOS::os_isnt('AnOperatingSystem'),
+   "a single valid OS detectedby os_isnt");
 
 eval { Devel::CheckOS::die_if_os_isnt('AnOperatingSystem') };
 ok(!$@, "a single valid OS detected using die_if_os_isnt");
