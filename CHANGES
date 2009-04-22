@@ -1,3 +1,5 @@
+X.X     XXXX-XX-XX      Better code coverage in tests
+
 1.6     2009-04-21      Only ask to confirm what this platform is in
                           Makefile.PL if AUTOMATED_TESTING is set;
                         Add MidnightBSD

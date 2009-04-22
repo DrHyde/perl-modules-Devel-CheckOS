@@ -4,7 +4,7 @@ $^W = 1;
 use File::Spec;
 use lib File::Spec->catdir(qw(t lib));
 
-use Test::More tests => 44;
+use Test::More tests => 45;
 
 my %platforms = (
     aix         => 'AIX',
@@ -61,3 +61,7 @@ foreach my $o (sort { lc($platforms{$a}) cmp lc($platforms{$b}) }keys %platforms
     ok(!$@, "\$^O = $o\t=> $platform". ($@ ? ": $@" : ''));
 }
 
+{
+  local $^O = 'haiku';
+  ok(Devel::CheckOS::os_is('BeOS'), "Haiku is also BeOS");
+}
