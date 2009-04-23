@@ -286,6 +286,8 @@ L<Probe::Perl>
 
 The use-devel-assertos script
 
+L<Module::Install::AssertOS>
+
 =head1 AUTHOR
 
 David Cantrell E<lt>F<david@cantrell.org.uk>E<gt>

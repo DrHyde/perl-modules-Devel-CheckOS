@@ -119,6 +119,9 @@ The MANIFEST file is updated if any files are created.
 
     use-devel-assertos NetBSD OpenBSD FreeBSD
 
+But note that if you use C<Module::Install> you are encouraged to use
+C<Module::Install::AssertOS> instead.
+
 =head1 USAGE
 
 In the example above, this will insert code to make your module
@@ -149,6 +152,8 @@ Bug reports should be made using L<http://rt.cpan.org/> or by email.
 L<Devel::AssertOS>
 
 L<Devel::CheckOS>
+
+L<Module::Install::AssertOS>
 
 =head1 AUTHOR
 
