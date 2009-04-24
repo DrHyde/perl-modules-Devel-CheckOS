@@ -1,4 +1,7 @@
 X.X     XXXX-XX-XX      Better code coverage in tests
+                        Fix bug in script - not copying all members of
+                          a family, only those it checked up until the
+                          OS it's running on
 
 1.6     2009-04-21      Only ask to confirm what this platform is in
                           Makefile.PL if AUTOMATED_TESTING is set;

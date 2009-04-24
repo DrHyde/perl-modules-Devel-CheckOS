@@ -1,7 +1,7 @@
 use strict;
 $^W = 1;
 
-use Test::More tests => 23;
+use Test::More tests => 55;
 use File::Temp;
 use File::Spec;
 use Devel::CheckOS;
@@ -13,7 +13,8 @@ emptydir();
 MakefilePLexists();
 BuildPLexists();
 BuildPLandMakefilePLexist();
-checkCopyCorrectModules();
+checkCopyCorrectModulesLinux26MicrosoftWindows();
+checkCopyCorrectModulesPOSIXRedir();
 checkDashl();
 
 sub checkDashl {
@@ -38,7 +39,41 @@ sub checkDashl {
         "... or create directories");
 }
 
-sub checkCopyCorrectModules {
+# a big family - make sure all are copied!
+sub checkCopyCorrectModulesPOSIXRedir {
+    my $projectdir = File::Temp->newdir();
+
+    _run_script($projectdir, qw(OSFeatures::POSIXShellRedirection));
+    print "# use-devel-assertos OSFeatures::POSIXShellRedirection\n";
+    my @modules = (
+        'OSFeatures::POSIXShellRedirection',
+        Devel::CheckOS::list_family_members('OSFeatures::POSIXShellRedirection'),
+        Devel::CheckOS::list_family_members('Unix'),
+        Devel::CheckOS::list_family_members('BeOS'),
+        Devel::CheckOS::list_family_members('QNX'),
+    );
+    foreach(@modules) {
+        ok(-e File::Spec->catfile(
+            $projectdir, qw(inc Devel AssertOS), split('::', "$_.pm")),
+	    join('/', "inc/Devel/AssertOS", split('::', "$_.pm"))." exists");
+    }
+    is_deeply(
+        [sort {$a cmp $b} split("\n", _getfile(File::Spec->catfile($projectdir, 'MANIFEST')))],
+	[sort {$a cmp $b} (
+            qw(
+	        inc/Devel/CheckOS.pm inc/Devel/AssertOS.pm
+	        MANIFEST Makefile.PL
+            ),
+            (map {
+                join('/', "inc/Devel/AssertOS", split('::', "$_.pm"))
+            } @modules)
+	)],
+	'... and update MANIFEST correctly'
+    );
+}
+
+# a family plus a specific module plus its parents
+sub checkCopyCorrectModulesLinux26MicrosoftWindows {
     my $projectdir = File::Temp->newdir();
 
     _run_script($projectdir, qw(Linux::v2_6 MicrosoftWindows));

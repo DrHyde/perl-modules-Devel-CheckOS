@@ -79,16 +79,17 @@ of OSes and OS families, eg ...
 
 sub os_is {
     my @targets = @_;
+    my $rval = 0;
     foreach my $target (@targets) {
         die("Devel::CheckOS: $target isn't a legal OS name\n")
             unless($target =~ /^\w+(::\w+)*$/);
         eval "use Devel::AssertOS::$target";
         if(!$@) {
             no strict 'refs';
-            return 1 if(&{"Devel::AssertOS::${target}::os_is"}());
+            $rval = 1 if(&{"Devel::AssertOS::${target}::os_is"}());
         }
     }
-    return 0;
+    return $rval;
 }
 
 =head3 os_isnt
