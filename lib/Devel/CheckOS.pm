@@ -101,10 +101,11 @@ otherwise it returns true.
 
 sub os_isnt {
     my @targets = @_;
+    my $rval = 1;
     foreach my $target (@targets) {
-        return 0 if(os_is($target));
+        $rval = 0 if(os_is($target));
     }
-    return 1;
+    return $rval;
 }
 
 =head2 Fatal functions

@@ -1,4 +1,4 @@
-X.X     XXXX-XX-XX      Better code coverage in tests
+1.61    2009-04-25      Better code coverage in tests;
                         Fix bug in script - not copying all members of
                           a family, only those it checked up until the
                           OS it's running on
