@@ -1,5 +1,3 @@
-# $Id: Families.pod,v 1.2 2008/10/27 20:31:21 drhyde Exp $
-
 =head1 NAME
 
 Devel::CheckOS::Families - what OS "families" are supported "out of the
@@ -49,9 +47,13 @@ AppleScript.
 
 This is for all real-time OSes.  So far, it only includes QNX.
 
+=head1 THE EBCDIC FAMILY
+
+OSes which use EBCDIC instead of ASCII.
+
 =head1 AUTHOR, COPYRIGHT and LICENCE
 
-Copyright 2008 David Cantrell E<lt>F<david@cantrell.org.uk>E<gt>
+Copyright 2008 - 2010 David Cantrell E<lt>F<david@cantrell.org.uk>E<gt>
 
 This documentation is free-as-in-speech.  It may be used,
 distributed and modified under the terms of the Creative Commons
