@@ -306,6 +306,8 @@ Thanks to Matt Kraai for information about QNX.
 Thanks to Kenichi Ishigaki and Gabor Szabo for reporting a bug on Windows,
 and to the former for providing a patch.
 
+Thanks to Paul Green for some information about VOS.
+
 =head1 SOURCE CODE REPOSITORY
 
 L<http://www.cantrell.org.uk/cgit/cgit.cgi/perlmodules/>
