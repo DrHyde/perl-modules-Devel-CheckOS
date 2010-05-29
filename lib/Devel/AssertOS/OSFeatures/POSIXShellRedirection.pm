@@ -2,11 +2,11 @@
 
 package Devel::AssertOS::OSFeatures::POSIXShellRedirection;
 
-$VERSION = '1.3';
+$VERSION = '1.4';
 
 use Devel::CheckOS;
 
-sub matches { return qw(Unix Cygwin BeOS); }
+sub matches { return qw(Unix Cygwin BeOS VOS); }
 sub os_is { Devel::CheckOS::os_is(matches()); }
 Devel::CheckOS::die_unsupported() unless(os_is());
 
@@ -21,7 +21,6 @@ join("\n",
 "and so on"
 )
 }
-
 
 =head1 NAME
 

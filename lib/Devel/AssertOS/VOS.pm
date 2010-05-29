@@ -4,9 +4,9 @@ package Devel::AssertOS::VOS;
 
 use Devel::CheckOS;
 
-$VERSION = '1.1';
+$VERSION = '1.2';
 
-sub os_is { $^O eq 'VOS' ? 1 : 0; }
+sub os_is { $^O eq 'VOS' || $^O eq 'vos' ? 1 : 0; }
 
 Devel::CheckOS::die_unsupported() unless(os_is());
 

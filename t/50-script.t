@@ -1,7 +1,7 @@
 use strict;
 $^W = 1;
 
-use Test::More tests => 55;
+use Test::More tests => 56;
 use File::Temp;
 use File::Spec;
 use Devel::CheckOS;

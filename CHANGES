@@ -1,3 +1,6 @@
+1.63    2010-05-29      $^O for VOS is sometimes VOS, sometimes vos;
+                        VOS supports POSIX shell redirections
+
 1.62    2010-05-21      Add OS X 10.5 platform and EBCDIC family
 
 1.61    2009-04-25      Better code coverage in tests;
