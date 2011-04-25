@@ -4,7 +4,7 @@ $^W = 1;
 use File::Spec;
 use lib File::Spec->catdir(qw(t lib));
 
-use Test::More tests => 45;
+use Test::More tests => 46;
 
 my %platforms = (
     aix         => 'AIX',
@@ -16,6 +16,7 @@ my %platforms = (
     dragonfly   => 'DragonflyBSD',
     dynixptx    => 'Dynix',
     freebsd     => 'FreeBSD',
+    gnukfreebsd => 'GNUkFreeBSD',
     haiku       => 'Haiku',
     hpux        => 'HPUX',
     interix     => 'Interix',

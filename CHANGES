@@ -1,3 +1,5 @@
+1.64    2011-04-25      Add support for GNU/kFreeBSD
+
 1.63    2010-05-29      $^O for VOS is sometimes VOS, sometimes vos;
                         VOS supports POSIX shell redirections
 

@@ -88,3 +88,4 @@ t/61-failing-mockery.t
 t/16-expn.t
 lib/Devel/AssertOS/EBCDIC.pm
 lib/Devel/AssertOS/MacOSX/v10_5.pm
+lib/Devel/AssertOS/GNUkFreeBSD.pm
