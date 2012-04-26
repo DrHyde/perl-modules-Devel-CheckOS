@@ -51,6 +51,12 @@ if($ENV{AUTOMATED_TESTING}) {
 
 WriteMakefile(
     NAME         => 'Devel::CheckOS',
+    META_MERGE => {
+        license => 'other',
+        resource => {
+	    repository => 'https://github.com/DrHyde/perl-modules-Devel-CheckOS'
+        }
+    },
     # FIXME have this look at all the modules, or summat
     VERSION_FROM => 'lib/Devel/CheckOS.pm',
     PREREQ_PM    => {
@@ -63,10 +69,6 @@ WriteMakefile(
     EXE_FILES    => [qw(
         bin/use-devel-assertos
     )],
-    META_MERGE => {
-        license => 'other'
-    },
-
     clean         => { FILES => join(' ', @extrafiles) }
 );
 
