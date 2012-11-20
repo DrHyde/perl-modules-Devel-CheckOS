@@ -53,9 +53,10 @@ WriteMakefile(
     NAME         => 'Devel::CheckOS',
     META_MERGE => {
         license => 'other',
-        resource => {
-	    repository => 'https://github.com/DrHyde/perl-modules-Devel-CheckOS'
-        }
+        resources => {
+            repository => 'https://github.com/DrHyde/perl-modules-Devel-CheckOS',
+            bugtracker => 'https://github.com/DrHyde/perl-modules-Devel-CheckOS/issues/new'
+        },
     },
     # FIXME have this look at all the modules, or summat
     VERSION_FROM => 'lib/Devel/CheckOS.pm',
