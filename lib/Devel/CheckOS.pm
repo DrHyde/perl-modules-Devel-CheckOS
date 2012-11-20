@@ -308,7 +308,7 @@ and to the former for providing a patch.
 
 Thanks to Paul Green for some information about VOS.
 
-Thanks to Yankick Champoux for a patch to let Devel::AssertOS support
+Thanks to Yanick Champoux for a patch to let Devel::AssertOS support
 negative assertions.
 
 =head1 SOURCE CODE REPOSITORY
