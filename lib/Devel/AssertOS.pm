@@ -1,5 +1,3 @@
-# $Id: AssertOS.pm,v 1.5 2008/10/27 20:31:21 drhyde Exp $
-
 package Devel::AssertOS;
 
 use Devel::CheckOS;
@@ -8,7 +6,7 @@ use strict;
 
 use vars qw($VERSION);
 
-$VERSION = '1.1';
+$VERSION = '1.2';
 
 # localising prevents the warningness leaking out of this module
 local $^W = 1;    # use warnings is a 5.6-ism
@@ -28,12 +26,33 @@ do this:
 which will die unless the platform the code is running on is Linux, FreeBSD
 or Cygwin.
 
+To assert that the OS is B<not> a specific platform, prepend the platform name
+with a minus sign. For example, to run on anything but Amiga, do:
+
+    use Devel::AssertOS qw(-Amiga);
+
+
 =cut
 
 sub import {
     shift;
     die("Devel::AssertOS needs at least one parameter\n") unless(@_);
-    Devel::CheckOS::die_if_os_isnt(@_);
+
+    my @oses = @_;
+
+    my ( @must, @must_not );
+
+    for my $os ( @oses ) {
+        if ( $os =~ s/^-// ) {
+            push @must_not, $os;
+        }
+        else {
+            push @must, $os;
+        }
+    }
+
+    Devel::CheckOS::die_if_os_is(@must_not);
+    Devel::CheckOS::die_if_os_isnt(@must);
 }
 
 =head1 BUGS and FEEDBACK

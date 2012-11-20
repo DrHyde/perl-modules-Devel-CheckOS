@@ -6,6 +6,7 @@ use lib File::Spec->catdir(qw(t lib));
 
 use Test::More tests => 1;
 
-eval "use Devel::AssertOS 'NotAnOperatingSystem'";
+eval "use Devel::AssertOS qw/ -AnOperatingSystem /";
 
-like $@, qr/OS unsupported/i;
+like $@ => qr/OS unsupported/;
+
