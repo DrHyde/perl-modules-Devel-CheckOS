@@ -77,6 +77,7 @@ of OSes and OS families, eg ...
 
 sub os_is {
     my @targets = @_;
+    if (@targets == 0) { return 1 }
     my $rval = 0;
     foreach my $target (@targets) {
         die("Devel::CheckOS: $target isn't a legal OS name\n")
