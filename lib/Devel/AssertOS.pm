@@ -51,8 +51,8 @@ sub import {
         }
     }
 
-    Devel::CheckOS::die_if_os_is(@must_not);
-    Devel::CheckOS::die_if_os_isnt(@must);
+    Devel::CheckOS::die_if_os_is(@must_not) if @must_not;
+    Devel::CheckOS::die_if_os_isnt(@must)   if @must;
 }
 
 =head1 BUGS and FEEDBACK
