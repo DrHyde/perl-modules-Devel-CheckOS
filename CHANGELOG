@@ -1,3 +1,6 @@
+1.71    2013-01-27      Bugfix, better tests for negative assertions,
+                          also from Yanick
+
 1.7     2012-11-20      Add support for negative assertions in
                           Devel::AssertOS, thanks to Yanick Champoux
 
