@@ -27,13 +27,14 @@ called Devel::AssertOS::PlatformName which looks like:
     package Devel::AssertOS::Linux;
     use Devel::CheckOS;
     $VERSION = '1.0';
-    sub os_is { $^O eq 'linux' ? 1 : 0; }
+    sub os_is { $^O =~ /^linux$/i ? 1 : 0; }
     Devel::CheckOS::die_unsupported() unless(os_is());
     1;
 
 And that's it.  The subroutine B<must> be called C<os_is> and loading the
 module B<must> die in precisely that manner if your code is running on
-the wrong platform.  Note that it is an error to say:
+the wrong platform. It's a good idea to check $^O case-insensitively
+as it's not consistent. Note that it is an error to say:
 
     sub os_is { 1; }
 
@@ -107,7 +108,7 @@ in the first place.
 
 =head1 COPYRIGHT and LICENCE
 
-Copyright 2007 - 2008 David Cantrell
+Copyright 2007 - 2014 David Cantrell
 
 This documentation is free-as-in-speech.  It may be used,
 distributed and modified under the terms of the Creative Commons
