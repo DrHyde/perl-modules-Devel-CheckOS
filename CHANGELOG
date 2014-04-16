@@ -1,3 +1,7 @@
+1.72    2014-04-16      Add support for Bitrig, an OpenBSD fork;
+                        Check $^O case-insensitively as some OSes
+                          aren't particularly consistent
+
 1.71    2013-01-27      Bugfix, better tests for negative assertions,
                           also from Yanick
 
