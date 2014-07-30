@@ -4,11 +4,12 @@ $^W = 1;
 use File::Spec;
 use lib File::Spec->catdir(qw(t lib));
 
-use Test::More tests => 46;
+use Test::More tests => 49;
 
 my %platforms = (
     aix         => 'AIX',
     amigaos     => 'Amiga',
+    android     => 'Android',
     beos        => 'BeOS',
     bsdos       => 'BSDOS',
     cygwin      => 'Cygwin',
@@ -65,4 +66,10 @@ foreach my $o (sort { lc($platforms{$a}) cmp lc($platforms{$b}) }keys %platforms
 {
   local $^O = 'haiku';
   ok(Devel::CheckOS::os_is('BeOS'), "Haiku is also BeOS");
+}
+
+{
+    local $^O = 'android';
+    ok(Devel::CheckOS::os_is('Linux'), "Android is also Linux");
+    ok(Devel::CheckOS::os_is('Unix'), "Android is also Unix");
 }

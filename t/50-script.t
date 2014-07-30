@@ -1,7 +1,7 @@
 use strict;
 $^W = 1;
 
-use Test::More tests => 57;
+use Test::More tests => 58;
 use File::Temp;
 use File::Spec;
 use Devel::CheckOS;
@@ -101,7 +101,7 @@ sub checkCopyCorrectModulesLinux26MicrosoftWindows {
 	"inc/Devel/CheckOS.pm exists");
     is_deeply(
         [sort split("\n", _getfile(File::Spec->catfile($projectdir, 'MANIFEST')))],
-	[sort qw(
+	[sort qw( inc/Devel/AssertOS/Android.pm
 	    inc/Devel/AssertOS/Linux/v2_6.pm inc/Devel/AssertOS/Linux.pm
 	    inc/Devel/AssertOS/MSWin32.pm inc/Devel/AssertOS/Cygwin.pm
 	    inc/Devel/AssertOS/MicrosoftWindows.pm
@@ -154,7 +154,7 @@ wibblywobblywoo', # mmm, significant whitespace
     );
     is_deeply(
         [sort split("\n", _getfile(File::Spec->catfile($projectdir, 'MANIFEST')))],
-	[sort qw(
+	[sort qw( inc/Devel/AssertOS/Android.pm
 	    inc/Devel/AssertOS/Linux.pm inc/Devel/AssertOS/MSWin32.pm
 	    inc/Devel/CheckOS.pm inc/Devel/AssertOS.pm
 	    HLAGH
@@ -182,7 +182,7 @@ wibblywobblywoo', # mmm, significant whitespace
     );
     is_deeply(
         [sort split("\n", _getfile(File::Spec->catfile($projectdir, 'MANIFEST')))],
-	[sort qw(
+	[sort qw( inc/Devel/AssertOS/Android.pm
 	    inc/Devel/AssertOS/Linux.pm inc/Devel/AssertOS/MSWin32.pm
 	    inc/Devel/CheckOS.pm inc/Devel/AssertOS.pm
 	    HLAGH
@@ -205,7 +205,7 @@ sub emptydir {
     );
     is_deeply(
         [sort split("\n", _getfile(File::Spec->catfile($projectdir, 'MANIFEST')))],
-	[sort qw(
+	[sort qw( inc/Devel/AssertOS/Android.pm
 	    inc/Devel/AssertOS/Linux.pm inc/Devel/AssertOS/MSWin32.pm
 	    inc/Devel/CheckOS.pm inc/Devel/AssertOS.pm
 	    MANIFEST Makefile.PL

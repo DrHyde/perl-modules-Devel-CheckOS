@@ -8,7 +8,7 @@ $VERSION = '1.5';
 #
 sub matches {
     return qw(
-        AIX Bitrig BSDOS DGUX DragonflyBSD Dynix FreeBSD HPUX Interix Irix
+        AIX Android Bitrig BSDOS DGUX DragonflyBSD Dynix FreeBSD HPUX Interix Irix
         Linux MachTen MacOSX MirOSBSD NetBSD OpenBSD OSF QNX SCO Solaris
         SunOS SysVr4 SysVr5 Unicos MidnightBSD
     );

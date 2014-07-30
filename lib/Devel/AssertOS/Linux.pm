@@ -4,9 +4,19 @@ use Devel::CheckOS;
 
 $VERSION = '1.2';
 
-sub os_is { $^O =~ /^linux$/i ? 1 : 0; }
+
+sub matches { qw(Linux Android) }
+sub os_is {
+    $^O =~ /^linux$/i
+    ? 1
+    : Devel::CheckOS::os_is(grep !/^linux$/i, matches());
+}
 
 Devel::CheckOS::die_unsupported() unless(os_is());
+
+sub expn {
+    "The operating system has a Linux kernel"
+}
 
 =head1 COPYRIGHT and LICENCE
 
