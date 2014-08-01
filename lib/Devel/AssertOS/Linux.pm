@@ -5,11 +5,13 @@ use Devel::CheckOS;
 $VERSION = '1.3';
 
 
-sub matches { qw(Linux Android) }
+sub subtypes { qw(Android) }
+sub matches { ('Linux', subtypes()) }
+
 sub os_is {
     (
         # order is important
-        Devel::CheckOS::os_is(grep !/^linux$/i, matches()) ||
+        Devel::CheckOS::os_is(subtypes()) ||
         $^O =~ /^linux$/i
     ) ? 1 : 0;
 }
