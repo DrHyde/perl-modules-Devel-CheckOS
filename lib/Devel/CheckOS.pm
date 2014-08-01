@@ -311,6 +311,8 @@ Thanks to Paul Green for some information about VOS.
 Thanks to Yanick Champoux for a patch to let Devel::AssertOS support
 negative assertions.
 
+Thanks to Brian Fraser for adding Android support.
+
 =head1 SOURCE CODE REPOSITORY
 
 L<git://github.com/DrHyde/perl-modules-Devel-CheckOS.git>
