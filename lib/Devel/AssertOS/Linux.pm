@@ -2,14 +2,16 @@ package Devel::AssertOS::Linux;
 
 use Devel::CheckOS;
 
-$VERSION = '1.2';
+$VERSION = '1.3';
 
 
 sub matches { qw(Linux Android) }
 sub os_is {
-    $^O =~ /^linux$/i
-    ? 1
-    : Devel::CheckOS::os_is(grep !/^linux$/i, matches());
+    (
+        # order is important
+        Devel::CheckOS::os_is(grep !/^linux$/i, matches()) ||
+        $^O =~ /^linux$/i
+    ) ? 1 : 0;
 }
 
 Devel::CheckOS::die_unsupported() unless(os_is());
