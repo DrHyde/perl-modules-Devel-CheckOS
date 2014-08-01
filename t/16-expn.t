@@ -1,7 +1,7 @@
 use strict;
 $^W = 1;
 
-use Test::More tests => 21;
+use Test::More tests => 22;
 
 use Devel::CheckOS;
 
