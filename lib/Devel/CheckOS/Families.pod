@@ -31,6 +31,11 @@ and user groups.  Permissions may not be supported on all filesystems.
 
 =back
 
+=head1 THE Linux FAMILY
+
+This includes both ordinary Linux and Android. Plain old Linux will
+match 'Linux'. Android will match both that and 'Android'.
+
 =head1 THE MicrosoftWindows FAMILY
 
 This includes any version of Windows and also includes things like
