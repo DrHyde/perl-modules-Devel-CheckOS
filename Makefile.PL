@@ -55,7 +55,7 @@ WriteMakefile(
         license => 'other',
         resources => {
             repository => 'https://github.com/DrHyde/perl-modules-Devel-CheckOS',
-            bugtracker => 'https://github.com/DrHyde/perl-modules-Devel-CheckOS/issues/new'
+            bugtracker => 'https://github.com/DrHyde/perl-modules-Devel-CheckOS/issues'
         },
     },
     # FIXME have this look at all the modules, or summat
