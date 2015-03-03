@@ -1,8 +1,9 @@
 package Devel::AssertOS::Linux::Debian;
 
 use Devel::CheckOS;
+use strict;
 
-$VERSION = '1.0';
+our $VERSION = '1.0';
 
 sub os_is {
     Devel::CheckOS::os_is('Linux') &&
