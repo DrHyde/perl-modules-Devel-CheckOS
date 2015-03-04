@@ -14,7 +14,7 @@ is_deeply(
 );
 
 is_deeply(
-    [sort(Devel::CheckOS::list_family_members('Linux'))],
+    [sort(&Devel::CheckOS::list_family_members('Linux'))],
     [sort(qw(Android Linux))],
     'Linux family includes both Linux and Android'
 );
