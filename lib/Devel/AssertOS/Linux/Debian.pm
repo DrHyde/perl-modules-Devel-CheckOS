@@ -7,7 +7,7 @@ our $VERSION = '1.0';
 
 sub os_is {
     Devel::CheckOS::os_is('Linux') &&
-       (`lsb_release -i` =~ /Debian/ or 
+       (`lsb_release -i 2>/dev/null` =~ /Debian/ or 
        -f "/etc/debian_version");
 }
 
