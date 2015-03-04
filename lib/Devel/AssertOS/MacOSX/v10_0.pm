@@ -1,18 +1,16 @@
-# $Id: v10_4.pm,v 1.4 2008/11/05 22:52:35 drhyde Exp $
-
-package Devel::AssertOS::MacOSX::v10_4;
+package Devel::AssertOS::MacOSX::v10_0;
 
 use Devel::CheckOS;
 use strict;
 
-our $VERSION = '1.4';
+our $VERSION = '1.0';
 
 sub os_is {
     Devel::CheckOS::os_is('MacOSX') &&
-    `sw_vers -productVersion` =~ /^10\.4\./ ? 1 : 0;
+    `sw_vers -productVersion` =~ /^10\.0\./ ? 1 : 0;
 }
 
-sub expn { "The operating system is some version of OS X Tiger (10.4)" }
+sub expn { "The operating system is some version of OS X Cheetah (10.0)" }
 
 Devel::CheckOS::die_unsupported() unless(os_is());
 

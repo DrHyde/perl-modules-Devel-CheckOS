@@ -20,7 +20,17 @@ lib/Devel/AssertOS/Linux/v2_6.pm
 lib/Devel/AssertOS/MachTen.pm
 lib/Devel/AssertOS/MacOSclassic.pm
 lib/Devel/AssertOS/MacOSX.pm
+lib/Devel/AssertOS/MacOSX/v10_0.pm
+lib/Devel/AssertOS/MacOSX/v10_1.pm
+lib/Devel/AssertOS/MacOSX/v10_2.pm
+lib/Devel/AssertOS/MacOSX/v10_3.pm
 lib/Devel/AssertOS/MacOSX/v10_4.pm
+lib/Devel/AssertOS/MacOSX/v10_5.pm
+lib/Devel/AssertOS/MacOSX/v10_6.pm
+lib/Devel/AssertOS/MacOSX/v10_7.pm
+lib/Devel/AssertOS/MacOSX/v10_8.pm
+lib/Devel/AssertOS/MacOSX/v10_9.pm
+lib/Devel/AssertOS/MacOSX/v10_10.pm
 lib/Devel/AssertOS/MicrosoftWindows.pm
 lib/Devel/AssertOS/MPEiX.pm
 lib/Devel/AssertOS/MSDOS.pm
