@@ -5,7 +5,7 @@ use Exporter;
 
 use vars qw($VERSION @ISA @EXPORT_OK %EXPORT_TAGS);
 
-$VERSION = '1.73';
+$VERSION = '1.74';
 
 # localising prevents the warningness leaking out of this module
 local $^W = 1;    # use warnings is a 5.6-ism
@@ -312,6 +312,9 @@ Thanks to Yanick Champoux for a patch to let Devel::AssertOS support
 negative assertions.
 
 Thanks to Brian Fraser for adding Android support.
+
+Thanks to Dale Evans for Debian detection, a bunch of Mac OS X specific version
+detection modules, and perl 5.6 support.
 
 =head1 SOURCE CODE REPOSITORY
 
