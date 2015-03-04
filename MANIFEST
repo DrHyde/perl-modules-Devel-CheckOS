@@ -103,3 +103,4 @@ t/62-assertos-do-not-want.t
 lib/Devel/AssertOS/Bitrig.pm
 lib/Devel/AssertOS/Android.pm
 MANIFEST.SKIP
+lib/Devel/AssertOS/Linux/Debian.pm
