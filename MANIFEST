@@ -104,3 +104,4 @@ lib/Devel/AssertOS/Bitrig.pm
 lib/Devel/AssertOS/Android.pm
 MANIFEST.SKIP
 lib/Devel/AssertOS/Linux/Debian.pm
+t/63-kwalitee.t
