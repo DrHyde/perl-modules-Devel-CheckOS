@@ -1,10 +1,8 @@
 package Devel::AssertOS::AIX;
 
 use Devel::CheckOS;
-use strict;
-use warnings;
 
-our $VERSION = '1.2';
+$VERSION = '1.2';
 
 sub os_is { $^O =~ /^aix$/i ? 1 : 0; }
 

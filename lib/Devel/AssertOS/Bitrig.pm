@@ -1,10 +1,8 @@
 package Devel::AssertOS::Bitrig;
 
 use Devel::CheckOS;
-use strict;
-use warnings;
 
-our $VERSION = '1.0';
+$VERSION = '1.0';
 
 sub os_is { $^O =~ /^BITRIG$/i ? 1 : 0; }
 

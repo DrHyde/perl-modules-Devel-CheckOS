@@ -1,10 +1,8 @@
 package Devel::AssertOS::Haiku;
 
 use Devel::CheckOS;
-use strict;
-use warnings;
 
-our $VERSION = '1.1';
+$VERSION = '1.1';
 
 sub os_is { $^O =~ /^haiku$/i ? 1 : 0; }
 

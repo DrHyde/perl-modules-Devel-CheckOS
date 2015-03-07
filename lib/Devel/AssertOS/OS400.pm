@@ -1,10 +1,8 @@
 package Devel::AssertOS::OS400;
 
 use Devel::CheckOS;
-use strict;
-use warnings;
 
-our $VERSION = '1.2';
+$VERSION = '1.2';
 
 sub os_is { $^O =~ /^os400$/i ? 1 : 0; }
 

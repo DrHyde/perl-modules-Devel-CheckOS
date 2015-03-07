@@ -1,10 +1,8 @@
 package Devel::AssertOS::Cygwin;
 
 use Devel::CheckOS;
-use strict;
-use warnings;
 
-our $VERSION = '1.3';
+$VERSION = '1.3';
 
 sub os_is { $^O =~ /^cygwin$/i ? 1 : 0; }
 

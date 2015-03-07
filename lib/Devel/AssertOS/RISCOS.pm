@@ -1,10 +1,8 @@
 package Devel::AssertOS::RISCOS;
 
 use Devel::CheckOS;
-use strict;
-use warnings;
 
-our $VERSION = '1.2';
+$VERSION = '1.2';
 
 sub os_is { $^O =~ /^riscos$/i ? 1 : 0; }
 

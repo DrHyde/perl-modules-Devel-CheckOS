@@ -1,10 +1,8 @@
 package Devel::AssertOS::FreeBSD;
 
 use Devel::CheckOS;
-use strict;
-use warnings;
 
-our $VERSION = '1.2';
+$VERSION = '1.2';
 
 sub os_is { $^O =~ /^(gnuk)?freebsd$/i ? 1 : 0; }
 
