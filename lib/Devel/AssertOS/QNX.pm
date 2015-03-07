@@ -3,10 +3,8 @@
 package Devel::AssertOS::QNX;
 
 use Devel::CheckOS;
-use strict;
-use warnings;
 
-our $VERSION = '1.2';
+$VERSION = '1.2';
 
 sub matches { return qw(QNX::v4 QNX::Neutrino); }
 sub os_is { Devel::CheckOS::os_is(matches()); }

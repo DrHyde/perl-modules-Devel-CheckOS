@@ -1,10 +1,8 @@
 package Devel::AssertOS::SysVr5;
 
 use Devel::CheckOS;
-use strict;
-use warnings;
 
-our $VERSION = '1.2';
+$VERSION = '1.2';
 
 sub os_is { $^O =~ /^svr5$/i ? 1 : 0; }
 

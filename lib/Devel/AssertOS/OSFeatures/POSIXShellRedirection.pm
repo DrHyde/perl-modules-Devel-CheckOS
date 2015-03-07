@@ -2,11 +2,9 @@
 
 package Devel::AssertOS::OSFeatures::POSIXShellRedirection;
 
-our $VERSION = '1.4';
+$VERSION = '1.4';
 
 use Devel::CheckOS;
-use strict;
-use warnings;
 
 sub matches { return qw(Unix Cygwin BeOS VOS); }
 sub os_is { Devel::CheckOS::os_is(matches()); }

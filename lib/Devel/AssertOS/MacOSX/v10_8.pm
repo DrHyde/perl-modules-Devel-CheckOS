@@ -2,7 +2,6 @@ package Devel::AssertOS::MacOSX::v10_8;
 
 use Devel::CheckOS;
 use strict;
-use warnings;
 
 our $VERSION = '1.0';
 

@@ -1,10 +1,8 @@
 package Devel::AssertOS::Netware;
 
 use Devel::CheckOS;
-use strict;
-use warnings;
 
-our $VERSION = '1.2';
+$VERSION = '1.2';
 
 sub os_is { $^O =~ /^netware$/i ? 1 : 0; }
 

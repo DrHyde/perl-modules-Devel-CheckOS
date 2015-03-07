@@ -1,10 +1,8 @@
 package Devel::AssertOS::POSIXBC;
 
 use Devel::CheckOS;
-use strict;
-use warnings;
 
-our $VERSION = '1.2';
+$VERSION = '1.2';
 
 sub os_is { $^O =~ /^posix-bc$/i ? 1 : 0; }
 

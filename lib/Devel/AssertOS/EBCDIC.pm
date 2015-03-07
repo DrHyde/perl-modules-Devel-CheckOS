@@ -1,10 +1,8 @@
 package Devel::AssertOS::EBCDIC;
 
 use Devel::CheckOS;
-use strict;
-use warnings;
 
-our $VERSION = '1.0';
+$VERSION = '1.0';
 
 # list of OSes lifted from Module::Build 0.2808
 #

@@ -3,10 +3,8 @@
 package Devel::AssertOS::Sun;
 
 use Devel::CheckOS;
-use strict;
-use warnings;
 
-our $VERSION = '1.3';
+$VERSION = '1.3';
 
 sub matches { return qw(SunOS Solaris); }
 sub os_is { Devel::CheckOS::os_is(matches()); }

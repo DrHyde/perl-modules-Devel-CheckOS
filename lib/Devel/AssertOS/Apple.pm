@@ -3,10 +3,8 @@
 package Devel::AssertOS::Apple;
 
 use Devel::CheckOS;
-use strict;
-use warnings;
 
-our $VERSION = '1.2';
+$VERSION = '1.2';
 
 sub matches { return qw(MacOSX MacOSclassis); }
 sub os_is { Devel::CheckOS::os_is(matches()); }
