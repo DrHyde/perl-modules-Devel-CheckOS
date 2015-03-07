@@ -58,6 +58,7 @@ WriteMakefile(
             bugtracker => 'https://github.com/DrHyde/perl-modules-Devel-CheckOS/issues'
         },
     },
+    MIN_PERL_VERSION => "5.6.0",
     # FIXME have this look at all the modules, or summat
     VERSION_FROM => 'lib/Devel/CheckOS.pm',
     PREREQ_PM    => {
