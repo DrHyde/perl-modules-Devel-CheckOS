@@ -12,7 +12,7 @@ our $VERSION = '1.6';
 sub matches {
     return qw(
         AIX Android Bitrig BSDOS DGUX DragonflyBSD Dynix FreeBSD HPUX Interix
-        Irix Linux MachTen MacOSX Minix MirOSBSD NetBSD OpenBSD OSF QNX SCO
+        iOS Irix Linux MachTen MacOSX Minix MirOSBSD NetBSD OpenBSD OSF QNX SCO
         Solaris SunOS SysVr4 SysVr5 Unicos MidnightBSD
     );
 }
@@ -25,7 +25,9 @@ join("\n",
 "pseudo-files in /dev, there is a single root to the filesystem, users",
 "are protected from interference from other users, and the API is POSIXy.",
 "It should be reasonably easy to port a simple text-mode C program",
-"between Unixes."
+"between Unixes.\n",
+"In some cases (eg Android, iOS) this might not be obvious or be exposed",
+"to users."
 )
 }
 
