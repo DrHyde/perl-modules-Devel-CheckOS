@@ -5,15 +5,15 @@ use strict;
 use warnings;
 no warnings 'redefine';
 
-our $VERSION = '1.5';
+our $VERSION = '1.6';
 
 # list of OSes originally lifted from Module::Build 0.2808
 #
 sub matches {
     return qw(
-        AIX Android Bitrig BSDOS DGUX DragonflyBSD Dynix FreeBSD HPUX Interix Irix
-        Linux MachTen MacOSX MirOSBSD NetBSD OpenBSD OSF QNX SCO Solaris
-        SunOS SysVr4 SysVr5 Unicos MidnightBSD
+        AIX Android Bitrig BSDOS DGUX DragonflyBSD Dynix FreeBSD HPUX Interix
+        Irix Linux MachTen MacOSX Minix MirOSBSD NetBSD OpenBSD OSF QNX SCO
+        Solaris SunOS SysVr4 SysVr5 Unicos MidnightBSD
     );
 }
 sub os_is { Devel::CheckOS::os_is(matches()); }

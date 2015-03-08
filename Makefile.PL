@@ -62,7 +62,7 @@ WriteMakefile(
     # FIXME have this look at all the modules, or summat
     VERSION_FROM => 'lib/Devel/CheckOS.pm',
     PREREQ_PM    => {
-        'Test::More'       => 0.62,  # too high? but it works
+        'Test::More'       => '0.88', # done_testing
         'File::Find::Rule' => 0.28,
         'File::Temp'       => 0.19,
         'Data::Compare'    => 1.21,

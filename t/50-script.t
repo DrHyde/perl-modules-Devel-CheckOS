@@ -1,11 +1,13 @@
 use strict;
 $^W = 1;
 
-use Test::More tests => 58;
+use Test::More;
 use File::Temp;
 use File::Spec;
 use Devel::CheckOS;
 use Cwd;
+
+END { done_testing(); }
 
 my $cwd = getcwd();
 
