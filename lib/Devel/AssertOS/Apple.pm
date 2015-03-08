@@ -7,7 +7,7 @@ no warnings 'redefine';
 
 our $VERSION = '1.3';
 
-sub matches { return qw(iOS MacOSX MacOSclassis); }
+sub matches { return qw(iOS MacOSX MacOSclassic); }
 sub os_is { Devel::CheckOS::os_is(matches()); }
 Devel::CheckOS::die_unsupported() unless(os_is());
 

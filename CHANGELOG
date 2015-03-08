@@ -1,4 +1,7 @@
-XXXX    XXXXXXXXXX      Add Minix and iOS
+XXXX    XXXXXXXXXX      Add Minix and iOS;
+                        Correct ancient typo in Apple family that no-one
+                          has ever noticed because no-one uses 'classic'
+                          Mac OS
 
 1.74    2015-03-04      Add Linux::Debian;
                         Add MacOSX::v10_*;
