@@ -3,8 +3,10 @@
 package Devel::AssertOS::Linux::v2_6;
 
 use Devel::CheckOS;
+use strict;
+use warnings;
 
-$VERSION = '1.3';
+our $VERSION = '1.3';
 
 sub os_is {
     Devel::CheckOS::os_is('Linux') &&

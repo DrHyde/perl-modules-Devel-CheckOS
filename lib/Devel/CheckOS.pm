@@ -1,14 +1,12 @@
 package Devel::CheckOS;
 
 use strict;
+use warnings;
 use Exporter;
 
-use vars qw($VERSION @ISA @EXPORT_OK %EXPORT_TAGS);
+use vars qw(@ISA @EXPORT_OK %EXPORT_TAGS);
 
-$VERSION = '1.74';
-
-# localising prevents the warningness leaking out of this module
-local $^W = 1;    # use warnings is a 5.6-ism
+our $VERSION = '1.74';
 
 @ISA = qw(Exporter);
 @EXPORT_OK = qw(os_is os_isnt die_if_os_is die_if_os_isnt die_unsupported list_platforms list_family_members);

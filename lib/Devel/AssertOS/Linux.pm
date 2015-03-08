@@ -1,8 +1,10 @@
 package Devel::AssertOS::Linux;
 
 use Devel::CheckOS;
+use strict;
+use warnings;
 
-$VERSION = '1.3';
+our $VERSION = '1.3';
 
 
 sub subtypes { qw(Android) }
