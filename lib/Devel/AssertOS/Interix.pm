@@ -1,8 +1,11 @@
 package Devel::AssertOS::Interix;
 
 use Devel::CheckOS;
+use strict;
+use warnings;
+no warnings 'redefine';
 
-$VERSION = '1.2';
+our $VERSION = '1.2';
 
 sub os_is { $^O =~ /^interix$/i ? 1 : 0; }
 

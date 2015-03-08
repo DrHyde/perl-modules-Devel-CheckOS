@@ -1,8 +1,11 @@
 package Devel::AssertOS::BeOS;
 
 use Devel::CheckOS;
+use strict;
+use warnings;
+no warnings 'redefine';
 
-$VERSION = '1.4';
+our $VERSION = '1.4';
 
 # weird special case, not quite like other OS modules, as this is both
 # an OS *and* a family - maybe this should be fixed at some point

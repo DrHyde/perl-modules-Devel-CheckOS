@@ -87,11 +87,7 @@ sub findOSes {
         my $modname = join('::', File::Spec->splitdir($dir), $_);
         (my $classname = $modname) =~ s/^lib:://;
         (my $prompt_modname = $modname) =~ s/.*AssertOS:://;
-        {
-            # suppress 'Subroutine os_is redefined'
-            local $^W = 0;
-            eval "use $modname";
-        }
+        eval "use $modname";
         next if($@);
         my $hasexpn = $classname->can('expn') ? '/?' : '';
    ASK: my $answer = prompt(

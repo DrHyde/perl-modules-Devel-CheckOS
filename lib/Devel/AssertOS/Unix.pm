@@ -1,8 +1,11 @@
 package Devel::AssertOS::Unix;
 
 use Devel::CheckOS;
+use strict;
+use warnings;
+no warnings 'redefine';
 
-$VERSION = '1.5';
+our $VERSION = '1.5';
 
 # list of OSes originally lifted from Module::Build 0.2808
 #

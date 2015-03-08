@@ -1,8 +1,11 @@
 package Devel::AssertOS::MidnightBSD;
 
 use Devel::CheckOS;
+use strict;
+use warnings;
+no warnings 'redefine';
 
-$VERSION = '1.1';
+our $VERSION = '1.1';
 
 sub os_is { $^O =~ /^midnightbsd$/i ? 1 : 0; }
 

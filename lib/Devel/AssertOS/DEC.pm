@@ -3,8 +3,11 @@
 package Devel::AssertOS::DEC;
 
 use Devel::CheckOS;
+use strict;
+use warnings;
+no warnings 'redefine';
 
-$VERSION = '1.4';
+our $VERSION = '1.4';
 
 sub matches { return qw(OSF VMS); }
 sub os_is { Devel::CheckOS::os_is(matches()); }

@@ -2,6 +2,8 @@ package Devel::AssertOS::Linux::Debian;
 
 use Devel::CheckOS;
 use strict;
+use warnings;
+no warnings 'redefine';
 
 our $VERSION = '1.0';
 

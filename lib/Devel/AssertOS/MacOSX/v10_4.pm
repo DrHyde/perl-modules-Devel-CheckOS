@@ -4,6 +4,8 @@ package Devel::AssertOS::MacOSX::v10_4;
 
 use Devel::CheckOS;
 use strict;
+use warnings;
+no warnings 'redefine';
 
 our $VERSION = '1.4';
 
