@@ -11,9 +11,9 @@ our $VERSION = '1.6';
 #
 sub matches {
     return qw(
-        AIX Android Bitrig BSDOS DGUX DragonflyBSD Dynix FreeBSD HPUX Interix
-        iOS Irix Linux MachTen MacOSX Minix MirOSBSD NetBSD OpenBSD OSF QNX SCO
-        Solaris SunOS SysVr4 SysVr5 Unicos MidnightBSD
+        AIX Android Bitrig BSDOS DGUX DragonflyBSD Dynix FreeBSD HPUX Hurd
+        Interix iOS Irix Linux MachTen MacOSX Minix MirOSBSD NetBSD OpenBSD OSF
+        QNX SCO Solaris SunOS SysVr4 SysVr5 Unicos MidnightBSD
     );
 }
 sub os_is { Devel::CheckOS::os_is(matches()); }
