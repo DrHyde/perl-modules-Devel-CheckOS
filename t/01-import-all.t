@@ -1,7 +1,9 @@
 use strict;
 $^W = 1;
 
-use Test::More tests => 6;
+use Test::More;
+
+END { done_testing(); }
 
 use Devel::CheckOS ':all';
 
