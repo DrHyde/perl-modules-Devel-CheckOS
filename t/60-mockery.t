@@ -4,19 +4,24 @@ $^W = 1;
 use File::Spec;
 use lib File::Spec->catdir(qw(t lib));
 
-use Test::More tests => 49;
+use Test::More;
+
+END { done_testing }
 
 my %platforms = (
+    # $^O       => platform name
     aix         => 'AIX',
     amigaos     => 'Amiga',
     android     => 'Android',
     beos        => 'BeOS',
+    BITRIG      => 'Bitrig',
     bsdos       => 'BSDOS',
     cygwin      => 'Cygwin',
     dgux        => 'DGUX',
     dragonfly   => 'DragonflyBSD',
     dynixptx    => 'Dynix',
     freebsd     => 'FreeBSD',
+    gnu         => 'Hurd',
     gnukfreebsd => 'GNUkFreeBSD',
     haiku       => 'Haiku',
     hpux        => 'HPUX',
@@ -30,6 +35,7 @@ my %platforms = (
     mirbsd      => 'MirOSBSD',
     mpeix       => 'MPEiX',
     dos         => 'MSDOS',
+    minix       => 'Minix',
     MSWin32     => 'MSWin32',
     netbsd      => 'NetBSD',
     netware     => 'Netware',
