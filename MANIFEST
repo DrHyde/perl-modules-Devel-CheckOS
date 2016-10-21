@@ -108,6 +108,5 @@ t/63-kwalitee.t
 lib/Devel/AssertOS/Minix.pm
 lib/Devel/AssertOS/iOS.pm
 lib/Devel/AssertOS/Hurd.pm
-lib/Devel/AssertOS/MacOSX/v10_10.pm
 lib/Devel/AssertOS/MacOSX/v10_11.pm
 lib/Devel/AssertOS/MacOSX/v10_12.pm
