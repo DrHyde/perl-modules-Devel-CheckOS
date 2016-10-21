@@ -1,4 +1,4 @@
-package Devel::AssertOS::MacOSX::v10_10;
+package Devel::AssertOS::MacOSX::v10_11;
 
 use Devel::CheckOS;
 use strict;
@@ -9,10 +9,10 @@ our $VERSION = '1.0';
 
 sub os_is {
     Devel::CheckOS::os_is('MacOSX') &&
-    `sw_vers -productVersion` =~ /^10\.10\./ ? 1 : 0;
+    `sw_vers -productVersion` =~ /^10\.11\./ ? 1 : 0;
 }
 
-sub expn { "The operating system is some version of OS X Yosemite (10.10)" }
+sub expn { "The operating system is some version of OS X El Capitan (10.11)" }
 
 Devel::CheckOS::die_unsupported() unless(os_is());
 
