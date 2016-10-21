@@ -4,6 +4,9 @@ use strict;
 use warnings;
 use Exporter;
 
+use File::Find::Rule;
+use File::Spec;
+
 use vars qw(@ISA @EXPORT_OK %EXPORT_TAGS);
 
 our $VERSION = '1.76';
@@ -166,12 +169,6 @@ should Just Work anyway.
 my ($re_Devel, $re_AssertOS);
 
 sub list_platforms {
-    eval " # only load these if needed
-        use File::Find::Rule;
-        use File::Spec;
-    ";
-    
-    die($@) if($@);
     if (!$re_Devel) {
         my $case_flag = File::Spec->case_tolerant ? '(?i)' : '';
         $re_Devel    = qr/$case_flag ^Devel$/x;
