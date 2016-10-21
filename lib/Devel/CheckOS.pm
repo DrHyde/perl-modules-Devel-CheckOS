@@ -9,7 +9,7 @@ use File::Spec;
 
 use vars qw(@ISA @EXPORT_OK %EXPORT_TAGS);
 
-our $VERSION = '1.76';
+our $VERSION = '1.77';
 
 @ISA = qw(Exporter);
 @EXPORT_OK = qw(os_is os_isnt die_if_os_is die_if_os_isnt die_unsupported list_platforms list_family_members);
