@@ -6,7 +6,7 @@ use Exporter;
 
 use vars qw(@ISA @EXPORT_OK %EXPORT_TAGS);
 
-our $VERSION = '1.77';
+our $VERSION = '1.78';
 
 @ISA = qw(Exporter);
 @EXPORT_OK = qw(os_is os_isnt die_if_os_is die_if_os_isnt die_unsupported list_platforms list_family_members);
@@ -173,8 +173,8 @@ sub list_platforms {
         use File::Find::Rule;
         use File::Spec;
     ";
-    
     die($@) if($@);
+    
     if (!$re_Devel) {
         my $case_flag = File::Spec->case_tolerant ? '(?i)' : '';
         $re_Devel    = qr/$case_flag ^Devel$/x;
