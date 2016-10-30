@@ -4,7 +4,8 @@ $^W = 1;
 use File::Spec;
 use lib File::Spec->catdir(qw(t lib));
 
-use Test::More tests => 4;
+use Test::More;
+END { done_testing }
 
 eval "use Devel::AssertOS qw/ -NotAnOperatingSystem /";
 

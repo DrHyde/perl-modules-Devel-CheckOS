@@ -1,7 +1,8 @@
 use strict;
 $^W = 1;
 
-use Test::More tests => 2;
+use Test::More;
+END { done_testing }
 
 use Devel::CheckOS ':booleans';
 
