@@ -1,5 +1,4 @@
 language: perl
-env: PERL_USE_UNSAFE_INC=0
 perl:
   - "5.10"
   - "5.12"
@@ -9,7 +8,6 @@ perl:
   - "5.20"
   - "5.22"
   - "5.24"
-  - "blead"
 matrix:
   include:
     - perl: 5.20
