@@ -87,7 +87,7 @@ sub findOSes {
         my $modname = join('::', File::Spec->splitdir($dir), $_);
         (my $classname = $modname) =~ s/^lib:://;
         (my $prompt_modname = $modname) =~ s/.*AssertOS:://;
-        eval "use $modname";
+        eval "use $classname";
         next if($@);
         my $hasexpn = $classname->can('expn') ? '/?' : '';
    ASK: my $answer = prompt(
