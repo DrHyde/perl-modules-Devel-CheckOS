@@ -1,10 +1,10 @@
-require 5.010;
+require 5.006;
 use ExtUtils::MakeMaker;
 
 use File::Spec;
 
 use strict;
-local $^W = 1;
+use warnings;
 
 use lib 'lib';
 
