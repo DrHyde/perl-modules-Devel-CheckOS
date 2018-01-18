@@ -15,7 +15,7 @@ perl:
   - "blead"   # builds perl from git
 matrix:
   include:
-    - perl: 5.20
+    - perl: "5.20"
       env: COVERAGE=1
   allow_failures:
     - perl: blead
