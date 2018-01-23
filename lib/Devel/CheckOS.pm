@@ -33,13 +33,6 @@ like Linux, Solaris, AIX etc.
 It spares perl the embarrassment of wearing its pants on its head by
 covering them with a splendid Fedora.
 
-=head1 INCOMPATIBILITY WARNING
-
-Version 1.80 and higher only work on perl 5.10 and higher. I have no
-idea why it's broken on 5.8.9 (the lowest version I was previously
-testing on). If you care about perls that ancient I welcome a patch
-to restore functionality.
-
 =head1 SYNOPSIS
 
     use Devel::CheckOS qw(os_is);

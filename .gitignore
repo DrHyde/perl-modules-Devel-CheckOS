@@ -2,5 +2,6 @@ t/XX-*
 MYMETA.json
 MYMETA.yml
 Makefile
+Makefile.old
 blib/
 pm_to_blib
