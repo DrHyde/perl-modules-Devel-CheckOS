@@ -4,7 +4,7 @@ package Devel::AssertOS::Darwin;
 
 use Devel::CheckOS qw(die_unsupported);
 
-$VERSION = '1.0';
+$VERSION = '1.2';
 
 sub os_is { $^O eq 'darwin' ? 1 : 0; }
 
