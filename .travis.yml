@@ -1,4 +1,5 @@
 language: perl
+dist: trusty
 env: PERL_USE_UNSAFE_INC=0
 perl:
   - "5.8"
