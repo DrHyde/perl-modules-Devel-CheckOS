@@ -66,7 +66,6 @@ WriteMakefile(
         'Test::More'       => '0.88', # done_testing
         'File::Find::Rule' => 0.28,
         'File::Temp'       => 0.19,
-        'Data::Compare'    => 1.21,
         # 'Exporter' => 0 # core
     },
     EXE_FILES    => [qw(
