@@ -5,7 +5,8 @@ freebsd_tests_task:
   test_script:
     - pkg install -y perl5
     - echo|cpan App::cpanminus
+    - cpanm --notest Expect
     - cpanm --installdeps .
-    - perl Makefile.PL
+    - perl makefile-expect-driver.pl FreeBSD Unix OSFeatures::POSIXShellRedirection
     - make
     - make test

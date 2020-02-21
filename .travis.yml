@@ -14,8 +14,6 @@ perl:
   - "5.26"
   - "5.28"
   - "5.30"
-script:
-  - cpanm Expect && perl makefile-expect-driver.pl Linux Unix OSFeatures::POSIXShellRedirection && make test
 matrix:
   include:
     - perl: "5.20"
@@ -23,5 +21,8 @@ matrix:
   allow_failures:
     - perl: blead
 before_install:
+  - cpanm --notest Expect
   - eval $(curl https://travis-perl.github.io/init) --auto
+  - cp ../makefile-expect-driver.pl .
+  - perl makefile-expect-driver.pl Linux::Debian Linux Unix OSFeatures::POSIXShellRedirection
 sudo: false
