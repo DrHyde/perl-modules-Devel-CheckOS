@@ -15,7 +15,7 @@ perl:
   - "5.28"
   - "5.30"
 script:
-  - perl makefile-expect-driver.pl Linux Unix OSFeatures::POSIXShellRedirection && make test
+  - cpanm Expect && perl makefile-expect-driver.pl Linux Unix OSFeatures::POSIXShellRedirection && make test
 matrix:
   include:
     - perl: "5.20"
