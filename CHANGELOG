@@ -1,3 +1,7 @@
+XXXX    XXXXXXXXXX      Add some more versions of MacOS;
+                        Note change of name Mac OS X -> MacOS, but don't
+                          change the module name for backward compatibility
+
 1.83    2020-02-15      Remove dependency on Data::Compare, which in turn
                           depends on non-pure-perl XS in CLone.pm
 
