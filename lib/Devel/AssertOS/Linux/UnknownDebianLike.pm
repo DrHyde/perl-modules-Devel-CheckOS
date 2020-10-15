@@ -7,7 +7,10 @@ no warnings 'redefine';
 
 our $VERSION = '1.0';
 
-use Devel::AssertOS::Linux::Debian ();
+# Can't use() this because that would make an infinite loop at BEGIN-time
+if(!exists($INC{'Devel/AssertOS/Linux/Debian.pm'})) {
+    require Devel::AssertOS::Linux::Debian;
+}
 
 sub os_is {
     Devel::CheckOS::os_is('Linux') &&
