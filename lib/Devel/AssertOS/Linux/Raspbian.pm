@@ -7,7 +7,10 @@ no warnings 'redefine';
 
 our $VERSION = '1.0';
 
-sub os_is { `lsb_release -i 2>/dev/null` =~ /Raspbian/ }
+sub os_is {
+    Devel::CheckOS::os_is('Linux') &&
+    `lsb_release -i 2>/dev/null` =~ /Raspbian/
+}
 
 sub expn { "The operating system is some version of Raspbian" }
 
