@@ -111,3 +111,8 @@ lib/Devel/AssertOS/MacOSX/v10_13.pm
 lib/Devel/AssertOS/MacOSX/v10_14.pm
 lib/Devel/AssertOS/MacOSX/v10_15.pm
 lib/Devel/AssertOS/MSYS.pm
+lib/Devel/AssertOS/Linux/Raspbian.pm
+lib/Devel/AssertOS/Linux/RealDebian.pm
+lib/Devel/AssertOS/Linux/Ubuntu.pm
+lib/Devel/AssertOS/Linux/UnknownDebianLike.pm
+t/unknown-debian.t

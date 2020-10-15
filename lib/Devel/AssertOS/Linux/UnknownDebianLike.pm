@@ -1,17 +1,21 @@
-package Devel::AssertOS::Linux::Debian;
+package Devel::AssertOS::Linux::UnknownDebianLike;
 
 use Devel::CheckOS;
 use strict;
 use warnings;
 no warnings 'redefine';
 
-our $VERSION = '1.1';
+our $VERSION = '1.0';
 
-sub matches { map { "Linux::$_" } qw(Raspbian Ubuntu RealDebian UnknownDebianLike) }
+use Devel::AssertOS::Linux::Debian ();
 
-sub os_is { Devel::CheckOS::os_is(matches()) }
+sub os_is {
+    Devel::CheckOS::os_is('Linux') &&
+    -f '/etc/debian_version' &&
+    Devel::CheckOS::os_isnt(grep { $_ !~ /UnknownDebianLike/ } Devel::AssertOS::Linux::Debian::matches())
+}
 
-sub expn { "The operating system is some derivative of Debian Linux (see Linux::RealDebian for *actual* Debian Linux)" }
+sub expn { "The operating system is some derivative of Debian, or possibly a very old version of real Debian" }
 
 Devel::CheckOS::die_unsupported() unless(os_is());
 

@@ -38,5 +38,5 @@ before_install:
   - eval $(curl https://travis-perl.github.io/init) --auto
   - cpanm --notest Expect
   - cp ../makefile-expect-driver.pl .
-  - perl makefile-expect-driver.pl Linux::Debian Linux Unix OSFeatures::POSIXShellRedirection
+  - perl makefile-expect-driver.pl Linux::Debian Linux::Ubuntu Linux Unix OSFeatures::POSIXShellRedirection
 sudo: false
