@@ -1,3 +1,5 @@
+XXXX    XXXXXXXXXX      Belatedly add doco on Debian family to Families.pod
+
 1.85    2020-10-15      Add Linux::Raspbian and Linux::Ubuntu;
                         Add Linux::RealDebian for *actual* Debian Linux;
                         Add Linux::UnknownDebianLike for anything else that's like Debian;
