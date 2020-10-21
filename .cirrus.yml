@@ -17,7 +17,6 @@ task:
     image: catalina-xcode-12.0
   test_script:
     - echo|cpan App::cpanminus
-    - perl -MExtUtils::Makemaker -E 'if($ExtUtils::Makemaker::VERSION < 7.50) { exec("/Users/anka/perl5/bin/cpanm http://cpan.mirrors.hoobly.com/authors/id/B/BI/BINGOS/ExtUtils-MakeMaker-7.49_04.tar.gz") }'
     - /Users/anka/perl5/bin/cpanm -v --no-interactive IO::Tty
     - /Users/anka/perl5/bin/cpanm --notest Expect
     - /Users/anka/perl5/bin/cpanm --installdeps .
