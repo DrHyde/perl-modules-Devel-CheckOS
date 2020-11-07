@@ -1,36 +1,6 @@
 language: perl
 matrix:
   include:
-    - perl: 5.8
-      dist: trusty
-    - perl: 5.10
-      dist: trusty
-    - perl: 5.12
-      dist: trusty
-    - perl: 5.14
-      dist: trusty
-    - perl: 5.16
-      dist: trusty
-    - perl: 5.18
-      dist: trusty
-    - perl: 5.20
-      dist: trusty
-    - perl: 5.22
-      dist: trusty
-    - perl: 5.24
-      dist: trusty
-    - perl: 5.26
-      env: PERL_USE_UNSAFE_INC=0
-      dist: trusty
-    - perl: 5.28
-      env: PERL_USE_UNSAFE_INC=0
-      dist: trusty
-    - perl: 5.30
-      env: PERL_USE_UNSAFE_INC=0
-      dist: trusty
-    - perl: 5.32
-      env: PERL_USE_UNSAFE_INC=0
-      dist: xenial
     - perl: "5.20"
       env: COVERAGE=1
       dist: trusty
