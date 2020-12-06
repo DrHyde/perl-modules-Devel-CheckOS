@@ -1,0 +1,19 @@
+on: [push, pull_request]
+name: Generate Coveralls report
+jobs:
+  build:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: shogo82148/actions-setup-perl@v1
+        with:
+          perl-version: 5.32
+      - name: Run with coverage checking
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cpanm --notest Expect
+          cpanm --installdeps .
+          perl makefile-expect-driver.pl Linux::Debian Linux::Ubuntu Linux Unix OSFeatures::POSIXShellRedirection
+          cpanm Devel::Cover::Report::Coveralls
+          cover -test -report Coveralls
