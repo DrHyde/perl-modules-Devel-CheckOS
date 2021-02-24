@@ -17,9 +17,9 @@ task:
     image: catalina-xcode-12.0
   test_script:
     - echo|cpan App::cpanminus
-    - /Users/anka/perl5/bin/cpanm -v --no-interactive IO::Tty
-    - /Users/anka/perl5/bin/cpanm --notest Expect
-    - /Users/anka/perl5/bin/cpanm --installdeps .
+    - /Users/admin/perl5/bin/cpanm -v --no-interactive IO::Tty
+    - /Users/admin/perl5/bin/cpanm --notest Expect
+    - /Users/admin/perl5/bin/cpanm --installdeps .
     - perl makefile-expect-driver.pl Unix OSFeatures::POSIXShellRedirection Apple MacOSX MacOSX::v10_15
     - make
     - make test
