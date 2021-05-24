@@ -1,3 +1,7 @@
+1.87    2021-XX-XX
+
+- Add support for Devuan Linux
+
 1.86    2021-05-20
 
 - Belatedly add doco on Debian family to Families.pod

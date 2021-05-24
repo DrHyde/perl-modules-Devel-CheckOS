@@ -1,17 +1,18 @@
-package Devel::AssertOS::Linux::Debian;
+package Devel::AssertOS::Linux::Devuan;
 
 use Devel::CheckOS;
 use strict;
 use warnings;
 no warnings 'redefine';
 
-our $VERSION = '1.2';
+our $VERSION = '1.0';
 
-sub matches { map { "Linux::$_" } qw(Raspbian Ubuntu RealDebian UnknownDebianLike Devuan) }
+sub os_is {
+    Devel::CheckOS::os_is('Linux') &&
+    `lsb_release -i 2>/dev/null` =~ /Devuan/
+}
 
-sub os_is { Devel::CheckOS::os_is(matches()) }
-
-sub expn { "The operating system is some derivative of Debian Linux (see Linux::RealDebian for *actual* Debian Linux)" }
+sub expn { "The operating system is Devuan" }
 
 Devel::CheckOS::die_unsupported() unless(os_is());
 
