@@ -12,7 +12,7 @@ jobs:
         shell: perl {0}
         run: |
           use Actions::Core;
-          set_output(matrix => {perl => [grep { $_ !~ /^5\.[68]/ } perl_versions()]});
+          set_output(matrix => {perl => [grep { $_ !~ /^5\.6/ } perl_versions()]});
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
 
