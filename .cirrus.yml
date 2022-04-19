@@ -19,7 +19,7 @@ task:
     - echo|cpan App::cpanminus
     - /Users/admin/perl5/bin/cpanm -v --no-interactive IO::Tty
     - /Users/admin/perl5/bin/cpanm --notest Expect
-    - /Users/admin/perl5/bin/cpanm --installdeps .
     - perl makefile-expect-driver.pl Unix OSFeatures::POSIXShellRedirection Apple MacOSX MacOSX::v10_15
+    - /Users/admin/perl5/bin/cpanm --installdeps .
     - make
     - make test
