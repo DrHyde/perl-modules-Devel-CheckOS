@@ -5,7 +5,6 @@ use File::Spec;
 use lib File::Spec->catdir(qw(t lib));
 
 use Test::More;
-END { done_testing }
 
 eval "use Devel::AssertOS qw/ -NotAnOperatingSystem /";
 is $@ => '', "do not want, not our OS, all is good";
@@ -24,3 +23,5 @@ is $@ => '', 'negative + positive assertions successful';
 
 eval "use Devel::AssertOS qw/ NotAnOperatingSystem -AnOperatingSystem /";
 like $@ => qr/OS unsupported/, 'negative + positive assertions failing';
+
+done_testing;

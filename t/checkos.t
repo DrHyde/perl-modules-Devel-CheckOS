@@ -3,7 +3,6 @@ $^W = 1;
 
 use Test::More;
 use Test::Warnings qw(warning);
-END { done_testing }
 
 BEGIN { use_ok('Devel::CheckOS'); }
 
@@ -56,3 +55,5 @@ is
     warning { my $foo = Devel::CheckOS::list_platforms() },
     "Calling list_platforms in scalar context and getting back a reference is deprecated and will go away some time after April 2024. To disable this warning set \$Devel::CheckOS::NoDeprecationWarnings::Context to a true value.\n",
     "list_platforms in scalar context == warning";
+
+done_testing;

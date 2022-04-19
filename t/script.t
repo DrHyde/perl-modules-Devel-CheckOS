@@ -7,8 +7,6 @@ use File::Spec;
 use Devel::CheckOS;
 use Cwd;
 
-END { done_testing(); }
-
 my $cwd = getcwd();
 
 use Config ();
@@ -232,3 +230,5 @@ sub _run_script {
     system($^X, $cwd.'/bin/use-devel-assertos', '-q', @_);
     chdir($cwd);
 }
+
+done_testing();
