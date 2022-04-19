@@ -67,13 +67,12 @@ WriteMakefile(
         },
     },
     MIN_PERL_VERSION => "5.6.0",
-    # FIXME have this look at all the modules, or summat
     VERSION_FROM => 'lib/Devel/CheckOS.pm',
     PREREQ_PM    => {
-        'Test::More'       => '0.88', # done_testing
+        'Test::Warnings'   => 0,
+        'Test::More'       => 0.88, # done_testing
         'File::Find::Rule' => 0.28,
         'File::Temp'       => 0.19,
-        # 'Exporter' => 0 # core
     },
     EXE_FILES    => [qw(
         bin/use-devel-assertos

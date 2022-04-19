@@ -6,7 +6,7 @@ use Exporter;
 
 use vars qw(@ISA @EXPORT_OK %EXPORT_TAGS);
 
-our $VERSION = '1.87';
+our $VERSION = '1.90';
 
 @ISA = qw(Exporter);
 @EXPORT_OK = qw(os_is os_isnt die_if_os_is die_if_os_isnt die_unsupported list_platforms list_family_members);
@@ -71,12 +71,23 @@ of OSes and OS families, eg ...
 
     os_is(qw(Unix VMS)); # Unix is a family, VMS is an OS
 
+Matching is case-insensitive, so the above could also be written:
+
+    os_is(qw(unix vms));
+
 =cut
 
 sub os_is {
     my @targets = @_;
     my $rval = 0;
-    foreach my $target (@targets) {
+    my @available_platforms = list_platforms();
+    TARGET: foreach my $target (@targets) {
+        CANDIDATE: foreach my $candidate (@available_platforms) {
+            if($target =~ /^\Q$candidate\E$/i) {
+                $target = $candidate;
+                last CANDIDATE;
+            }
+        }
         die("Devel::CheckOS: $target isn't a legal OS name\n")
             unless($target =~ /^\w+(::\w+)*$/);
         eval "use Devel::AssertOS::$target";
@@ -90,8 +101,8 @@ sub os_is {
 
 =head3 os_isnt
 
-If the current platform matches any of the parameters it returns false,
-otherwise it returns true.
+If the current platform matches (case-insensitively) any of the parameters it
+returns false, otherwise it returns true.
 
 =cut
 
@@ -150,11 +161,7 @@ add-ons you have installed.
 
 In scalar context, returns a hashref keyed by platform with the filename
 of the most recent version of the supporting module that is available to you.
-This is to make sure that the use-devel-assertos script Does The Right Thing
-in the case where you have installed the module in one version of perl, then
-upgraded perl, and installed it again in the new version.  Sometimes the old
-version of perl and all its modules will still be hanging around and perl
-"helpfully" includes the old perl's search path in its own.
+This behaviour is deprecated.
 
 Unfortunately, on some platforms this list may have file case
 broken.  eg, some platforms might return 'freebsd' instead of 'FreeBSD'.
@@ -211,6 +218,7 @@ sub list_platforms {
     if(wantarray()) {
         return sort keys %modules;
     } else {
+        warn("Calling list_platforms in scalar context and getting back a reference is deprecated and will go away some time after April 2024. To disable this warning set \$Devel::CheckOS::NoDeprecationWarnings::Context to a true value.\n") unless($Devel::CheckOS::NoDeprecationWarnings::Context);
         return \%modules;
     }
 }
@@ -234,9 +242,14 @@ sub list_family_members {
     # ... so we can now query it
     my @members = eval qq{
         no strict 'refs';
-	&{"Devel::AssertOS::${family}::matches"}()
+        &{"Devel::AssertOS::${family}::matches"}()
     };
-    return wantarray() ? @members : \@members;
+    if(wantarray()) {
+        return @members;
+    } else {
+        warn("Calling list_family_members in scalar context and getting back a reference is deprecated and will go away some time after April 2024. To disable this warning set \$Devel::CheckOS::NoDeprecationWarnings::Context to a true value.\n") unless($Devel::CheckOS::NoDeprecationWarnings::Context);
+        return \@members;
+    }
 }
 
 =head1 PLATFORMS SUPPORTED
@@ -245,8 +258,7 @@ To see the list of platforms for which information is available, run this:
 
     perl -MDevel::CheckOS -e 'print join(", ", Devel::CheckOS::list_platforms())'
 
-Note that capitalisation is important.  These are the names of the
-underlying Devel::AssertOS::* modules
+These are the names of the underlying Devel::AssertOS::* modules
 which do the actual platform detection, so they have to
 be 'legal' filenames and module names, which unfortunately precludes
 funny characters, so platforms like OS/2 are mis-spelt deliberately.
@@ -272,6 +284,19 @@ if relevant, what "OS family" it should be in and who wrote it.
 If you are feeling particularly generous you can encourage me in my
 open source endeavours by buying me something from my wishlist:
   L<http://www.cantrell.org.uk/david/wishlist/>
+
+=head1 COMPATIBILITY
+
+Version 1.90 made all matches case-insensitive. This is a change in behaviour, but
+if it breaks your code then your code was already broken, you just didn't know it.
+
+=head1 DEPRECATIONS
+
+At some point after April 2024 the C<list_family_members> and C<list_platforms>
+functions will stop being sensitive to whether they are called in list context or
+not, and will always return a list. From now until then calling them in non-list
+context will emit a warning. You can turn that off by setting
+C<$Devel::CheckOS::NoDeprecationWarnings::Context> to a true value.
 
 =head1 SEE ALSO
 
@@ -325,7 +350,7 @@ L<git://github.com/DrHyde/perl-modules-Devel-CheckOS.git>
 
 =head1 COPYRIGHT and LICENCE
 
-Copyright 2007-2020 David Cantrell
+Copyright 2007-2022 David Cantrell
 
 This software is free-as-in-speech software, and may be used, distributed, and modified under the terms of either the GNU General Public Licence version 2 or the Artistic Licence. It's up to you which one you use. The full text of the licences can be found in the files GPL2.txt and ARTISTIC.txt, respectively.
 

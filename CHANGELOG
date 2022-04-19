@@ -1,3 +1,11 @@
+1.90    2022-04-19
+
+- Matches are now case-insensitive
+
+- Deprecated the list_* functions being context sensitive, they now warn
+  when called inappropriately. They will stop being context-sensitive some
+  time after April 2024.
+
 1.87    2021-05-25
 
 - Add support for Devuan Linux

@@ -118,3 +118,4 @@ t/script.t
 t/unknown-debian.t
 lib/Devel/AssertOS/MacOSX/v11.pm
 lib/Devel/AssertOS/Linux/Devuan.pm
+t/case-insensitive.t

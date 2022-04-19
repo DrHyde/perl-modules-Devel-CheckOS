@@ -2,6 +2,7 @@ use strict;
 $^W = 1;
 
 use Test::More;
+use Test::Warnings qw(warning);
 END { done_testing }
 
 BEGIN { use_ok('Devel::CheckOS'); }
@@ -44,6 +45,14 @@ utime time(), time(), File::Spec->catfile(qw(t otherlib Devel AssertOS AnOperati
 
 ok(1 == (grep { /^AnOperatingSystem$/i } Devel::CheckOS::list_platforms()),
    "A platform is listed only once");
-ok(Devel::CheckOS::list_platforms->{AnOperatingSystem} eq
-   File::Spec->catfile(qw(t otherlib Devel AssertOS AnOperatingSystem.pm)),
-   "scalar list_platforms gives the most recent module for an OS");
+{
+    local $Devel::CheckOS::NoDeprecationWarnings::Context = 1;
+    ok(Devel::CheckOS::list_platforms->{AnOperatingSystem} eq
+       File::Spec->catfile(qw(t otherlib Devel AssertOS AnOperatingSystem.pm)),
+       "scalar list_platforms gives the most recent module for an OS");
+}
+
+is
+    warning { my $foo = Devel::CheckOS::list_platforms() },
+    "Calling list_platforms in scalar context and getting back a reference is deprecated and will go away some time after April 2024. To disable this warning set \$Devel::CheckOS::NoDeprecationWarnings::Context to a true value.\n",
+    "list_platforms in scalar context == warning";
