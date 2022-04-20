@@ -4,7 +4,8 @@ use strict;
 use warnings;
 
 use Exporter;
-use File::Find::Rule;
+# if we're loading this from Makefile.PL, FFR might not yet be installed
+eval 'use File::Find::Rule';
 use File::Spec;
 
 use vars qw(@ISA @EXPORT_OK %EXPORT_TAGS %OS_ALIASES);
@@ -22,17 +23,19 @@ our $VERSION = '1.90';
     fatal    => [qw(die_if_os_is die_if_os_isnt)]
 );
 
-foreach my $alias_module (
-    File::Find::Rule->file()->name('*.pm')->in(
-        grep { -d }
-        map { File::Spec->catdir($_, qw(Devel AssertOS Alias)) }
-        @INC
-    )
-) {
-    my(undef, undef, $file_part) = File::Spec->splitpath($alias_module);
-    $file_part =~ s/\.pm$//;
-    eval "use Devel::AssertOS::Alias::$file_part";
-    warn("Bad alias module 'Devel::AssertOS::Alias::$file_part' ignored\n") if($@);
+if(exists($INC{'File/Find/Rule.pm'})) {
+    foreach my $alias_module (
+        File::Find::Rule->file()->name('*.pm')->in(
+            grep { -d }
+            map { File::Spec->catdir($_, qw(Devel AssertOS Alias)) }
+            @INC
+        )
+    ) {
+        my(undef, undef, $file_part) = File::Spec->splitpath($alias_module);
+        $file_part =~ s/\.pm$//;
+        eval "use Devel::AssertOS::Alias::$file_part";
+        warn("Bad alias module 'Devel::AssertOS::Alias::$file_part' ignored\n") if($@);
+    }
 }
 
 =head1 NAME
