@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Devel::CheckOS qw(os_is list_family_members);
+use Devel::CheckOS qw(os_is os_isnt list_family_members);
 
 use Test::More;
 
