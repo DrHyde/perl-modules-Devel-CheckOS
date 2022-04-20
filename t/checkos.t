@@ -38,6 +38,9 @@ ok((grep { /^AnOperatingSystem$/i } Devel::CheckOS::list_platforms()) &&
    (grep { /^NotAnOperatingSystem$/i } Devel::CheckOS::list_platforms()),
    "list_platforms works");
 
+ok(!(grep { /^Alias::MacOS$/i } Devel::CheckOS::list_platforms()),
+   "list_platforms excludes Aliases");
+
 eval "use lib File::Spec->catdir(qw(t otherlib))";
 sleep(2);
 utime time(), time(), File::Spec->catfile(qw(t otherlib Devel AssertOS AnOperatingSystem.pm));

@@ -2,19 +2,38 @@ package Devel::CheckOS;
 
 use strict;
 use warnings;
-use Exporter;
 
-use vars qw(@ISA @EXPORT_OK %EXPORT_TAGS);
+use Exporter;
+use File::Find::Rule;
+use File::Spec;
+
+use vars qw(@ISA @EXPORT_OK %EXPORT_TAGS %OS_ALIASES);
 
 our $VERSION = '1.90';
 
 @ISA = qw(Exporter);
-@EXPORT_OK = qw(os_is os_isnt die_if_os_is die_if_os_isnt die_unsupported list_platforms list_family_members);
+@EXPORT_OK = qw(
+    os_is os_isnt die_if_os_is die_if_os_isnt die_unsupported
+    list_platforms list_family_members register_alias
+);
 %EXPORT_TAGS = (
     all      => \@EXPORT_OK,
     booleans => [qw(os_is os_isnt die_unsupported)],
     fatal    => [qw(die_if_os_is die_if_os_isnt)]
 );
+
+foreach my $alias_module (
+    File::Find::Rule->file()->name('*.pm')->in(
+        grep { -d }
+        map { File::Spec->catdir($_, qw(Devel AssertOS Alias)) }
+        @INC
+    )
+) {
+    my(undef, undef, $file_part) = File::Spec->splitpath($alias_module);
+    $file_part =~ s/\.pm$//;
+    eval "use Devel::AssertOS::Alias::$file_part";
+    warn("Bad alias module 'Devel::AssertOS::Alias::$file_part' ignored\n") if($@);
+}
 
 =head1 NAME
 
@@ -50,8 +69,8 @@ the use-devel-assertos script.
 =head1 FUNCTIONS
 
 Devel::CheckOS implements the following functions, which load subsidiary
-OS-specific modules on demand to do the real work.  They can be exported
-by listing their names after C<use Devel::CheckOS>.  You can also export
+OS-specific modules on demand to do the real work. They can all be exported
+by listing their names after C<use Devel::CheckOS>. You can also export
 groups of functions thus:
 
     use Devel::CheckOS qw(:booleans); # export the boolean functions
@@ -59,7 +78,7 @@ groups of functions thus:
     
     use Devel::CheckOS qw(:fatal);    # export those that die on no match
 
-    use Devel::CheckOS qw(:all);      # export everything
+    use Devel::CheckOS qw(:all);      # export everything exportable
 
 =head2 Boolean functions
 
@@ -80,8 +99,17 @@ Matching is case-insensitive, so the above could also be written:
 sub os_is {
     my @targets = @_;
     my $rval = 0;
+
     my @available_platforms = list_platforms();
     TARGET: foreach my $target (@targets) {
+        # resolve aliases
+        ALIAS: foreach my $alias (keys %OS_ALIASES) {
+            if($target =~ /^$alias$/i) {
+                $target = $OS_ALIASES{$alias};
+                last ALIAS;
+            }
+        }
+
         CANDIDATE: foreach my $candidate (@available_platforms) {
             if($target =~ /^\Q$candidate\E$/i) {
                 $target = $candidate;
@@ -170,34 +198,28 @@ should Just Work anyway.
 
 =cut
 
-my ($re_Devel, $re_AssertOS);
+my $case_flag = File::Spec->case_tolerant ? '(?i)' : '';
+my $re_Devel    = qr/$case_flag ^Devel$/x;
+my $re_AssertOS = qr/$case_flag ^AssertOS$/x;
+my $re_Alias    = qr/$case_flag ^Alias\b/x;
 
 sub list_platforms {
-    # need to lazily load these cos the module gets use()d in Makefile.PL,
-    # at which point pre-reqs might not be installed. This function isn't
-    # used in Makefile.PL so we can live without 'em.
-    eval " # only load these if needed
-        use File::Find::Rule;
-        use File::Spec;
-    ";
-    die($@) if($@);
-    
-    if (!$re_Devel) {
-        my $case_flag = File::Spec->case_tolerant ? '(?i)' : '';
-        $re_Devel    = qr/$case_flag ^Devel$/x;
-        $re_AssertOS = qr/$case_flag ^AssertOS$/x;
-    }
-
-    # sort by mtime, so oldest last
+    # sort by mtime, so oldest last. This was necessary so that if a module
+    # appears twice in @INC we pick the newer one but that functionality is
+    # no longer needed. We do need to de-dupe the list though
     my @modules = sort {
         (stat($a->{file}))[9] <=> (stat($b->{file}))[9]
+    } grep {
+        $_->{module} !~ $re_Alias
     } map {
         my (undef, $dir_part, $file_part) = File::Spec->splitpath($_);
         $file_part =~ s/\.pm$//;
         my (@dirs) = grep {+length} File::Spec->splitdir($dir_part);
         foreach my $i (reverse 1..$#dirs) {
-            next unless $dirs[$i] =~ $re_AssertOS
-                && $dirs[$i - 1] =~ $re_Devel;
+            next unless(
+                $dirs[$i] =~ $re_AssertOS &&
+                $dirs[$i - 1] =~ $re_Devel
+            );;
             splice @dirs, 0, $i + 1;
             last;
         }
@@ -249,6 +271,29 @@ sub list_family_members {
     } else {
         warn("Calling list_family_members in scalar context and getting back a reference is deprecated and will go away some time after April 2024. To disable this warning set \$Devel::CheckOS::NoDeprecationWarnings::Context to a true value.\n") unless($Devel::CheckOS::NoDeprecationWarnings::Context);
         return \@members;
+    }
+}
+
+=head3 register_alias
+
+It takes two arguments, the first being an alias name, the second being the
+name of an OS. After the alias has been registered, any queries about the
+alias will return the appropriate result for the named OS.
+
+It returns true unless you invoke it incorrectly or you attempt to change
+an existing alias.
+
+See L<Devel::AssertOS::Extending>.
+
+=cut
+
+sub register_alias {
+    my($alias, $os) = @_;
+    ($alias && $os) || return 0;
+    if(!exists($OS_ALIASES{$alias}) || $OS_ALIASES{$alias} eq $os) {
+        return $OS_ALIASES{$alias} = $os;
+    } else {
+        return 0
     }
 }
 

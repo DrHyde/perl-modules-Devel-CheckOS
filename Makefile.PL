@@ -11,8 +11,8 @@ use lib 'lib';
 # one of these is not like the other
 # this is really a sanity check that loading bogus modules doesn't Fuck Shit Up
 use Devel::CheckOS;
-Devel::CheckOS::list_family_members('Unix');
-Devel::CheckOS::list_family_members('MicrosoftWindows');
+my @dont_care = Devel::CheckOS::list_family_members('Unix');
+   @dont_care = Devel::CheckOS::list_family_members('MicrosoftWindows');
 
 my(@OSes, @notOSes, @extrafiles) = ();
 if($ENV{AUTOMATED_TESTING}) {

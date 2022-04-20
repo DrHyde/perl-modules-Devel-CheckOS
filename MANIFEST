@@ -119,3 +119,5 @@ t/unknown-debian.t
 lib/Devel/AssertOS/MacOSX/v11.pm
 lib/Devel/AssertOS/Linux/Devuan.pm
 t/case-insensitive.t
+lib/Devel/AssertOS/Alias/MacOS.pm
+t/alias-macos.t
