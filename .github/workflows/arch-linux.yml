@@ -1,0 +1,20 @@
+name: Arch Linux
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Test on Archlinux
+      run: |
+        cat /etc/os-release
+        pacman -Syu --noconfirm make git perl gcc
+        yes|perl -MCPAN -e 'install App::cpanminus'
+        yes|perl -MCPAN -e 'install local::lib'
+        export PERL5OPT=-Mlocal::lib
+        /usr/bin/site_perl/cpanm --installdeps .
+        perl Makefile.PL
+        make test
