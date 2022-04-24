@@ -121,16 +121,16 @@ sub os_is {
             }
         }
 
-        # resolve case-insensitive names
-        eval {
-            my @available_platforms = list_platforms();
-            CANDIDATE: foreach my $candidate (@available_platforms) {
-                if($target =~ /^\Q$candidate\E$/i) {
-                    $target = $candidate;
-                    last CANDIDATE;
-                }
+        # resolve case-insensitive names (no-op in taint-mode as list_platforms
+        # won't work)
+        my @available_platforms = list_platforms();
+        CANDIDATE: foreach my $candidate (@available_platforms) {
+            if($target =~ /^\Q$candidate\E$/i) {
+                $target = $candidate;
+                last CANDIDATE;
             }
-        };
+        }
+
         die("Devel::CheckOS: $target isn't a legal OS name\n")
             unless($target =~ /^\w+(::\w+)*$/);
         eval "use Devel::AssertOS::$target";
