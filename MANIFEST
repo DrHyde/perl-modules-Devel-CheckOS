@@ -121,3 +121,4 @@ lib/Devel/AssertOS/Linux/Devuan.pm
 t/case-insensitive.t
 lib/Devel/AssertOS/Alias/MacOS.pm
 t/alias-macos.t
+lib/Devel/AssertOS/MacOSX/v12.pm
