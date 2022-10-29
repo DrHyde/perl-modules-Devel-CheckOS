@@ -124,3 +124,4 @@ t/alias-macos.t
 lib/Devel/AssertOS/MacOSX/v12.pm
 lib/Devel/AssertOS/HWCapabilities/Int64.pm
 t/int-size.t
+lib/Devel/AssertOS/HWCapabilities/Int32.pm
