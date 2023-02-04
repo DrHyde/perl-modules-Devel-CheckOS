@@ -14,7 +14,9 @@ jobs:
         pacman -Syu --noconfirm make git perl gcc
         yes|perl -MCPAN -e 'install App::cpanminus'
         yes|perl -MCPAN -e 'install local::lib'
+        yes|perl -MCPAN -e 'install Expect'
         export PERL5OPT=-Mlocal::lib
         /usr/bin/site_perl/cpanm --installdeps .
-        perl Makefile.PL
+        ls -ld /run/systemd/system || true
+        perl makefile-expect-driver.pl Linux Unix OSFeatures::POSIXShellRedirection HWCapabilities::Int64
         make test

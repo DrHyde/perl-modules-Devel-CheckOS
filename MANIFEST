@@ -126,3 +126,4 @@ lib/Devel/AssertOS/HWCapabilities/Int64.pm
 t/int-size.t
 lib/Devel/AssertOS/HWCapabilities/Int32.pm
 lib/Devel/AssertOS/MacOSX/v13.pm
+lib/Devel/AssertOS/OSFeatures/Systemd.pm

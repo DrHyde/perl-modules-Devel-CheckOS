@@ -5,16 +5,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: devuan:latest
+      image: devuan/devuan:latest
     steps:
     - uses: actions/checkout@v2
     - name: Test on Devuan
       run: |
         cat /etc/os-release
-        sudo apt-get install perl build-essential
+        apt-get update
+        yes|apt-get install perl-base build-essential make gcc
         yes|perl -MCPAN -e 'install App::cpanminus'
         yes|perl -MCPAN -e 'install local::lib'
+        yes|perl -MCPAN -e 'install Expect'
         export PERL5OPT=-Mlocal::lib
-        /usr/bin/site_perl/cpanm --installdeps .
-        perl Makefile.PL
+        /usr/local/bin/cpanm --installdeps .
+        perl makefile-expect-driver.pl Linux::Debian Linux::Devuan Linux Unix OSFeatures::POSIXShellRedirection HWCapabilities::Int64
         make test

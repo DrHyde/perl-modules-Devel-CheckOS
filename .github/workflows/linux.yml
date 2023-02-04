@@ -40,5 +40,5 @@ jobs:
             perl -Mparent -e0 || cpanm parent
             rm -rf /home/runner/.cpanm/work/*
             cpanm --installdeps . || cat /home/runner/.cpanm/work/*/build.log
-            perl makefile-expect-driver.pl Linux::Debian Linux::Ubuntu Linux Unix OSFeatures::POSIXShellRedirection HWCapabilities::Int64
+            perl makefile-expect-driver.pl Linux::Debian Linux::Ubuntu Linux Unix OSFeatures::Systemd OSFeatures::POSIXShellRedirection HWCapabilities::Int64
             make test TEST_VERBOSE=1

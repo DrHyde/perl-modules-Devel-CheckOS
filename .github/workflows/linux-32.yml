@@ -31,6 +31,6 @@ jobs:
             perl -V
             cpanm Expect ExtUtils::MakeMaker Test::Pod Test::Pod::Coverage App::cpanminus
             cpanm --installdeps .
-            perl makefile-expect-driver.pl Linux::Debian Linux::Ubuntu Linux Unix OSFeatures::POSIXShellRedirection HWCapabilities::Int32
+            perl makefile-expect-driver.pl Linux::Debian Linux::Ubuntu Linux Unix OSFeatures::Systemd OSFeatures::POSIXShellRedirection HWCapabilities::Int32
             make test TEST_VERBOSE=1
           "
