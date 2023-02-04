@@ -1,3 +1,7 @@
+1.96    2023-02-04
+
+- Add Devel::AssertOS::MacOSX::v13
+
 1.95    2022-10-29
 
 - Add Devel::AssertOS::HWCapabilities::Int{32,64}
