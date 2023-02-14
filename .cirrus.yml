@@ -1,17 +1,4 @@
 task:
-  name: FreeBSD
-  freebsd_instance:
-    image_family: freebsd-13-0-snap
-  test_script:
-    - pkg install -y perl5
-    - echo|cpan App::cpanminus
-    - cpanm --notest Expect
-    - cpanm --installdeps .
-    - perl makefile-expect-driver.pl FreeBSD Unix OSFeatures::POSIXShellRedirection HWCapabilities::Int64
-    - make
-    - make test
-
-task:
   name: MacOS
   macos_instance:
     image: ghcr.io/cirruslabs/macos-ventura-base:latest
