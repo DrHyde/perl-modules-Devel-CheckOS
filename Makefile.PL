@@ -61,12 +61,12 @@ if($ENV{AUTOMATED_TESTING}) {
 WriteMakefile(
     NAME         => 'Devel::CheckOS',
     META_MERGE => {
-        license => 'open_source',
         resources => {
             repository => 'https://github.com/DrHyde/perl-modules-Devel-CheckOS',
             bugtracker => 'https://github.com/DrHyde/perl-modules-Devel-CheckOS/issues'
         },
     },
+    LICENSE      => 'perl',
     MIN_PERL_VERSION => "5.6.0",
     VERSION_FROM => 'lib/Devel/CheckOS.pm',
     CONFIGURE_REQUIRES => {
