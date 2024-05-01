@@ -1,4 +1,4 @@
-2.00    XXXX-XX-XX
+2.00    2024-05-01
 
 - list_* no longer have special behaviour when called in scalar context. This has
   been deprecated since version 1.90;
