@@ -1,17 +1,20 @@
-package Devel::AssertOS::Realtime;
+package Devel::AssertOS::MacOSX::v14;
 
 use Devel::CheckOS;
 use strict;
 use warnings;
 no warnings 'redefine';
 
-our $VERSION = '1.2';
+our $VERSION = '1.0';
 
-sub matches { return qw(QNX); }
-sub os_is { Devel::CheckOS::os_is(matches()); }
+sub os_is {
+    Devel::CheckOS::os_is('MacOSX') &&
+    `sw_vers -productVersion` =~ /^14/ ? 1 : 0;
+}
+
+sub expn { "The operating system is some version of Mac OS Sonoma" }
+
 Devel::CheckOS::die_unsupported() unless(os_is());
-
-sub expn { "This is a realtime operating system" }
 
 =head1 COPYRIGHT and LICENCE
 
@@ -22,3 +25,4 @@ This software is free-as-in-speech software, and may be used, distributed, and m
 =cut
 
 1;
+

@@ -1,5 +1,3 @@
-# $Id: Sun.pm,v 1.5 2008/11/05 22:52:34 drhyde Exp $
-
 package Devel::AssertOS::Sun;
 
 use Devel::CheckOS;

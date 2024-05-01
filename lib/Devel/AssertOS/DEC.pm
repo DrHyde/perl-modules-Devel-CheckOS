@@ -1,5 +1,3 @@
-# $Id: DEC.pm,v 1.5 2008/11/05 22:52:34 drhyde Exp $
-
 package Devel::AssertOS::DEC;
 
 use Devel::CheckOS;

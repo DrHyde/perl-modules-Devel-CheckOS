@@ -1,5 +1,3 @@
-# $Id: v2_6.pm,v 1.4 2008/11/05 22:52:35 drhyde Exp $
-
 package Devel::AssertOS::Linux::v2_6;
 
 use Devel::CheckOS;
