@@ -12,7 +12,7 @@ jobs:
       run: |
         cat /etc/os-release
         apt-get update
-        yes|apt-get install perl-base build-essential make gcc
+        yes|apt-get install perl-base build-essential make gcc lsb-release
         yes|perl -MCPAN -e 'install App::cpanminus'
         yes|perl -MCPAN -e 'install local::lib'
         yes|perl -MCPAN -e 'install Expect'
