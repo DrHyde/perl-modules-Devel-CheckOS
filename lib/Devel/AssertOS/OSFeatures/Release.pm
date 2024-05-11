@@ -1,4 +1,4 @@
-package Devel::AssertOS::Ubuntu::LSB;
+package Devel::AssertOS::OSFeatures::Release;
 
 use strict;
 use warnings;
@@ -12,16 +12,17 @@ our @EXPORT_OK = qw(distributor_id);
 
 =head1 NAME
 
-Devel::AssertOS::Ubuntu::LSB - functions to manipulate LSB files
+Devel::AssertOS::OSFeatures::Release - functions to manipulate os-release file
 
 =head1 SYNOPSIS
 
-    use Devel::AssertOS::Ubuntu::LSB 'distributor_id';
+    use Devel::AssertOS::OSFeatures::Release 'distributor_id';
     my $id = distributor_id;
 
 =head1 DESCRIPTION
 
-This module exports functions to handle text files related to Ubuntu LSB.
+This module exports functions to handle text files related to Debian-like
+distributions.
 
 =head1 EXPORTED
 
@@ -29,25 +30,31 @@ The following subs are exported.
 
 =head2 distributor_id
 
-Retrieves and returns the distributor ID from the F</etc/lsb-release> file.
+Retrieves and returns the distributor ID from the F</etc/os-release> file.
 
 It is expected that the file exists, it is readable and have the following
-content format:
+(minimum) content format:
 
-    DISTRIB_ID=Ubuntu
-    DISTRIB_RELEASE=22.04
-    DISTRIB_CODENAME=jammy
-    DISTRIB_DESCRIPTION="Ubuntu 22.04.4 LTS"
+    NAME="Ubuntu"
+    VERSION_ID="22.04"
+    VERSION="22.04.4 LTS (Jammy Jellyfish)"
+    VERSION_CODENAME=jammy
+    ID=ubuntu
+    ID_LIKE=debian
+    HOME_URL="https://www.ubuntu.com/"
 
-It returns the value of C<DISTRIB_ID> of C<undef>, if the conditions are not
-those specified above.
+This excerpt is from Ubuntu 22.04, but other distributions might have fewer,
+more or different fields and values.
+
+It returns the value of C<ID> or C<undef>, if the conditions are not those
+specified above.
 
 =cut
 
 sub distributor_id {
-    my $filename  = 'lsb-release';
+    my $filename  = 'os-release';
     my $file_path = File::Spec->catfile( ( '', 'etc' ), $filename );
-    my $regex     = qr/^DISTRIB_ID\=(\w+)/;
+    my $regex     = qr/^ID\=(\w+)/;
     my $dist_id   = undef;
 
     if ( -r $file_path ) {
@@ -55,7 +62,7 @@ sub distributor_id {
         while (<$in>) {
             chomp;
             if ( $_ =~ $regex ) {
-                $dist_id = $1;
+                $dist_id = ucfirst(lc $1) if (defined($1));
                 last;
             }
         }
