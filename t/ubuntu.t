@@ -1,7 +1,7 @@
 use warnings;
 use strict;
 use Test::More;
-use Devel::AssertOS::Ubuntu::LSB 'distributor_id';
+use Devel::AssertOS::OSFeatures::Release 'distributor_id';
 
 SKIP: {
     skip 'Not running on Ubuntu-like', 1 unless ( -r '/etc/lsb-release' );
