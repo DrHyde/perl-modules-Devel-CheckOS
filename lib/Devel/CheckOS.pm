@@ -374,6 +374,9 @@ detection modules, and perl 5.6 support.
 
 Thanks to Graham Knop for fixing a build bug on perl 5.8.
 
+Thanks to Alceu Rodrigues de Freitas Junior for improving Ubuntu detection
+and providing a way to detect a lot more Linux variants.
+
 =head1 SOURCE CODE REPOSITORY
 
 L<git://github.com/DrHyde/perl-modules-Devel-CheckOS.git>
