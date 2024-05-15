@@ -147,3 +147,4 @@ t/etc-os-release/opensuse
 t/etc-os-release/oracle
 t/etc-os-release/rhel
 t/etc-os-release/rocky
+t/etc-os-release/slackware
