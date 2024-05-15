@@ -4,7 +4,7 @@ use Devel::CheckOS;
 use strict;
 use warnings;
 
-use Devel::AssertOS::OSFeatures::Release 'distributor_id';
+use Devel::CheckOS::Helpers::LinuxOSrelease 'distributor_id';
 
 no warnings 'redefine';
 
