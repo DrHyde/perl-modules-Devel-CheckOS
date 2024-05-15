@@ -130,3 +130,13 @@ lib/Devel/AssertOS/OSFeatures/Systemd.pm
 lib/Devel/AssertOS/MacOSX/v14.pm
 t/os-release.t
 lib/Devel/CheckOS/Helpers/LinuxOSrelease.pm
+t/etc-os-release/alpine
+t/etc-os-release/arch
+t/etc-os-release/debian
+t/etc-os-release/devuan
+t/etc-os-release/elementary
+t/etc-os-release/fedora
+t/etc-os-release/gentoo
+t/etc-os-release/opensuse-tumbleweed
+t/etc-os-release/pop
+t/etc-os-release/ubuntu
