@@ -1,3 +1,7 @@
+2.03	2024-05-??
+
+- OS ID's are not always \w+
+
 2.02    2024-05-15
 
 - Read /etc/os-release to detect Ubuntu instead of shelling out to `lsb_release`

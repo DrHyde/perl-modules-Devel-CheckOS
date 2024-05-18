@@ -54,7 +54,7 @@ specified above.
 sub distributor_id {
     my $filename  = 'os-release';
     my $file_path = File::Spec->catfile( ( '', 'etc' ), $filename );
-    my $regex     = qr/^ID\=(\w+)/;
+    my $regex     = qr/^ID=(['"]?)([-\w.]+)\1\s*$/;
     my $dist_id   = undef;
 
     if ( -r $file_path ) {
@@ -62,7 +62,7 @@ sub distributor_id {
         while (<$in>) {
             chomp;
             if ( $_ =~ $regex ) {
-                $dist_id = ucfirst(lc $1) if (defined($1));
+                $dist_id = ucfirst(lc $2) if (defined($2));
                 last;
             }
         }
