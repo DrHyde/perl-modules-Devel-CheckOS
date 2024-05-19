@@ -153,3 +153,8 @@ lib/Devel/AssertOS/Linux/SUSE.pm
 t/etc-os-release/sles
 t/suse.t
 lib/Devel/AssertOS/Linux/SLES.pm
+lib/Devel/AssertOS/Linux/Centos.pm
+lib/Devel/AssertOS/Linux/Fedora.pm
+lib/Devel/AssertOS/Linux/RHEL.pm
+lib/Devel/AssertOS/Linux/Redhat.pm
+t/redhat.t

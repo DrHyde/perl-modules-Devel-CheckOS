@@ -17,5 +17,5 @@ jobs:
         yes|perl -MCPAN -e 'install Expect'
         export PERL5OPT=-Mlocal::lib
         /usr/local/bin/cpanm --installdeps .
-        perl makefile-expect-driver.pl Linux Unix OSFeatures::POSIXShellRedirection HWCapabilities::Int64
+        perl makefile-expect-driver.pl Linux Unix OSFeatures::POSIXShellRedirection HWCapabilities::Int64 Linux::Redhat Linux::RHEL
         make test
