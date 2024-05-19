@@ -10,13 +10,11 @@ jobs:
         include:
           - container: redhat/ubi9
             name: RHEL
-          - container: centos
-            name: Centos
           - container: almalinux
             name: Alma
           - container: fedora:latest
             name: Fedora
-          - container: rockylinux
+          - container: rockylinux:9
             name: Rocky
     container:
       image: ${{ matrix.container}}
