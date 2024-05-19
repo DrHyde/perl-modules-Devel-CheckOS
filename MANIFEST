@@ -142,7 +142,6 @@ t/etc-os-release/pop
 t/etc-os-release/ubuntu
 t/etc-os-release/alma
 t/etc-os-release/centos
-t/etc-os-release/centos-stream
 t/etc-os-release/opensuse-leap
 t/etc-os-release/oracle
 t/etc-os-release/rhel
@@ -158,3 +157,4 @@ lib/Devel/AssertOS/Linux/Fedora.pm
 lib/Devel/AssertOS/Linux/RHEL.pm
 lib/Devel/AssertOS/Linux/Redhat.pm
 t/redhat.t
+lib/Devel/AssertOS/Linux/Arch.pm
