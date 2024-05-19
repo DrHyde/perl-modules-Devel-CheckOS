@@ -1,0 +1,21 @@
+name: Redhat Linux
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: redhat/ubi9
+    steps:
+    - uses: actions/checkout@v4
+    - name: Test on Redhat
+      run: |
+        cat /etc/os-release
+        yum install -y make git perl gcc
+        yes|perl -MCPAN -e 'install App::cpanminus'
+        yes|perl -MCPAN -e 'install local::lib'
+        yes|perl -MCPAN -e 'install Expect'
+        export PERL5OPT=-Mlocal::lib
+        /usr/local/bin/cpanm --installdeps .
+        perl makefile-expect-driver.pl Linux Unix OSFeatures::POSIXShellRedirection HWCapabilities::Int64
+        make test
