@@ -1,4 +1,4 @@
-package Devel::AssertOS::Linux::Redhat;
+package Devel::AssertOS::Linux::Alma;
 
 use Devel::CheckOS;
 use strict;
@@ -10,11 +10,15 @@ no warnings 'redefine';
 
 our $VERSION = '1.0';
 
-sub matches { map { "Linux::$_" } qw(Centos Fedora Alma Rocky RHEL) }
+sub os_is {
+    my $id = distributor_id;
 
-sub os_is { Devel::CheckOS::os_is(matches()) }
+    Devel::CheckOS::os_is('Linux') &&
+    defined($id) &&
+    $id eq 'almalinux';
+}
 
-sub expn { "The operating system is some derivative of Redhat - which includes RHEL, Centos, Fedora, and others" }
+sub expn { "The operating system is some version of Alma" }
 
 Devel::CheckOS::die_unsupported() unless ( os_is() );
 

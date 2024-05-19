@@ -6,22 +6,15 @@ use Devel::CheckOS::Helpers::LinuxOSrelease 'distributor_id';
 
 local $^O = 'linux';
 
-Devel::CheckOS::Helpers::LinuxOSrelease::_set_file('t/etc-os-release/rhel');
-ok(os_is('Linux::RHEL'), "detected RHEL");
-ok(os_is('Linux::Redhat'), "... and also as Redhat");
-ok(os_isnt('Linux::Fedora'), "... but not as Fedora");
-ok(os_isnt('Linux::Centos'), "... or Centos");
+my @candidates = qw(RHEL Fedora Centos Alma Rocky);
 
-Devel::CheckOS::Helpers::LinuxOSrelease::_set_file('t/etc-os-release/fedora');
-ok(os_is('Linux::Fedora'), "detected Fedora");
-ok(os_is('Linux::Redhat'), "... and also as Redhat");
-ok(os_isnt('Linux::RHEL'), "... but not as RHEL");
-ok(os_isnt('Linux::Centos'), "... or Centos");
-
-Devel::CheckOS::Helpers::LinuxOSrelease::_set_file('t/etc-os-release/centos');
-ok(os_is('Linux::Centos'), "detected Centos");
-ok(os_is('Linux::Redhat'), "... and also as Redhat");
-ok(os_isnt('Linux::Fedora'), "... but not as Fedora");
-ok(os_isnt('Linux::RHEL'), "... or RHEL");
+foreach my $candidate (@candidates) {
+    Devel::CheckOS::Helpers::LinuxOSrelease::_set_file('t/etc-os-release/'.lc($candidate));
+    ok(os_is("Linux::$candidate"), "detected $candidate");
+    ok(os_is('Linux::Redhat'), "... and also as Redhat");
+    foreach my $not_candidate (grep { $_ ne $candidate } @candidates) {
+        ok(os_isnt("Linux::$not_candidate"), "... and not as $not_candidate");
+    }
+}
 
 done_testing;

@@ -158,3 +158,5 @@ lib/Devel/AssertOS/Linux/RHEL.pm
 lib/Devel/AssertOS/Linux/Redhat.pm
 t/redhat.t
 lib/Devel/AssertOS/Linux/Arch.pm
+lib/Devel/AssertOS/Linux/Alma.pm
+lib/Devel/AssertOS/Linux/Rocky.pm
