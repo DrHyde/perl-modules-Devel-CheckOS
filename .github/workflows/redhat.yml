@@ -1,21 +1,33 @@
-name: Redhat Linux
+name: Redhat variations
 on: [push, pull_request]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - container: redhat/ubi9
+            name: RHEL
+          - container: centos
+            name: Centos
+          - container: almalinux
+            name: Alma
+          - container: fedora:latest
+            name: Fedora
+          - container: rockylinux
+            name: Rocky
     container:
-      image: redhat/ubi9
+      image: ${{ matrix.container}}
     steps:
-    - uses: actions/checkout@v4
-    - name: Test on Redhat
-      run: |
-        cat /etc/os-release
-        yum install -y make git perl gcc
-        yes|perl -MCPAN -e 'install App::cpanminus'
-        yes|perl -MCPAN -e 'install local::lib'
-        yes|perl -MCPAN -e 'install Expect'
-        export PERL5OPT=-Mlocal::lib
-        /usr/local/bin/cpanm --installdeps .
-        perl makefile-expect-driver.pl Linux Unix OSFeatures::POSIXShellRedirection HWCapabilities::Int64 Linux::Redhat Linux::RHEL
-        make test
+      - uses: actions/checkout@v4
+      - name: Test on ${{ matrix.name }} - ${{ matrix.container }}
+        run: |
+          cat /etc/os-release
+          yum install -qy make git perl gcc
+          yes|perl -MCPAN -e 'install qw(App::cpanminus local::lib Expect)'
+          export PERL5OPT=-Mlocal::lib
+          /usr/local/bin/cpanm --installdeps .
+          perl makefile-expect-driver.pl Linux Unix OSFeatures::POSIXShellRedirection HWCapabilities::Int64 Linux::Redhat Linux::${{ matrix.name }}
+          make test
