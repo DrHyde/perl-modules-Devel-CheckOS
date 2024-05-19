@@ -133,7 +133,11 @@ sub os_is {
 
         die("Devel::CheckOS: $target isn't a legal OS name\n")
             unless($target =~ /^\w+(::\w+)*$/);
-        eval "use Devel::AssertOS::$target";
+
+        $@ = undef;
+        if(! "Devel::AssertOS::$target"->can('os_is')) {
+            eval "use Devel::AssertOS::$target";
+        }
         if(!$@) {
             no strict 'refs';
             $rval = 1 if(&{"Devel::AssertOS::${target}::os_is"}());

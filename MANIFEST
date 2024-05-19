@@ -143,8 +143,13 @@ t/etc-os-release/ubuntu
 t/etc-os-release/alma
 t/etc-os-release/centos
 t/etc-os-release/centos-stream
-t/etc-os-release/opensuse
+t/etc-os-release/opensuse-leap
 t/etc-os-release/oracle
 t/etc-os-release/rhel
 t/etc-os-release/rocky
 t/etc-os-release/slackware
+lib/Devel/AssertOS/Linux/OpenSUSE.pm
+lib/Devel/AssertOS/Linux/SUSE.pm
+t/etc-os-release/sles
+t/suse.t
+lib/Devel/AssertOS/Linux/SLES.pm

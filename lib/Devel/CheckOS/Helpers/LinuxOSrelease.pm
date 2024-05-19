@@ -58,21 +58,18 @@ my $file_path = File::Spec->catfile('', 'etc', 'os-release');
 sub _set_file { $file_path = File::Spec->catfile(getcwd, @_); }
 
 sub distributor_id {
-    my $regex   = qr/^ID=["']?(.+?)(["']|$)/;
-    my $dist_id = undef;
-
     if ( -r $file_path ) {
         open my $in, '<', $file_path or die "Cannot read $file_path: $!";
         while (<$in>) {
             chomp;
-            if ( $_ =~ $regex ) {
+            if ( $_ =~ /^ID=["']?(.+?)(["']|$)/ ) {
                 return $1;
             }
         }
         close($in) or die "Cannot close $file_path: $!";
     }
 
-    return $dist_id;
+    return undef;
 }
 
 =head1 COPYRIGHT and LICENCE
