@@ -6,7 +6,7 @@ use Devel::CheckOS::Helpers::LinuxOSrelease 'distributor_id';
 
 local $^O = 'linux';
 
-my @candidates = qw(RHEL Fedora Centos Alma Rocky);
+my @candidates = qw(RHEL Fedora Centos Alma Rocky Oracle);
 
 foreach my $candidate (@candidates) {
     Devel::CheckOS::Helpers::LinuxOSrelease::_set_file('t/etc-os-release/'.lc($candidate));
