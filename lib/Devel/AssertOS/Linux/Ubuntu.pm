@@ -15,7 +15,7 @@ sub os_is {
     Devel::CheckOS::os_is('Linux') && defined($id) && $id eq 'ubuntu';
 }
 
-sub expn { "The operating system is some version of Ubuntu" }
+sub expn { "The Linux distribution is some version of Ubuntu" }
 
 Devel::CheckOS::die_unsupported() unless ( os_is() );
 

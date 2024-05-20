@@ -14,7 +14,7 @@ sub matches { map { "Linux::$_" } qw(SLES OpenSUSE) }
 
 sub os_is { Devel::CheckOS::os_is(matches()) }
 
-sub expn { "The operating system is some version of SUSE, (see Linux::SLES for the commercial variant, and Linux::OpenSUSE for the community version)" }
+sub expn { "The Linux distribution is some version of SUSE, (see Linux::SLES for the commercial variant, and Linux::OpenSUSE for the community version)" }
 
 Devel::CheckOS::die_unsupported() unless ( os_is() );
 

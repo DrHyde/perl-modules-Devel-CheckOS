@@ -17,7 +17,7 @@ sub os_is {
     $id eq 'debian';
 }
 
-sub expn { "The operating system is real Debian, recent enough to have \`/etc/os-release\`, and not some Debian derivative" }
+sub expn { "The Linux distribution is real Debian, recent enough to have \`/etc/os-release\`, and not some Debian derivative" }
 
 Devel::CheckOS::die_unsupported() unless(os_is());
 

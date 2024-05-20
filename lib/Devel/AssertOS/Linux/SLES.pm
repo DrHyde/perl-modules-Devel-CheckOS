@@ -18,7 +18,7 @@ sub os_is {
     $id eq 'sles';
 }
 
-sub expn { "The operating system is SUSE Linux Enterprise Server" }
+sub expn { "The Linux distribution is SUSE Linux Enterprise Server" }
 
 Devel::CheckOS::die_unsupported() unless ( os_is() );
 

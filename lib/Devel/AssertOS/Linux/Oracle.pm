@@ -18,7 +18,7 @@ sub os_is {
     $id eq 'ol';
 }
 
-sub expn { "The operating system is Oracle Linux" }
+sub expn { "The Linux distribution is Oracle Linux" }
 
 Devel::CheckOS::die_unsupported() unless ( os_is() );
 

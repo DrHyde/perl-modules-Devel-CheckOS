@@ -14,7 +14,7 @@ sub matches { map { "Linux::$_" } qw(Centos Fedora Alma Rocky RHEL Oracle) }
 
 sub os_is { Devel::CheckOS::os_is(matches()) }
 
-sub expn { "The operating system is some derivative of Redhat - which includes RHEL, Centos, Fedora, and others" }
+sub expn { "The Linux distribution is some derivative of Redhat - which includes RHEL, Centos, Fedora, and others" }
 
 Devel::CheckOS::die_unsupported() unless ( os_is() );
 

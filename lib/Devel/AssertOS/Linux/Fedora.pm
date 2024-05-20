@@ -18,7 +18,7 @@ sub os_is {
     $id eq 'fedora';
 }
 
-sub expn { "The operating system is some version of Fedora" }
+sub expn { "The Linux distribution is some version of Fedora" }
 
 Devel::CheckOS::die_unsupported() unless ( os_is() );
 

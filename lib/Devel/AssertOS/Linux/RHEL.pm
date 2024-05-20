@@ -18,7 +18,7 @@ sub os_is {
     $id eq 'rhel';
 }
 
-sub expn { "The operating system is some version of RHEL" }
+sub expn { "The Linux distribution is some version of RHEL (Redhat Enterprise)" }
 
 Devel::CheckOS::die_unsupported() unless ( os_is() );
 

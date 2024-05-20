@@ -17,7 +17,7 @@ sub os_is {
     $id eq 'raspbian';
 }
 
-sub expn { "The operating system is some version of Raspbian" }
+sub expn { "The Linux distribution is some version of Raspbian" }
 
 Devel::CheckOS::die_unsupported() unless(os_is());
 

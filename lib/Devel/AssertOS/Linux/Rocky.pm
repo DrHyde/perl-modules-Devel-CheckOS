@@ -18,7 +18,7 @@ sub os_is {
     $id eq 'rocky';
 }
 
-sub expn { "The operating system is some version of Rocky" }
+sub expn { "The Linux distribution is some version of Rocky" }
 
 Devel::CheckOS::die_unsupported() unless ( os_is() );
 

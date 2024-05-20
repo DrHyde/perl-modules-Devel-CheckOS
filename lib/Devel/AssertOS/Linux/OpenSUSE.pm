@@ -18,7 +18,7 @@ sub os_is {
     ($id =~ /^opensuse-/)
 }
 
-sub expn { "The operating system is some version of OpenSUSE" }
+sub expn { "The Linux distribution is some version of OpenSUSE" }
 
 Devel::CheckOS::die_unsupported() unless ( os_is() );
 
