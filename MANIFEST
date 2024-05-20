@@ -161,3 +161,4 @@ lib/Devel/AssertOS/Linux/Arch.pm
 lib/Devel/AssertOS/Linux/Alma.pm
 lib/Devel/AssertOS/Linux/Rocky.pm
 lib/Devel/AssertOS/Linux/PopOS.pm
+lib/Devel/AssertOS/Linux/Slackware.pm
