@@ -1,0 +1,32 @@
+name: Debian variations
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # NB Ubuntu is covered in .github/workflows/linux.yml, which tests a
+          # zillion different versions of perl
+          - container: debian:stable
+            name: Linux::RealDebian
+          - container: devuan/devuan:latest
+            name: Linux::Devuan
+          - container: elementary/docker:stable
+            name: Linux::Elementary
+    container:
+      image: ${{ matrix.container}}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test on ${{ matrix.name }} - ${{ matrix.container }}
+        run: |
+          cat /etc/os-release
+          apt-get update
+          yes|apt-get install perl-base build-essential make gcc
+          yes|perl -MCPAN -e 'install qw(App::cpanminus install local::lib Expect)'
+          export PERL5OPT=-Mlocal::lib
+          /usr/local/bin/cpanm --installdeps .
+          perl makefile-expect-driver.pl Linux::Debian Linux Unix OSFeatures::POSIXShellRedirection HWCapabilities::Int64 ${{ matrix.name }}
+          make test

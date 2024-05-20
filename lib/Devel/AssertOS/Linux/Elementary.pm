@@ -1,17 +1,23 @@
-package Devel::AssertOS::Linux::Debian;
+package Devel::AssertOS::Linux::Elementary;
 
 use Devel::CheckOS;
 use strict;
 use warnings;
 no warnings 'redefine';
 
-our $VERSION = '1.2';
+use Devel::CheckOS::Helpers::LinuxOSrelease 'distributor_id';
 
-sub matches { map { "Linux::$_" } qw(Raspbian Ubuntu RealDebian UnknownDebianLike Devuan Elementary) }
+our $VERSION = '1.1';
 
-sub os_is { Devel::CheckOS::os_is(matches()) }
+sub os_is {
+    my $id = distributor_id;
 
-sub expn { "The operating system is some derivative of Debian Linux (see Linux::RealDebian for *actual* Debian Linux)" }
+    Devel::CheckOS::os_is('Linux') &&
+    defined($id) &&
+    $id eq 'elementary';
+}
+
+sub expn { "The operating system is Elementary" }
 
 Devel::CheckOS::die_unsupported() unless(os_is());
 

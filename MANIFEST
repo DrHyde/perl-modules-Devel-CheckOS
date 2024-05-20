@@ -164,3 +164,4 @@ lib/Devel/AssertOS/Linux/PopOS.pm
 lib/Devel/AssertOS/Linux/Slackware.pm
 lib/Devel/AssertOS/Linux/Gentoo.pm
 lib/Devel/AssertOS/Linux/Oracle.pm
+lib/Devel/AssertOS/Linux/Elementary.pm
