@@ -1,13 +1,10 @@
 Detect different types of MS Windows;
-Detect all Linux distros;
-  using /etc/os-release
-    https://github.com/Tux/System-Info/tree/master/t/etc
-    https://github.com/stejskalleos/os_release/tree/main
-  and without, for much older releases
-    https://github.com/cfengine/core/blob/4f5e8dd65c4eccd69bc6fe603343233fe1a1f577/libenv/sysinfo.c#L1287
+Detect old Linux distros without using os-release
+  https://github.com/cfengine/core/blob/4f5e8dd65c4eccd69bc6fe603343233fe1a1f577/libenv/sysinfo.c#L1287
 Detect versions of OSes and distros;
 Detect other init systems than just systemd;
 Detect musl vs glibc
+Detect busybox
 
 use-devel-assertos should not add itself twice (update, if run a second time)
 
