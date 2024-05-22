@@ -167,3 +167,4 @@ lib/Devel/AssertOS/Linux/Oracle.pm
 lib/Devel/AssertOS/Linux/Elementary.pm
 lib/Devel/AssertOS/Linux/Alpine.pm
 lib/Devel/AssertOS/Linux/NixOS.pm
+t/etc-os-release/nixos
