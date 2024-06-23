@@ -57,6 +57,7 @@ if($ENV{AUTOMATED_TESTING}) {
 
 WriteMakefile(
     NAME         => 'Devel::CheckOS',
+    ABSTRACT     => "check what OS we're running on",
     META_MERGE => {
         license => ["artistic_1", "artistic_2"],
         resources => {
