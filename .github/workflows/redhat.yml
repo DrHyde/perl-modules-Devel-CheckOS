@@ -19,7 +19,7 @@ jobs:
     container:
       image: ${{ matrix.container}}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Test on ${{ matrix.name }} - ${{ matrix.container }}
         run: |
           cat /etc/os-release
