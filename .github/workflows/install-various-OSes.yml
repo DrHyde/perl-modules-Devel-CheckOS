@@ -29,6 +29,9 @@ jobs:
         with:
           name: dist-for-install
       - name: Install on Linux
+        env:
+          AUTOMATED_TESTING: 1
+          PERL_MM_USE_DEFAULT: 1
         run: |
           mkdir dist-for-test &&
           tar -C dist-for-test -xzf *.tar.gz &&
@@ -47,6 +50,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPOSITORY: ${{ github.repository }}
+          AUTOMATED_TESTING: 1
+          PERL_MM_USE_DEFAULT: 1
         run: |
           apt-get update && apt-get install -y unzip curl jq build-essential &&
           curl -L -H "X-GitHub-Api-Version: 2022-11-28" -H "Authorization: Bearer ${GH_TOKEN}" -o dist-for-install.zip $(curl -L -s -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${GH_TOKEN}" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/${GH_REPOSITORY}/actions/artifacts -o -|jq -r '[.artifacts.[]|select(.expired == false)]|max_by(.created_at).archive_download_url') &&
@@ -75,6 +80,9 @@ jobs:
         with:
           name: dist-for-install
       - name: Install on NetBSD
+        env:
+          AUTOMATED_TESTING: 1
+          PERL_MM_USE_DEFAULT: 1
         uses: cross-platform-actions/action@v0.32.0
         with:
           operating_system: netbsd
@@ -98,6 +106,9 @@ jobs:
         with:
           name: dist-for-install
       - name: Install on FreeBSD
+        env:
+          AUTOMATED_TESTING: 1
+          PERL_MM_USE_DEFAULT: 1
         uses: cross-platform-actions/action@v0.32.0
         with:
           operating_system: freebsd
@@ -119,6 +130,9 @@ jobs:
         with:
           name: dist-for-install
       - name: Install on OpenBSD
+        env:
+          AUTOMATED_TESTING: 1
+          PERL_MM_USE_DEFAULT: 1
         uses: cross-platform-actions/action@v0.32.0
         with:
           operating_system: openbsd
@@ -140,6 +154,9 @@ jobs:
         with:
           name: dist-for-install
       - name: Install on OmniOS
+        env:
+          AUTOMATED_TESTING: 1
+          PERL_MM_USE_DEFAULT: 1
         uses: cross-platform-actions/action@v0.32.0
         with:
           operating_system: omnios
