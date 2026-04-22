@@ -1,3 +1,5 @@
+# Auto-generated file, see workflow-templates/install-various-OSes.yml
+
 on: [push, pull_request]
 name: Install on various OSes
 jobs:
