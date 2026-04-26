@@ -1,6 +1,11 @@
-on: [push, pull_request]
-name: Linux
+# Auto-generated file, see workflow-templates/linux.yml
 
+on:
+  push:
+    paths:
+      - '.github/workflows/linux.yml'
+      - '.github/workflows/run-linux'
+name: Linux
 jobs:
   list:
     name: list available perl versions
@@ -12,10 +17,9 @@ jobs:
         shell: perl {0}
         run: |
           use Actions::Core;
-          set_output(matrix => {perl => [grep { $_ !~ /^5\.6/ } perl_versions()]});
+          set_output(matrix => {perl => [grep { $_ !~ /^5\.6\./ } perl_versions()]});
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
-
   build:
     runs-on: 'ubuntu-latest'
     needs: list
@@ -26,20 +30,17 @@ jobs:
     steps:
       - name: check out code
         uses: actions/checkout@v6
-
       - name: switch to perl ${{ matrix.perl }}
         uses: shogo82148/actions-setup-perl@v1
         with:
           perl-version: ${{ matrix.perl }}
-
       - name: run tests
         env:
           PERL_USE_UNSAFE_INC: 0
         run: |
             perl -v
-            cpanm Expect ExtUtils::MakeMaker Test::Pod Test::Pod::Coverage || cat /home/runner/.cpanm/work/*/build.log
+            cpanm Expect ExtUtils::MakeMaker Test::Pod Test::Pod::Coverage
             perl -Mparent -e0 || cpanm parent
-            rm -rf /home/runner/.cpanm/work/*
-            cpanm --installdeps . || cat /home/runner/.cpanm/work/*/build.log
+            cpanm --installdeps .
             perl makefile-expect-driver.pl Linux::Debian Linux::Ubuntu Linux Unix OSFeatures::Systemd OSFeatures::POSIXShellRedirection HWCapabilities::Int64
             make test TEST_VERBOSE=1
