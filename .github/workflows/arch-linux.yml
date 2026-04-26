@@ -1,5 +1,9 @@
 name: Arch Linux
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - '.github/workflows/arch-linux.yml'
+      - '.github/workflows/run-arch-linux'
 
 jobs:
   build:

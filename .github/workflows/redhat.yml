@@ -1,5 +1,9 @@
 name: Redhat variations
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - '.github/workflows/redhat.yml'
+      - '.github/workflows/run-redhat'
 
 jobs:
   build:

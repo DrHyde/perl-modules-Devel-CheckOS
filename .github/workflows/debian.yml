@@ -1,5 +1,9 @@
 name: Debian variations
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - '.github/workflows/debian.yml'
+      - '.github/workflows/run-debian'
 
 jobs:
   build:
