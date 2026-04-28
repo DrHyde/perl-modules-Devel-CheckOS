@@ -39,7 +39,8 @@ jobs:
           PERL_USE_UNSAFE_INC: 0
         run: |
             perl -v
-            cpanm Expect ExtUtils::MakeMaker Test::Pod Test::Pod::Coverage
+            cpanm Expect
+            cpanm ExtUtils::MakeMaker Test::Pod Test::Pod::Coverage
             perl -Mparent -e0 || cpanm parent
             cpanm --installdeps .
             perl makefile-expect-driver.pl Linux::Debian Linux::Ubuntu Linux Unix OSFeatures::Systemd OSFeatures::POSIXShellRedirection HWCapabilities::Int64

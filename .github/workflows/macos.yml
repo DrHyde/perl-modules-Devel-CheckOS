@@ -1,6 +1,11 @@
-on: [push, pull_request]
-name: MacOS
+# Auto-generated file, see workflow-templates/macos.yml
 
+on:
+  push:
+    paths:
+      - '.github/workflows/macos.yml'
+      - '.github/workflows/run-macos'
+name: MacOS
 jobs:
   build:
     strategy:
@@ -16,4 +21,4 @@ jobs:
         run: |
           cpanm --installdeps .
           perl Makefile.PL
-          make test
+          make test TEST_VERBOSE=1
