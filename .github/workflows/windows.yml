@@ -1,28 +1,19 @@
----
+# Auto-generated file, see workflow-templates/windows.yml
+
+name: Windows
+on:
+  push:
+    paths:
+      - '.github/workflows/windows.yml'
+      - '.github/workflows/run-windows'
 jobs:
   build:
     runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v6
-    - name: Set up perl
-      uses: shogo82148/actions-setup-perl@v1
-      with:
-        distribution: strawberry
-        perl-version: ${{ matrix.perl-version }}
-    - name: perl -V
-      run: perl -V
-    - name: Install Dependencies
-      run: |
-        cpanm ExtUtils::MakeMaker Test::Pod Test::Pod::Coverage || cat $HOME/.cpanm/work/*/build.log
-        cpanm --installdeps . || cat $HOME/.cpanm/work/*/build.log
-    - name: Run Tests
-      run: |
-        perl Makefile.PL
-        if( "${{ matrix.perl-version }}" -lt "5.26" ) { dmake test TEST_VERBOSE=1 } else { gmake test TEST_VERBOSE=1 }
     strategy:
       fail-fast: false
       matrix:
         perl-version:
+        - latest
         - '5.24'
         - '5.26'
         - '5.28'
@@ -32,8 +23,18 @@ jobs:
         - '5.36'
         - '5.38'
         - '5.40'
-        - latest
-name: Windows
-on:
-- push
-- pull_request
+    steps:
+    - uses: actions/checkout@v6
+    - name: Set up perl
+      uses: shogo82148/actions-setup-perl@v1
+      with:
+        distribution: strawberry
+        perl-version: ${{ matrix.perl-version }}
+    - name: perl -V
+      run: perl -V
+    - name: Install deps and test
+      run: |
+        cpanm ExtUtils::MakeMaker Test::Pod Test::Pod::Coverage
+        perl -Mparent -e0 || cpanm parent
+        perl Makefile.PL
+        if( "${{ matrix.perl-version }}" -lt "5.26" ) { dmake test TEST_VERBOSE=1 } else { gmake test TEST_VERBOSE=1 }

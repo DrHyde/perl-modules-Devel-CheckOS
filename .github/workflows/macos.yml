@@ -19,6 +19,8 @@ jobs:
         uses: shogo82148/actions-setup-perl@v1
       - name: Test and build
         run: |
+          cpanm ExtUtils::MakeMaker Test::Pod Test::Pod::Coverage
+          perl -Mparent -e0 || cpanm parent
           cpanm --installdeps .
           perl Makefile.PL
           make test TEST_VERBOSE=1
