@@ -36,5 +36,6 @@ jobs:
       run: |
         cpanm ExtUtils::MakeMaker Test::Pod Test::Pod::Coverage
         perl -Mparent -e0 || cpanm parent
+        cpanm --installdeps .
         perl Makefile.PL
         if( "${{ matrix.perl-version }}" -lt "5.26" ) { dmake test TEST_VERBOSE=1 } else { gmake test TEST_VERBOSE=1 }
