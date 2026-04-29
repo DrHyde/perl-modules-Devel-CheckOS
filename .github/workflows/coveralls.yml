@@ -1,4 +1,10 @@
-on: [push, pull_request]
+# Auto-generated file, see workflow-templates/coveralls.yml
+
+on:
+  push:
+    paths:
+      - '.github/workflows/coveralls.yml'
+      - '.github/workflows/run-coveralls'
 name: Generate Coveralls report
 jobs:
   build:
@@ -7,13 +13,16 @@ jobs:
       - uses: actions/checkout@v6
       - uses: shogo82148/actions-setup-perl@v1
         with:
-          perl-version: 5.32
+          perl-version: 5.42
       - name: Run with coverage checking
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cpanm --notest Expect
+          perl -v
+          cpanm Devel::Cover::Report::Coveralls
+          cpanm Expect
+          cpanm ExtUtils::MakeMaker Test::Pod Test::Pod::Coverage
+          perl -Mparent -e0 || cpanm parent
           cpanm --installdeps .
           perl makefile-expect-driver.pl Linux::Debian Linux::Ubuntu Linux Unix OSFeatures::Systemd OSFeatures::POSIXShellRedirection HWCapabilities::Int64
-          cpanm Devel::Cover::Report::Coveralls
           cover -test -report Coveralls
