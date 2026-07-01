@@ -56,7 +56,7 @@ jobs:
         env:
           AUTOMATED_TESTING: 1
           PERL_MM_USE_DEFAULT: 1
-        uses: cross-platform-actions/action@v1.0.0
+        uses: cross-platform-actions/action@v1.3.0
         with:
           operating_system: netbsd
           version: 10.1
@@ -82,7 +82,7 @@ jobs:
         env:
           AUTOMATED_TESTING: 1
           PERL_MM_USE_DEFAULT: 1
-        uses: cross-platform-actions/action@v1.0.0
+        uses: cross-platform-actions/action@v1.3.0
         with:
           operating_system: freebsd
           version: 14.2
@@ -106,7 +106,7 @@ jobs:
         env:
           AUTOMATED_TESTING: 1
           PERL_MM_USE_DEFAULT: 1
-        uses: cross-platform-actions/action@v1.0.0
+        uses: cross-platform-actions/action@v1.3.0
         with:
           operating_system: openbsd
           version: 7.4
@@ -129,7 +129,7 @@ jobs:
         env:
           AUTOMATED_TESTING: 1
           PERL_MM_USE_DEFAULT: 1
-        uses: cross-platform-actions/action@v1.0.0
+        uses: cross-platform-actions/action@v1.3.0
         with:
           operating_system: omnios
           version: r151056
