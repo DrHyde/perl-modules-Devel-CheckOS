@@ -1,17 +1,22 @@
 # Auto-generated file, see workflow-templates/macos.yml
+# To rebuild, see rebuild-workflows in https://github.com/DrHyde/meta-perlmodules
 
 on:
   push:
     paths:
       - '.github/workflows/macos.yml'
       - '.github/workflows/run-macos'
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 name: MacOS
 jobs:
   build:
+    if: github.actor != 'dependabot[bot]'
     strategy:
       fail-fast: false
       matrix:
-        runs-on: ['macos-26', 'macos-14', 'macos-15']
+        runs-on: ['macos-26', 'macos-15']
     runs-on: ${{ matrix.runs-on }}
     steps:
       - uses: actions/checkout@v7
