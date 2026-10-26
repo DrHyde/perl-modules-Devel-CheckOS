@@ -64,8 +64,8 @@ if ( $ENV{AUTOMATED_TESTING} ) {
 WriteMakefile(
     NAME       => 'Devel::CheckOS',
     ABSTRACT   => "check what OS we're running on",
+    META_ADD   => { license   => [qw(artistic_1 gpl_2)] },
     META_MERGE => {
-        license   => [ "artistic_1", "artistic_2" ],
         resources => {
             repository =>
               'https://github.com/DrHyde/perl-modules-Devel-CheckOS',
@@ -73,7 +73,6 @@ WriteMakefile(
               'https://github.com/DrHyde/perl-modules-Devel-CheckOS/issues'
         },
     },
-    LICENSE            => "gpl_2",
     MIN_PERL_VERSION   => "5.6.0",
     VERSION_FROM       => 'lib/Devel/CheckOS.pm',
     CONFIGURE_REQUIRES => {
